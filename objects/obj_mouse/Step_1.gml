@@ -4,9 +4,9 @@ var obj = noone;
 var lowest_depth = 9999;
 with (all)
 {
-	if depth >= lowest_depth { continue; }
+	if id == other.id || !place_meeting(x, y, other) || depth >= lowest_depth { continue; }
 	lowest_depth = depth;
 	obj = id;
 }
-	
-send_signal(obj, "clicked");
+
+send_signal(obj, "pressed");
