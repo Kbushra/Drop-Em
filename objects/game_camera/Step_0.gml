@@ -1,0 +1,21 @@
+if keyboard_check_pressed(vk_f4)
+{
+	window_set_fullscreen(!window_get_fullscreen());
+	window_center();
+}
+
+if custom { exit; }
+
+if got_place_signal("goto_spawn")
+{
+	x = obj_player.x;
+	y = obj_player.y;
+	xstart = x;
+	ystart = y;
+	
+	cam_clamp();
+	cam_set();
+	exit;
+}
+
+default_behaviour();

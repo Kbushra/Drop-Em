@@ -1,0 +1,11 @@
+enum CARRIER_VALUE
+{
+	SIGNAL,
+	PACKAGE
+}
+
+enum CARRIER_TARGET
+{
+	INSTANCE,
+	PLACE
+}

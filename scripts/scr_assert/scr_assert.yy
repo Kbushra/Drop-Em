@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_assert",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_assert",
+  "parent":{
+    "name":"Managers",
+    "path":"folders/Managers.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
