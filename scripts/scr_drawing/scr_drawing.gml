@@ -1,6 +1,7 @@
 ///@func draw_reset()
 function draw_reset()
 {
+	draw_set_font(fnt_default);
 	draw_set_colour(c_white);
 	draw_set_alpha(1);
 	

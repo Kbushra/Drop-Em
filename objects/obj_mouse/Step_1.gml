@@ -4,7 +4,11 @@ var obj = noone;
 var lowest_depth = 9999;
 with (all)
 {
-	if id == other.id || !place_meeting(x, y, other) || depth >= lowest_depth { continue; }
+	var _passthrough_clicks = variable_instance_exists(id, "passthrough_clicks") && passthrough_clicks;
+	
+	if id == other.id || !place_meeting(x, y, other) ||
+	_passthrough_clicks || depth >= lowest_depth { continue; }
+	
 	lowest_depth = depth;
 	obj = id;
 }

@@ -19,13 +19,13 @@
   "height":64,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"0efaeaef-ff2d-4efe-aaf9-20a804cac153","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"0efaeaef-ff2d-4efe-aaf9-20a804cac153","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"0efaeaef-ff2d-4efe-aaf9-20a804cac153","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"0efaeaef-ff2d-4efe-aaf9-20a804cac153","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":false,},
     {"$GMImageLayer":"","%Name":"08e9adca-5c49-499e-8f11-dc80db60a114","blendMode":0,"displayName":"default","isLocked":false,"name":"08e9adca-5c49-499e-8f11-dc80db60a114","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_type_box",
   "nineSlice":{
     "$GMNineSliceData":"",
-    "bottom":8,
+    "bottom":9,
     "enabled":true,
     "guideColour":[4294902015,4294902015,4294902015,4294902015,],
     "highlightColour":1728023040,
