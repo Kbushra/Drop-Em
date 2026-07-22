@@ -1,5 +1,5 @@
 ///@desc Discovery
-network_send_broadcast(udp, PORT, broadcast_data.buffer, broadcast_data.len);
+network_send_broadcast(udp, PORT, discovery_data.buffer, discovery_data.len);
 alarm[0] = 120;
 
 var server_names = struct_get_names(servers);

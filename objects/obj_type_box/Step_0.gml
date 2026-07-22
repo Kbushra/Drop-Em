@@ -7,7 +7,7 @@ if string_length(keyboard_string) < string_length(initial_keyboard_string)
 typed_string = "";
 for (var i = string_length(initial_keyboard_string) + 1; i <= string_length(keyboard_string); i++)
 {
-	if string_length(typed_string) >= 8 { break; }
+	if string_length(typed_string) >= limit { break; }
 	
 	var ascii = ord(string_char_at(keyboard_string, i));
 	if ascii == clamp(ascii, ord("A"), ord("Z")) || ascii == clamp(ascii, ord("a"), ord("z")) ||

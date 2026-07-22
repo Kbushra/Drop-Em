@@ -3,6 +3,8 @@ typed_string = "";
 
 placeholder = "JOIN CODE";
 
+func = empty;
+
 ///@func add_char(c)
 add_char = function(c)
 {

@@ -51,6 +51,7 @@
     {"id":{"name":"obj_panel_lan","path":"objects/obj_panel_lan/obj_panel_lan.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
     {"id":{"name":"obj_server","path":"objects/obj_server/obj_server.yy",},},
+    {"id":{"name":"obj_type_box_join","path":"objects/obj_type_box_join/obj_type_box_join.yy",},},
     {"id":{"name":"obj_type_box","path":"objects/obj_type_box/obj_type_box.yy",},},
     {"id":{"name":"rm_init","path":"rooms/rm_init/rm_init.yy",},},
     {"id":{"name":"rm_level_1","path":"rooms/rm_level_1/rm_level_1.yy",},},
