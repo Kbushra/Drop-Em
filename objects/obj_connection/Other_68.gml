@@ -6,8 +6,10 @@ if async_load[? "type"] == network_type_non_blocking_connect
 	exit;
 }
 
-if async_load[? "type"] != network_type_data { exit; }
+if async_load[? "type"] != network_type_data || !buffer_exists(async_load[? "buffer"]) ||
+buffer_get_size(async_load[? "buffer"]) == 0 { exit; }
 
+buffer_seek(async_load[? "buffer"], buffer_seek_start, 0);
 var data = json_parse(buffer_read(async_load[? "buffer"], buffer_string));
 
 if data.type == NETWORK_TYPES.DISCOVERY

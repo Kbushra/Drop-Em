@@ -1,1 +1,1 @@
-x += global.input_held[KEY.RIGHT] - global.input_held[KEY.LEFT];
+x += (global.input_held[KEY.RIGHT] - global.input_held[KEY.LEFT]) * 2;

@@ -1,7 +1,5 @@
 draw_self();
 
-draw_text(bbox_left + 20, bbox_top + 20, "BACK");
-
 var server_names = struct_get_names(obj_connection.servers);
 array_sort(server_names, function(curr, next)
 {
@@ -9,7 +7,24 @@ array_sort(server_names, function(curr, next)
 		obj_connection.servers[$ next].creation_time;
 });
 
-for (var i = 0; i < array_length(server_names); i++)
+if !array_equals(prev_server_names, server_names)
 {
-	draw_text(bbox_left + 20, bbox_top + 50 + 30 * i, server_names[i]);
+	prev_server_names = variable_clone(server_names);
+	
+	for (var i = 0; i < array_length(server_text); i++) { instance_destroy(server_text[i]); }
+	for (var i = 0; i < array_length(server_names); i++)
+	{
+		instance_create_depth(bbox_left + 20, bbox_top + 50 + 30 * i, depth - 1, obj_text_container,
+		{
+			image_xscale: sprite_width - 40,
+			text: server_names[i],
+			func: function()
+			{
+				obj_connection.server_ip = obj_connection.servers[$ text].ip;
+				obj_connection.servers = {};
+				obj_connection.alarm[0] = -1;
+				room_goto(rm_level_1);
+			}
+		});
+	}
 }
