@@ -20,10 +20,10 @@ if !array_equals(prev_server_names, server_names)
 			text: server_names[i],
 			func: function()
 			{
+				if obj_connection.server_ip != "" { return; }
+				
 				obj_connection.server_ip = obj_connection.servers[$ text].ip;
-				obj_connection.servers = {};
-				obj_connection.alarm[0] = -1;
-				room_goto(rm_level_1);
+				network_connect_async(obj_connection.tcp, obj_connection.server_ip, PORT);
 			}
 		});
 	}

@@ -18,6 +18,16 @@ enum KEY_STATE
 	RELEASED
 }
 
+function inputs_default()
+{
+	var arr = [];
+	for (var i = 0; i < KEY.COUNT; i++)
+	{
+		arr[i] = false;
+	}
+	return arr;
+}
+
 function key_check_direct(key, state)
 {
 	switch (state)

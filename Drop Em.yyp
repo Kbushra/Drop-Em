@@ -46,6 +46,7 @@
     {"id":{"name":"obj_button","path":"objects/obj_button/obj_button.yy",},},
     {"id":{"name":"obj_connection","path":"objects/obj_connection/obj_connection.yy",},},
     {"id":{"name":"obj_main_menu","path":"objects/obj_main_menu/obj_main_menu.yy",},},
+    {"id":{"name":"obj_marker","path":"objects/obj_marker/obj_marker.yy",},},
     {"id":{"name":"obj_mouse","path":"objects/obj_mouse/obj_mouse.yy",},},
     {"id":{"name":"obj_panel_hosting","path":"objects/obj_panel_hosting/obj_panel_hosting.yy",},},
     {"id":{"name":"obj_panel_lan","path":"objects/obj_panel_lan/obj_panel_lan.yy",},},

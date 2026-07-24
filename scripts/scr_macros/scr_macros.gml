@@ -44,4 +44,6 @@
 #macro EPOCH_TIME (date_second_span(date_create_datetime(1970, 1, 1, 0, 0, 0), date_current_datetime()))
 #macro PORT 6510
 
+#macro DELTA (delta_time/1000000)
+
 #macro print show_debug_message

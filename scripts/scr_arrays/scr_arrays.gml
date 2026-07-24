@@ -22,6 +22,12 @@ function array_length_flattened(arr)
 	return count;
 }
 
+function array_delete_element(arr, el)
+{
+	if !array_contains(arr, el) { return; }
+	array_delete(arr, array_get_index(arr, el), 1);
+}
+
 function array_get_counts(arr)
 {
 	var result = {};

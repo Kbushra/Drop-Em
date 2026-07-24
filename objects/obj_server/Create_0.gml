@@ -2,12 +2,23 @@ event_user(0);
 tcp = create_server(network_socket_tcp);
 udp = create_server(network_socket_udp);
 
+//First client is the host themself
+clients =
+[{
+	tcp: NONE,
+	ip,
+	port: PORT,
+	frame_inputs: {}
+}];
+
 discovery_data = buffer_struct
 ({
 	type: NETWORK_TYPES.DISCOVERY,
 	name: "Insert name",
 	creation_time: EPOCH_TIME
 });
+
+object_data = [];
 
 if tcp < 0 || udp < 0 { instance_destroy(); exit; }
 

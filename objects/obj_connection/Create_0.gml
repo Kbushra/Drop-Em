@@ -6,3 +6,4 @@ if tcp < 0 || udp < 0 { instance_destroy(); exit; }
 discovery_data = buffer_struct({ type: NETWORK_TYPES.DISCOVERY });
 servers = {};
 server_ip = "";
+connected = false;
