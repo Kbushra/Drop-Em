@@ -21,8 +21,8 @@ clients =
 discovery_data = buffer_struct
 ({
 	type: NETWORK_TYPES.DISCOVERY,
-	name: "Insert name",
-	creation_time: EPOCH_TIME
+	creation_time: EPOCH_TIME,
+	name
 });
 
 object_data = [];

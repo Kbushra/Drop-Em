@@ -20,25 +20,16 @@ client_broadcast = function(struct)
 	buffer_delete(data.buffer);
 }
 
-///@func write_data()
-write_data = function()
+///@func write_data([extra])
+write_data = function(extra = {})
 {
 	with other
 	{
-		array_push(other.object_data,
-		{
-			sprite_index: sprite_get_name(sprite_index),
-			image_index,
-			image_alpha,
-			image_blend,
-			image_xscale,
-			image_yscale,
-			image_angle,
-			visible,
-			x,
-			y,
-			depth,
-			layer: layer_get_name(layer)
-		});
+		var data = get_object_data(extra);
+		data.object_name = object_get_name(object_index);
+		data.sprite_index = sprite_get_name(sprite_index);
+		data.layer = layer_get_name(layer);
+		
+		array_push(other.object_data, data);
 	}
 }

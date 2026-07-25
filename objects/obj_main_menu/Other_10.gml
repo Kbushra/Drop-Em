@@ -13,6 +13,7 @@ get_curr_path = function()
 ///@func create_buttons()
 create_buttons = function()
 {
+	instance_destroy(obj_type_box);
 	instance_destroy(obj_button);
 	
 	var curr_path = get_curr_path();

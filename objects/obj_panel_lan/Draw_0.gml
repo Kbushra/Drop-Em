@@ -11,10 +11,11 @@ if !array_equals(prev_server_names, server_names)
 {
 	prev_server_names = variable_clone(server_names);
 	
+	var top = bbox_top + 20 + string_height("BACK");
 	for (var i = 0; i < array_length(server_text); i++) { instance_destroy(server_text[i]); }
 	for (var i = 0; i < array_length(server_names); i++)
 	{
-		instance_create_depth(bbox_left + 20, bbox_top + 50 + 30 * i, depth - 1, obj_text_container,
+		instance_create_depth(bbox_left + 20, top, depth - 1, obj_text_container,
 		{
 			image_xscale: sprite_width - 40,
 			text: server_names[i],
@@ -26,5 +27,6 @@ if !array_equals(prev_server_names, server_names)
 				network_connect_async(obj_connection.tcp, obj_connection.server_ip, PORT);
 			}
 		});
+		top += string_height(server_names[i]);
 	}
 }

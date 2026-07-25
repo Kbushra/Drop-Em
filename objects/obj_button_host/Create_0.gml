@@ -1,6 +1,6 @@
-ip_request = noone;
 func = function()
 {
-	if ip_request { exit; }
-	ip_request = http_get("https://api.ipify.org");
+	instance_destroy(obj_button);
+	instance_create_depth(x, 64, depth, obj_button_back, { pop: false });
+	instance_create_depth(x, 64 + 80, depth, obj_type_box_host);
 }

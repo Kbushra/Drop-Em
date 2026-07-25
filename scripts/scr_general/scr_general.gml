@@ -8,3 +8,30 @@ function buffer_struct(struct)
 	
 	return { buffer: buff, len: string_length(text) };
 }
+
+function get_object_data(extra = {})
+{
+	var data =
+	{
+		sprite_index,
+		image_index,
+		image_alpha,
+		image_blend,
+		image_xscale,
+		image_yscale,
+		image_angle,
+		visible,
+		x,
+		y,
+		depth,
+		layer
+	};
+		
+	var extra_names = struct_get_names(extra);
+	for (var i = 0; i < array_length(extra_names); i++)
+	{
+		data[$ extra_names[i]] = extra[$ extra_names[i]];
+	}
+		
+	return data;
+}

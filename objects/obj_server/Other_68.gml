@@ -29,6 +29,7 @@ if async_load[? "type"] == network_type_connect
 
 if async_load[? "type"] != network_type_data { exit; }
 
+buffer_seek(async_load[? "buffer"], buffer_seek_start, 0);
 var data = json_parse(buffer_read(async_load[? "buffer"], buffer_string));
 
 if data.type == NETWORK_TYPES.DISCOVERY

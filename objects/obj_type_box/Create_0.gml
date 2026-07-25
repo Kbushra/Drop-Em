@@ -1,9 +1,9 @@
 initial_keyboard_string = keyboard_string;
 typed_string = "";
 
-placeholder = "JOIN CODE";
-
 func = empty;
+
+special_allowed_chars = [ord("+"), ord("/")];
 
 ///@func add_char(c)
 add_char = function(c)
