@@ -12,6 +12,7 @@ func = function()
 	ip_octets[3] = buffer_read(ip_buff, buffer_u8);
 	var ip = string_join_ext(".", ip_octets);
 	
+	print(ip);
 	obj_connection.server_ip = ip;
 	network_connect_async(obj_connection.tcp, obj_connection.server_ip, PORT);
 }

@@ -1,31 +1,14 @@
-print("networking");
-
-if async_load[? "type"] == network_type_non_blocking_connect
-{
-	if !async_load[? "succeeded"] { server_ip = ""; exit; }
-	
-	connected = true;
-	servers = {};
-	alarm[0] = -1;
-	room_goto(rm_level_1);
-	exit;
-}
-
-if async_load[? "type"] == network_type_disconnect
+if async_load[? "type"] == network_type_non_blocking_connect && !async_load[? "succeeded"]
 {
 	server_ip = "";
-	connected = false;
-	room_goto(rm_main);
 	exit;
 }
 
 if async_load[? "type"] != network_type_data || !buffer_exists(async_load[? "buffer"]) ||
 buffer_get_size(async_load[? "buffer"]) == 0 { exit; }
 
-print("before dat");
 buffer_seek(async_load[? "buffer"], buffer_seek_start, 0);
 var data = json_parse(buffer_read(async_load[? "buffer"], buffer_string));
-print($"type {data.type}");
 
 if data.type == NETWORK_TYPES.DISCOVERY
 {
@@ -35,15 +18,41 @@ if data.type == NETWORK_TYPES.DISCOVERY
 		discovery_time: EPOCH_TIME,
 		ip: async_load[? "ip"]
 	};
+	exit;
+}
+
+if data.type == NETWORK_TYPES.CONNECTED
+{
+	client_id = data.client_id;
+	connected = true;
+	servers = {};
+	server_last_alive = current_time;
+	alarm[0] = -1;
+	room_goto(rm_level_1);
+	
+	var udp_data = buffer_struct({ type: NETWORK_TYPES.GET_UDP_PORT, client_id });
+	network_send_udp(udp, server_ip, PORT, udp_data.buffer, udp_data.len);
+	buffer_delete(udp_data.buffer);
+	exit;
 }
 
 if data.type == NETWORK_TYPES.OBJECT_DATA
 {
-	print("received data");
 	instance_destroy(obj_marker);
 	for (var i = 0; i < array_length(data.object_data); i++)
 	{
-		print(data.object_data[i]);
+		data.object_data[i].sprite_index = asset_get_index(data.object_data[i].sprite_index);
+		data.object_data[i].layer = layer_exists(data.object_data[i].layer) ?
+			layer_get_id(data.object_data[i].layer) :
+			layer_create(data.object_data[i].depth, data.object_data[i].layer);
+		
 		instance_create_depth(x, y, depth, obj_marker, data.object_data[i]);
 	}
+	
+	server_last_alive = current_time;
+	
+	var keep_alive = buffer_struct({ type: NETWORK_TYPES.OBJECT_DATA, client_id });
+	network_send_udp(udp, server_ip, PORT, keep_alive.buffer, keep_alive.len);
+	buffer_delete(keep_alive.buffer);
+	exit;
 }

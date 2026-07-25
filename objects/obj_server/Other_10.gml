@@ -14,7 +14,7 @@ client_broadcast = function(struct)
 	var data = buffer_struct(struct);
 	for (var i = 1; i < array_length(clients); i++)
 	{
-		network_send_udp(udp, clients[i].ip, clients[i].port, data.buffer, data.len);
+		network_send_udp(udp, clients[i].ip, clients[i].udp_port, data.buffer, data.len);
 	}
 	
 	buffer_delete(data.buffer);
@@ -27,17 +27,18 @@ write_data = function()
 	{
 		array_push(other.object_data,
 		{
-			sprite_index,
+			sprite_index: sprite_get_name(sprite_index),
 			image_index,
 			image_alpha,
 			image_blend,
 			image_xscale,
 			image_yscale,
 			image_angle,
+			visible,
 			x,
 			y,
 			depth,
-			layer
+			layer: layer_get_name(layer)
 		});
 	}
 }
