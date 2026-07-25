@@ -12,6 +12,7 @@ instance_create_depth(bbox_left + 20, bbox_top + 20, depth - 1, obj_text_contain
 	func: function()
 	{
 		obj_main_menu.create_buttons();
+		instance_destroy(obj_connection);
 		instance_destroy(obj_panel_lan);
 		instance_destroy(obj_text_container);
 	}

@@ -41,6 +41,7 @@
     {"id":{"name":"obj_button_advance","path":"objects/obj_button_advance/obj_button_advance.yy",},},
     {"id":{"name":"obj_button_back","path":"objects/obj_button_back/obj_button_back.yy",},},
     {"id":{"name":"obj_button_host","path":"objects/obj_button_host/obj_button_host.yy",},},
+    {"id":{"name":"obj_button_join_global_back","path":"objects/obj_button_join_global_back/obj_button_join_global_back.yy",},},
     {"id":{"name":"obj_button_join_global","path":"objects/obj_button_join_global/obj_button_join_global.yy",},},
     {"id":{"name":"obj_button_join_local","path":"objects/obj_button_join_local/obj_button_join_local.yy",},},
     {"id":{"name":"obj_button","path":"objects/obj_button/obj_button.yy",},},
