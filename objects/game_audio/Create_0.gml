@@ -2,7 +2,7 @@ print("audio created");
 
 image_alpha = 0;
 
-area_music = NONE;
+area_music = noone;
 
 emitter_bgm = audio_emitter_create();
 emitter_sfx = audio_emitter_create();

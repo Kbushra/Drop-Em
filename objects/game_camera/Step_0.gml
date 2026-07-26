@@ -9,8 +9,8 @@ if custom { exit; }
 
 if got_place_signal("goto_spawn")
 {
-	x = obj_player.x;
-	y = obj_player.y;
+	x = cam_target.x;
+	y = cam_target.y;
 	xstart = x;
 	ystart = y;
 	

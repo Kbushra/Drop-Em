@@ -26,6 +26,7 @@ write_data = function(extra = {})
 	with other
 	{
 		var data = get_object_data(extra);
+		data._id = id;
 		data.object_name = object_get_name(object_index);
 		data.sprite_index = sprite_get_name(sprite_index);
 		data.layer = layer_get_name(layer);

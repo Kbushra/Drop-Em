@@ -36,6 +36,7 @@ cam_set_target = function(_target)
 {
 	if !instance_exists(_target) { return; }
 	
+	cam_target = _target;
 	x = _target.x;
 	y = _target.y;
 }
@@ -57,10 +58,9 @@ cam_clamp = function()
 ///@func default_behaviour()
 default_behaviour = function()
 {
+	cam_set_target(obj_player_host);
+	cam_set_target(obj_marker_player);
 	cam_dimensions();
-	if (instance_exists(cam_target))
-		cam_set_target(cam_target);
-
 	cam_set();
 }
 

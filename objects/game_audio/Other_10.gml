@@ -3,7 +3,7 @@
 ///@func start_bgm()
 start_bgm = function()
 {
-	var bgm = NONE;
+	var bgm = noone;
 	//Code to change bgm
 	
 	if audio_sound_get_asset(area_music) != bgm { stop_bgm(); }

@@ -38,15 +38,26 @@ if data.type == NETWORK_TYPES.CONNECTED
 
 if data.type == NETWORK_TYPES.OBJECT_DATA
 {
-	instance_destroy(obj_marker);
+	var ids = [];
 	for (var i = 0; i < array_length(data.object_data); i++)
 	{
-		data.object_data[i].sprite_index = asset_get_index(data.object_data[i].sprite_index);
-		data.object_data[i].layer = layer_exists(data.object_data[i].layer) ?
-			layer_get_id(data.object_data[i].layer) :
-			layer_create(data.object_data[i].depth, data.object_data[i].layer);
+		var obj = data.object_data[i];
+		obj.sprite_index = asset_get_index(obj.sprite_index);
+		obj.layer = layer_exists(obj.layer) ?
+			layer_get_id(obj.layer) :
+			layer_create(obj.depth, obj.layer);
 		
-		instance_create_depth(x, y, depth, obj_marker, data.object_data[i]);
+		markers[$ obj._id] ??= instance_create_depth(x, y, depth, obj_marker);
+		apply_struct(markers[$ obj._id], obj);
+		array_push(ids, obj._id);
+	}
+	
+	with (obj_marker)
+	{
+		if array_contains(ids, _id) { continue; }
+		
+		markers[$ _id] = undefined;
+		instance_destroy();
 	}
 	
 	server_last_alive = current_time;
