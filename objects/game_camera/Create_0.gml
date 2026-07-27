@@ -11,7 +11,7 @@ xoffset = width / 2;
 yoffset = height / 2;
 zoom = 1;
 
-cam_target = obj_player_host;
+cam_target = obj_host;
 
 custom = false;
 shake_intensity = 0;

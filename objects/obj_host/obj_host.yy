@@ -1,18 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_player_host",
-  "eventList":[],
+  "%Name":"obj_host",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"obj_player_host",
+  "name":"obj_host",
   "overriddenProperties":[],
   "parent":{
-    "name":"Player",
-    "path":"folders/Player.yy",
+    "name":"Maps",
+    "path":"folders/Maps.yy",
   },
-  "parentObjectId":{
-    "name":"obj_player",
-    "path":"objects/obj_player/obj_player.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,10 +30,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_bat_idle",
-    "path":"sprites/spr_bat_idle/spr_bat_idle.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":{
     "name":"spr_bat_mask",
     "path":"sprites/spr_bat_mask/spr_bat_mask.yy",

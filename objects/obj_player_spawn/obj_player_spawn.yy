@@ -6,8 +6,8 @@
   "name":"obj_player_spawn",
   "overriddenProperties":[],
   "parent":{
-    "name":"Player",
-    "path":"folders/Player.yy",
+    "name":"Maps",
+    "path":"folders/Maps.yy",
   },
   "parentObjectId":null,
   "persistent":false,

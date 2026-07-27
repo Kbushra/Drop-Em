@@ -31,8 +31,11 @@ function inv_lerp(a, b, value)
 	return (value - a) / (b - a);
 }
 
-#macro RISE 0
-#macro FALL 1
+enum EDGE
+{
+	RISE,
+	FALL
+}
 
 ///@param x In degrees
 ///@param min Trough value
@@ -40,13 +43,13 @@ function inv_lerp(a, b, value)
 ///@param max Crest value
 ///@param period In degrees
 ///@param edge Start point in rise or fall
-function transformed_sin(_x, _min, _start, _max, _period, _edge = RISE)
+function transformed_sin(_x, _min, _start, _max, _period, _edge = EDGE.RISE)
 {
 	if !assert(_start == clamp(_start, _min, _max), "Invalid start y in sin phase!") { return 0; }
 	if !assert(_min <= _max, "Min and max swapped around in sin phase!") { return 0; }
 	
 	var phase = darcsin(2 * inv_lerp(_min, _max, _start) - 1);
-	if _edge == FALL { phase = 180 - phase; }
+	if _edge == EDGE.FALL { phase = 180 - phase; }
 	
 	var normalised_dsin = (dsin(_x * 360/_period + phase) + 1)/2;
 	return normalised_dsin * (_max - _min) + _min;
@@ -57,7 +60,8 @@ function transformed_sin(_x, _min, _start, _max, _period, _edge = RISE)
 ///@param max Crest value
 ///@param point Point with x value in degrees
 ///@param edge Start point in rise or fall
-function transformed_sin_get_period(_min, _start, _max, _point, _edge = RISE, _point_edge = FALL)
+///@param point_edge Given point in rise or fall
+function transformed_sin_get_period(_min, _start, _max, _point, _edge = EDGE.RISE, _point_edge = EDGE.FALL)
 {
 	if !assert(_point.y == clamp(_point.y, _min, _max), "Invalid point y!") { return 360; }
 	if !assert(_start == clamp(_start, _min, _max), "Invalid start y in sin get phase!") { return 360; }
@@ -65,8 +69,8 @@ function transformed_sin_get_period(_min, _start, _max, _point, _edge = RISE, _p
 	
 	var phase_point = darcsin(2 * inv_lerp(_min, _max, _point.y) - 1);
 	var phase = darcsin(2 * inv_lerp(_min, _max, _start) - 1);
-	if _edge == FALL { phase = 180 - phase; }
-	if _point_edge == FALL { phase_point = 180 - phase_point; }
+	if _edge == EDGE.FALL { phase = 180 - phase; }
+	if _point_edge == EDGE.FALL { phase_point = 180 - phase_point; }
 	
 	var phase_change = phase_point - phase;
 	while (phase_change <= 0) { phase_change += 360; }

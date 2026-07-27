@@ -15,7 +15,7 @@ if async_load[? "type"] == network_type_connect
 		}
 	};
 	array_push(clients, client);
-	instance_create_depth(x, y, depth, obj_player, { client_id: array_length(clients) - 1 });
+	instance_create_depth(x, y, depth, obj_bat, { client_id: array_length(clients) - 1 });
 	
 	var connection_data = buffer_struct
 	({

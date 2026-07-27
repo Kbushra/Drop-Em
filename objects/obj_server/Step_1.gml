@@ -11,7 +11,7 @@ for (var i = 1; i < array_length(clients); i++)
 		continue;
 	}
 	
-	with (obj_player) { if client_id == i { instance_destroy(); } }
+	with (obj_bat) { if client_id == i { instance_destroy(); } }
 }
 
 clients = alive_clients;

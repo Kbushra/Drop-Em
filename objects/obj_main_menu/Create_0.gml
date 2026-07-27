@@ -22,6 +22,10 @@ full_path =
 				name: "GLOBAL"
 			}
 		]
+	},
+	{
+		button: obj_button_playground,
+		name: "TEST"
 	}
 ];
 

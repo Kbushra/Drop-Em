@@ -1,11 +1,11 @@
 {
   "$GMObject":"",
-  "%Name":"obj_marker_player",
+  "%Name":"obj_marker_client",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_marker_player",
+  "name":"obj_marker_client",
   "overriddenProperties":[],
   "parent":{
     "name":"Marker Types",

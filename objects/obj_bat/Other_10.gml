@@ -13,13 +13,13 @@ move_free = function(axis, sign_only)
 }
 
 ///@func update_hsp()
-update_hsp = function() { hsp = (input_held[KEY.RIGHT] - input_held[KEY.LEFT]) * 150 * DELTA; }
+update_hsp = function() { hsp = (input_held[KEY.RIGHT] - input_held[KEY.LEFT]) * spd * DELTA; }
 
 ///@func update_vsp()
 update_vsp = function()
 {
-	if vsp < 0 { vsp += 10 * DELTA; } else { vsp += 15 * DELTA; }
-	vsp = clamp(vsp, -5, 15);
+	if vsp < 0 { vsp += up_grv * DELTA; } else { vsp += down_grv * DELTA; }
+	vsp = clamp(vsp, -99, 15);
 }
 
 ///@func collide()
