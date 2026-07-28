@@ -36,6 +36,11 @@ function lerp_delta(a, b, amt)
 	return lerp(a, b, 1 - power(1 - amt, DELTA));
 }
 
+function true_mod(dividend, divisor)
+{
+	return ((dividend % divisor) + divisor) % divisor;
+}
+
 enum EDGE
 {
 	RISE,

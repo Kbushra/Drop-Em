@@ -29,7 +29,7 @@ write_data = function(extra = {})
 		data._id = id;
 		data.object_name = object_get_name(object_index);
 		data.sprite_index = sprite_get_name(sprite_index);
-		data.layer = layer_get_name(layer);
+		data.layer = layer_get_type(layer) == layer_type_unknown ? "" : layer_get_name(layer);
 		
 		array_push(other.object_data, data);
 	}

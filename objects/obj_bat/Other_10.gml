@@ -41,3 +41,14 @@ collide = function()
 		vsp = 0;
 	}
 }
+
+///@func attack()
+attack = function()
+{
+	if !agile || attack_cooldown > 0 || !input_pressed[KEY.ATTACK] { return; }
+	
+	attacking = true;
+	attack_cooldown = 0.35;
+	sprite_index = spr_bat_attack;
+	image_index = 0;
+}

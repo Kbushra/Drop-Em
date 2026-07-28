@@ -64,7 +64,6 @@ if data.type == NETWORK_TYPES.INPUTS
 		}
 		break;
 	}
-	
 	exit;
 }
 

@@ -23,7 +23,7 @@ state_transition = function()
 			{
 				coyote_press_down = 0;
 				state = BAT_STATES.SLIDE;
-				initial_slide_dir = image_xscale;
+				slide_dir = image_xscale;
 			}
 		break;
 		
@@ -59,7 +59,7 @@ state_transition = function()
 			{
 				coyote_press_up = 0;
 				state = BAT_STATES.GLIDE;
-				initial_glide_dir = image_xscale;
+				glide_dir = image_xscale;
 			}
 		break;
 		
@@ -129,19 +129,21 @@ state_step = function()
 		case BAT_STATES.WALK:
 			update_hsp();
 			vsp = 0;
-		
+			
+			attack();
 			mask_index = spr_bat_mask;
 			collide();
 			
-			sprite_index = hsp == 0 ? spr_bat_idle : spr_bat_walk;
+			if !attacking { sprite_index = hsp == 0 ? spr_bat_idle : spr_bat_walk; }
 		break;
 		
 		case BAT_STATES.JUMP:
 			update_hsp();
 			update_vsp();
-		
+			
+			attack();
 			mask_index = spr_bat_mask;
-			sprite_index = spr_bat_jump;
+			if !attacking { sprite_index = spr_bat_jump; }
 			collide();
 		break;
 		
@@ -149,8 +151,9 @@ state_step = function()
 			update_hsp();
 			update_vsp();
 		
+			attack();
 			mask_index = spr_bat_mask;
-			sprite_index = spr_bat_fall;
+			if !attacking { sprite_index = spr_bat_fall; }
 			collide();
 		break;
 		
@@ -160,14 +163,14 @@ state_step = function()
 	
 			if place_free(x, y + 1) && vsp == 0 { coyote_fall = 0.2; }
 		
-			hsp = initial_slide_dir * slide_spd * DELTA;
+			hsp = slide_dir * slide_spd * DELTA;
 			update_vsp();
 		
 			mask_index = spr_bat_mask_small;
 			sprite_index = spr_bat_slide;
 			collide();
 		
-			if hsp == 0 { initial_slide_dir *= -1; } //Change direction
+			if hsp == 0 { slide_dir *= -1; } //Change direction
 		break;
 		
 		case BAT_STATES.WALL:
@@ -204,9 +207,10 @@ state_step = function()
 			}
 		
 			hsp += current_wall_force * DELTA;
-		
+			
+			attack();
 			mask_index = spr_bat_mask;
-			sprite_index = spr_bat_jump;
+			if !attacking { sprite_index = spr_bat_jump; }
 			collide();
 		break;
 		
@@ -214,14 +218,33 @@ state_step = function()
 			//Disabled
 			if !agile { state = BAT_STATES.FALL; break; }
 	
-			hsp = initial_glide_dir * glide_spd * DELTA;
+			hsp = glide_dir * glide_spd * DELTA;
 			vsp = lerp_delta(vsp, 0, 0.99);
 		
 			mask_index = spr_bat_mask_small;
 			sprite_index = spr_bat_glide;
 			collide();
 		
-			if hsp == 0 { initial_glide_dir *= -1; } //Change direction
+			if hsp == 0 { glide_dir *= -1; } //Change direction
+		break;
+		
+		case BAT_STATES.KNOCKBACK:
+			hsp = current_knockback_h_force * DELTA;
+			update_vsp();
+			
+			mask_index = spr_bat_mask;
+			sprite_index = spr_bat_knockback;
+			collide();
+			
+			if hsp == 0 { current_knockback_h_force *= -1; }
+			if vsp != 0 { break; }
+			
+			current_knockback_h_force /= 2;
+			current_knockback_v_force /= 2;
+			vsp = current_knockback_v_force;
+			if near_equals(current_knockback_h_force, 0, 4) &&
+			near_equals(current_knockback_v_force, 0, 0.1)
+			{ state = BAT_STATES.WALK; }
 		break;
 	}
 }
