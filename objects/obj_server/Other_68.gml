@@ -50,8 +50,18 @@ if data.type == NETWORK_TYPES.INPUTS
 {
 	for (var i = 1; i < array_length(clients); i++)
 	{
-		if clients[i].tcp != async_load[? "id"] { continue; }
-		clients[i].frame_inputs = data.frame_inputs;
+		if data.client_id != i { continue; }
+		
+		var prev_inputs_held = clients[i].frame_inputs.input_held;
+		clients[i].frame_inputs.input_held = data.input_held;
+		
+		for (var j = 0; j < KEY.COUNT; j++)
+		{
+			clients[i].frame_inputs.input_pressed[j] =
+				!prev_inputs_held[j] && data.input_held[j];
+			clients[i].frame_inputs.input_released[j] =
+				prev_inputs_held[j] && !data.input_held[j];
+		}
 		break;
 	}
 	

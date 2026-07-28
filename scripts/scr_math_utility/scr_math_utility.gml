@@ -31,6 +31,11 @@ function inv_lerp(a, b, value)
 	return (value - a) / (b - a);
 }
 
+function lerp_delta(a, b, amt)
+{
+	return lerp(a, b, 1 - power(1 - amt, DELTA));
+}
+
 enum EDGE
 {
 	RISE,

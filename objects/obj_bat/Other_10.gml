@@ -13,7 +13,11 @@ move_free = function(axis, sign_only)
 }
 
 ///@func update_hsp()
-update_hsp = function() { hsp = (input_held[KEY.RIGHT] - input_held[KEY.LEFT]) * spd * DELTA; }
+update_hsp = function()
+{
+	var _spd = agile ? spd : slow_spd;
+	hsp = (input_held[KEY.RIGHT] - input_held[KEY.LEFT]) * _spd * DELTA;
+}
 
 ///@func update_vsp()
 update_vsp = function()

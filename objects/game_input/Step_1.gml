@@ -9,9 +9,10 @@ else if instance_exists(obj_connection) && obj_connection.connected
 	var data = buffer_struct
 	({
 		type: NETWORK_TYPES.INPUTS,
-		frame_inputs: { input_pressed, input_held, input_released }
+		client_id: obj_connection.client_id,
+		input_held
 	});
 	
-	network_send_packet(obj_connection.tcp, data.buffer, data.len);
+	network_send_udp(obj_connection.udp, obj_connection.server_ip, PORT, data.buffer, data.len);
 	buffer_delete(data.buffer);
 }
