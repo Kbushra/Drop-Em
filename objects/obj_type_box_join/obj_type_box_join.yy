@@ -9,8 +9,8 @@
   "name":"obj_type_box_join",
   "overriddenProperties":[],
   "parent":{
-    "name":"UI",
-    "path":"folders/UI.yy",
+    "name":"Type Boxes",
+    "path":"folders/UI/Type Boxes.yy",
   },
   "parentObjectId":{
     "name":"obj_type_box",

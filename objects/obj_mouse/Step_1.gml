@@ -1,3 +1,5 @@
+depth = -999;
+
 if !mouse_check_button_pressed(mb_left) { exit; }
 
 var obj = noone;

@@ -1,28 +1,32 @@
 if async_load[? "type"] == network_type_connect
 {
-	var client =
+	if !instance_exists(obj_lava)
 	{
-		tcp: async_load[? "socket"],
-		ip: async_load[? "ip"],
-		tcp_port: async_load[? "port"],
-		udp_port: 0,
-		last_alive: current_time,
-		frame_inputs:
+		var client =
 		{
-			input_pressed: inputs_default(),
-			input_held: inputs_default(),
-			input_released: inputs_default()
-		}
-	};
-	array_push(clients, client);
-	instance_create_depth(x, y, depth, obj_bat, { client_id: array_length(clients) - 1 });
+			tcp: async_load[? "socket"],
+			ip: async_load[? "ip"],
+			tcp_port: async_load[? "port"],
+			udp_port: 0,
+			last_alive: current_time,
+			frame_inputs:
+			{
+				input_pressed: inputs_default(),
+				input_held: inputs_default(),
+				input_released: inputs_default()
+			}
+		};
+		array_push(clients, client);
+		instance_create_depth(x, y, depth, obj_bat, { client_id: array_length(clients) - 1 });
+	}	
 	
 	var connection_data = buffer_struct
 	({
 		type: NETWORK_TYPES.CONNECTED,
-		client_id: array_length(clients) - 1
+		client_id: array_length(clients) - 1,
+		success: !instance_exists(obj_lava)
 	});
-	network_send_packet(client.tcp, connection_data.buffer, connection_data.len);
+	network_send_packet(async_load[? "socket"], connection_data.buffer, connection_data.len);
 	buffer_delete(connection_data.buffer);
 	exit;
 }
@@ -32,7 +36,7 @@ if async_load[? "type"] != network_type_data { exit; }
 buffer_seek(async_load[? "buffer"], buffer_seek_start, 0);
 var data = json_parse(buffer_read(async_load[? "buffer"], buffer_string));
 
-if data.type == NETWORK_TYPES.DISCOVERY
+if data.type == NETWORK_TYPES.DISCOVERY && !instance_exists(obj_lava)
 {
 	network_send_udp(udp, async_load[? "ip"], async_load[? "port"],
 		discovery_data.buffer, discovery_data.len);
@@ -67,7 +71,7 @@ if data.type == NETWORK_TYPES.INPUTS
 	exit;
 }
 
-if data.type == NETWORK_TYPES.OBJECT_DATA
+if data.type == NETWORK_TYPES.FRAME_DATA
 {
 	clients[data.client_id].last_alive = current_time;
 	exit;

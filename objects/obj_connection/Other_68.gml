@@ -23,6 +23,13 @@ if data.type == NETWORK_TYPES.DISCOVERY
 
 if data.type == NETWORK_TYPES.CONNECTED
 {
+	if !data.success
+	{
+		network_destroy(tcp);
+		tcp = network_create_socket(network_socket_tcp);
+		exit;
+	}
+	
 	client_id = data.client_id;
 	connected = true;
 	servers = {};
@@ -36,7 +43,7 @@ if data.type == NETWORK_TYPES.CONNECTED
 	exit;
 }
 
-if data.type == NETWORK_TYPES.OBJECT_DATA
+if data.type == NETWORK_TYPES.FRAME_DATA
 {
 	var ids = [];
 	for (var i = 0; i < array_length(data.object_data); i++)
@@ -60,9 +67,10 @@ if data.type == NETWORK_TYPES.OBJECT_DATA
 		instance_destroy();
 	}
 	
+	client_count = data.client_count;
 	server_last_alive = current_time;
 	
-	var keep_alive = buffer_struct({ type: NETWORK_TYPES.OBJECT_DATA, client_id });
+	var keep_alive = buffer_struct({ type: NETWORK_TYPES.FRAME_DATA, client_id });
 	network_send_udp(udp, server_ip, PORT, keep_alive.buffer, keep_alive.len);
 	buffer_delete(keep_alive.buffer);
 	exit;

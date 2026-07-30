@@ -38,7 +38,7 @@ cam_set_target = function(_target)
 	
 	cam_target = _target;
 	x = _target.x;
-	y = _target.y;
+	y = _target.y - 64; //Always looking above target
 }
 
 ///@func cam_set_zoom_offsets()

@@ -6,6 +6,12 @@ if input_pressed[KEY.DOWN] { coyote_press_down = 0.2; }
 state_transition();
 state_step();
 
+if instance_exists(obj_lava) && y < lowest_y
+{
+	if state != BAT_STATES.GHOST { _score += (lowest_y - y)/5; }
+	lowest_y = y;
+}
+
 attack_cooldown -= DELTA;
 coyote_press_up -= DELTA;
 coyote_press_down -= DELTA;
@@ -24,6 +30,10 @@ if attacking
 	with (obj_player)
 	{
 		if inv_frames > 0 || !place_meeting(x, y, other) { continue; }
+		
+		hp -= 15;
+		_score -= 15;
+		if _score < 0 { _score = 0; }
 		
 		state = BAT_STATES.KNOCKBACK;
 		knockback_delay = 0.1;

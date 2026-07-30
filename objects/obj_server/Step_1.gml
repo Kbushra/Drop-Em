@@ -1,4 +1,4 @@
-client_broadcast({ type: NETWORK_TYPES.OBJECT_DATA, object_data });
+client_broadcast({ type: NETWORK_TYPES.FRAME_DATA, object_data, client_count: array_length(clients) });
 clients[0].last_alive = current_time; //Why not lol
 object_data = [];
 

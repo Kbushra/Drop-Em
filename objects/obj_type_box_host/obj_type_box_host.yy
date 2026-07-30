@@ -12,8 +12,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_type_box","path":"objects/obj_type_box/obj_type_box.yy",},"propertyId":{"name":"placeholder","path":"objects/obj_type_box/obj_type_box.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"NAME",},
   ],
   "parent":{
-    "name":"UI",
-    "path":"folders/UI.yy",
+    "name":"Type Boxes",
+    "path":"folders/UI/Type Boxes.yy",
   },
   "parentObjectId":{
     "name":"obj_type_box",

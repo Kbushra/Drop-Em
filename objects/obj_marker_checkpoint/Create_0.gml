@@ -1,0 +1,1 @@
+glow_alpha = 0;

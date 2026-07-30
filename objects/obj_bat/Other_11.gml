@@ -3,6 +3,24 @@
 ///@func state_transition()
 state_transition = function()
 {
+	if instance_exists(obj_lava) && obj_lava.colliding(x, y) && state != BAT_STATES.GHOST
+	{
+		hp = 0;
+		_score -= 100;
+		if _score < 0 { _score = 0; }
+	}
+	
+	if hp <= 0
+	{
+		hp = 0;
+		state = BAT_STATES.GHOST;
+		if current_arena
+		{
+			arena_place = current_arena.available_place;
+			current_arena.available_place--;
+		}
+	}
+	
 	var hinputs = input_held[KEY.RIGHT] - input_held[KEY.LEFT];
 	switch state
 	{
@@ -38,9 +56,10 @@ state_transition = function()
 		
 		case BAT_STATES.FALL:
 			mask_index = spr_bat_mask;
-			if coyote_fall > 0 && input_pressed[KEY.UP]
+			if coyote_fall > 0 && coyote_press_up > 0
 			{
 				coyote_fall = 0;
+				coyote_press_up = 0;
 				vsp = jump_force;
 				state = BAT_STATES.JUMP;
 			}
@@ -49,13 +68,13 @@ state_transition = function()
 				vsp = 0;
 				state = BAT_STATES.WALK;
 			}
-			else if !place_free(x + hinputs, y) && agile
+			else if hinputs != 0 && !place_free(x + hinputs, y) && agile
 			{
-				wall_dir = input_held[KEY.RIGHT] - input_held[KEY.LEFT];
+				wall_dir = hinputs;
 				coyote_wall_stick = 0.1;
 				state = BAT_STATES.WALL;
 			}
-			else if place_free(x, y + 20) && place_free(x + hinputs * 20, y) && coyote_press_up > 0 && agile
+			else if place_free(x, y + 32) && place_free(x + hinputs * 32, y) && coyote_press_up > 0 && agile
 			{
 				coyote_press_up = 0;
 				state = BAT_STATES.GLIDE;
@@ -79,7 +98,7 @@ state_transition = function()
 			if !agile { state = BAT_STATES.FALL; break; }
 			
 			mask_index = spr_bat_mask;
-			if coyote_wall_stick < 0 { state = BAT_STATES.FALL; }
+			if coyote_wall_stick < 0 || place_free(x + wall_dir, y) { state = BAT_STATES.FALL; }
 			else if vsp == 0 { state = BAT_STATES.WALK; }
 			else if coyote_press_up > 0
 			{
@@ -117,12 +136,41 @@ state_transition = function()
 				state = BAT_STATES.FALL;
 			}
 		break;
+		
+		case BAT_STATES.KNOCKBACK:
+			if knockback_delay > 0 { break; }
+			
+			if hp <= 0 { state = BAT_STATES.GHOST; }
+			else if near_equals(current_knockback_h_force, 0, 4) &&
+			near_equals(current_knockback_v_force, 0, 0.1)
+			{ state = BAT_STATES.WALK; }
+		break;
+		
+		case BAT_STATES.GHOST:
+			var checkpoint = instance_place(x, y, obj_checkpoint);
+			if checkpoint && checkpoint.glow_client[client_id]
+			{
+				checkpoint.mask_index = spr_checkpoint;
+				if place_meeting(x, y, checkpoint)
+				{
+					state = BAT_STATES.WALK;
+					x = checkpoint.x;
+					y = checkpoint.y;
+					lowest_y = y;
+					hp = 100;
+				}
+				checkpoint.mask_index = spr_checkpoint_glow;
+			}
+		break;
 	}
 }
 
 ///@func state_step()
 state_step = function()
 {
+	image_alpha = 1;
+	image_blend = c_white;
+	
 	var hinputs = input_held[KEY.RIGHT] - input_held[KEY.LEFT];
 	switch state
 	{
@@ -162,6 +210,17 @@ state_step = function()
 			if !agile { state = BAT_STATES.WALK; break; }
 	
 			if place_free(x, y + 1) && vsp == 0 { coyote_fall = 0.2; }
+			
+			var regular_jump = !place_free(x, y + 1) && coyote_press_up > 0;
+			var air_jump = place_free(x, y + 1) && coyote_fall > 0 && coyote_press_up > 0;
+			if regular_jump || air_jump
+			{
+				if air_jump { coyote_fall = 0; }
+				coyote_press_up = 0;
+				vsp = jump_force;
+			}
+			
+			if !input_held[KEY.UP] && vsp < 0 { vsp = 0; }
 		
 			hsp = slide_dir * slide_spd * DELTA;
 			update_vsp();
@@ -219,7 +278,7 @@ state_step = function()
 			if !agile { state = BAT_STATES.FALL; break; }
 	
 			hsp = glide_dir * glide_spd * DELTA;
-			vsp = lerp_delta(vsp, 0, 0.99);
+			vsp = lerp_delta(vsp, 0, 0.995);
 		
 			mask_index = spr_bat_mask_small;
 			sprite_index = spr_bat_glide;
@@ -229,6 +288,9 @@ state_step = function()
 		break;
 		
 		case BAT_STATES.KNOCKBACK:
+			knockback_delay -= DELTA;
+			if knockback_delay > 0 { sprite_index = spr_bat_knockback; break; }
+		
 			hsp = current_knockback_h_force * DELTA;
 			update_vsp();
 			
@@ -237,14 +299,22 @@ state_step = function()
 			collide();
 			
 			if hsp == 0 { current_knockback_h_force *= -1; }
-			if vsp != 0 { break; }
+			if place_free(x, y + 1) { break; }
 			
 			current_knockback_h_force /= 2;
 			current_knockback_v_force /= 2;
 			vsp = current_knockback_v_force;
-			if near_equals(current_knockback_h_force, 0, 4) &&
-			near_equals(current_knockback_v_force, 0, 0.1)
-			{ state = BAT_STATES.WALK; }
+		break;
+		
+		case BAT_STATES.GHOST:
+			update_hsp();
+			vsp = 0;
+			y = lerp_delta(y, obj_lava.bbox_top - 20, 0.99);
+			
+			image_alpha = 0.5;
+			mask_index = spr_bat_mask;
+			sprite_index = spr_bat_ghost;
+			x = clamp(x, sprite_xoffset, room_width - sprite_xoffset);
 		break;
 	}
 }

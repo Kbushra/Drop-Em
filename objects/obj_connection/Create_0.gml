@@ -10,5 +10,6 @@ server_ip = "";
 server_last_alive = current_time;
 connected = false;
 client_id = NONE;
+client_count = 0;
 
 markers = {};

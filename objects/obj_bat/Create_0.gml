@@ -11,7 +11,8 @@ enum BAT_STATES
 	WALL,
 	WALL_JUMP,
 	GLIDE,
-	KNOCKBACK
+	KNOCKBACK,
+	GHOST
 }
 
 slow_spd = 120;
@@ -42,3 +43,5 @@ coyote_press_up = 0;
 coyote_press_down = 0;
 coyote_fall = 0;
 coyote_wall_stick = 0;
+
+lowest_y = ystart;
