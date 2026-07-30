@@ -79,6 +79,7 @@ state_transition = function()
 				coyote_press_up = 0;
 				state = BAT_STATES.GLIDE;
 				glide_dir = image_xscale;
+				if near_equals(vsp, 0, 4) { vsp = 0; }
 			}
 		break;
 		
@@ -289,7 +290,16 @@ state_step = function()
 		
 		case BAT_STATES.KNOCKBACK:
 			knockback_delay -= DELTA;
-			if knockback_delay > 0 { sprite_index = spr_bat_knockback; break; }
+			if knockback_delay > 0
+			{
+				hsp = 0;
+				vsp = 0;
+				sprite_index = spr_bat_knockback;
+				reset_action("knockback_jump");
+				break;
+			}
+			
+			if !done_action("knockback_jump") { vsp = current_knockback_v_force; }
 		
 			hsp = current_knockback_h_force * DELTA;
 			update_vsp();
@@ -299,7 +309,7 @@ state_step = function()
 			collide();
 			
 			if hsp == 0 { current_knockback_h_force *= -1; }
-			if place_free(x, y + 1) { break; }
+			if place_free(x, y + 1) || vsp < 0 { break; }
 			
 			current_knockback_h_force /= 2;
 			current_knockback_v_force /= 2;

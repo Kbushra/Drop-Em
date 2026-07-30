@@ -36,10 +36,9 @@ if attacking
 		if _score < 0 { _score = 0; }
 		
 		state = BAT_STATES.KNOCKBACK;
-		knockback_delay = 0.1;
+		knockback_delay = 0.15;
 		current_knockback_h_force = other.image_xscale * knockback_h_force;
 		current_knockback_v_force = knockback_v_force;
-		vsp = current_knockback_v_force;
 		
 		inv_frames = 0.8;
 	}

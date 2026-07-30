@@ -12,6 +12,8 @@ if !arena_started && !arena_ended && !disable_starting
 	arena_started = true;
 	with obj_player
 	{
+		if hp <= 0 { continue; }
+		
 		for (var i = 0; i < array_length(other.triggers); i++)
 		{
 			var trig = other.triggers[i]

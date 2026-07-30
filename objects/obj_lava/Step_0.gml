@@ -7,7 +7,6 @@ with obj_player
 	if other.bbox_top - y < min_dist { min_dist = other.bbox_top - y; }
 }
 
-spd = 0; //debug
 level += spd * DELTA;
 
 depth = -100;
