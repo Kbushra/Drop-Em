@@ -1,10 +1,13 @@
+if !instance_exists(obj_server) { exit; }
+
 var nine_slice_height = 50;
 var height = sprite_get_height(sprite_index);
 
-var min_dist = room_height;
+var min_dist = NONE;
 with obj_player
 {
-	if other.bbox_top - y < min_dist { min_dist = other.bbox_top - y; }
+	if hp <= 0 { continue; }
+	if other.bbox_top - y < min_dist || min_dist == NONE { min_dist = other.bbox_top - y; }
 }
 
 level += spd * DELTA;
@@ -15,4 +18,4 @@ image_alpha = 0.8;
 
 spd = lerp_delta(spd, min_dist > 120 ? 128 : 32, 0.995);
 
-obj_server.write_data();
+obj_server.write_data(true);

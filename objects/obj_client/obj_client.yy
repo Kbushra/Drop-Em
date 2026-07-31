@@ -1,16 +1,16 @@
 {
   "$GMObject":"",
-  "%Name":"obj_marker",
+  "%Name":"obj_client",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_marker",
+  "name":"obj_client",
   "overriddenProperties":[],
   "parent":{
-    "name":"Marker Types",
-    "path":"folders/Marker Types.yy",
+    "name":"Maps",
+    "path":"folders/Maps.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -26,13 +26,14 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[
-    {"$GMObjectProperty":"v2","%Name":"object_name","filters":[],"listItems":[],"multiselect":false,"name":"object_name","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":2,},
-  ],
+  "properties":[],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":null,
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"spr_bat_mask",
+    "path":"sprites/spr_bat_mask/spr_bat_mask.yy",
+  },
   "visible":true,
 }

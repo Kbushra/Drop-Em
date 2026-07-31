@@ -1,4 +1,5 @@
 if !assert(instance_exists(obj_player_spawn), "No player spawn!") { exit; }
+calculate_id();
 
 x = obj_player_spawn.x;
 y = obj_player_spawn.y;

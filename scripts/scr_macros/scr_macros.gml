@@ -44,7 +44,9 @@
 #macro EPOCH_TIME (date_second_span(date_create_datetime(1970, 1, 1, 0, 0, 0), date_current_datetime()))
 #macro PORT 6510
 
-#macro PLAYER (instance_exists(obj_host) ? obj_host.player : obj_marker_client)
+#macro PLAYER (obj_client.player)
+#macro CLIENT_ID (instance_exists(obj_connection) ? obj_connection.client_id : 0)
+#macro CLIENT_COUNT (instance_exists(obj_connection) ? obj_connection.client_count : (instance_exists(obj_server) ? array_length(obj_server.clients) : 0))
 
 #macro DELTA (delta_time/1000000)
 

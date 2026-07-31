@@ -1,5 +1,7 @@
 event_inherited();
 
+if instance_exists(obj_connection) { exit; }
+
 if input_pressed[KEY.UP] { coyote_press_up = 0.2; }
 if input_pressed[KEY.DOWN] { coyote_press_down = 0.2; }
 

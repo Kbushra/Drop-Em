@@ -1,1 +1,1 @@
-if instance_exists(obj_server) { obj_server.write_data({ client_id, hp, _score }); }
+if instance_exists(obj_server) { obj_server.write_data(true, { client_id, hp, _score }); }

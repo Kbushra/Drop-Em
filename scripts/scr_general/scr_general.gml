@@ -9,10 +9,11 @@ function buffer_struct(struct)
 	return { buffer: buff, len: string_length(text) };
 }
 
-function get_object_data(extra = {})
+function get_object_data()
 {
-	var data =
+	return
 	{
+		object_index,
 		sprite_index,
 		image_index,
 		image_alpha,
@@ -26,14 +27,19 @@ function get_object_data(extra = {})
 		depth,
 		layer
 	};
-		
-	var extra_names = struct_get_names(extra);
-	for (var i = 0; i < array_length(extra_names); i++)
+}
+
+function struct_concat(struct1, struct2)
+{
+	struct1 = variable_clone(struct1, 0);
+	
+	var names = struct_get_names(struct2);
+	for (var i = 0; i < array_length(names); i++)
 	{
-		data[$ extra_names[i]] = extra[$ extra_names[i]];
+		struct1[$ names[i]] = struct2[$ names[i]];
 	}
 		
-	return data;
+	return struct1;
 }
 
 function apply_struct(target, struct)

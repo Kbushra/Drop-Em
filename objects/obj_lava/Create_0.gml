@@ -1,4 +1,4 @@
-if !instance_exists(obj_server) { instance_destroy(); exit; }
+calculate_id();
 
 x = room_width/2;
 y = room_height + sprite_height;

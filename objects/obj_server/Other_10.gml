@@ -20,17 +20,23 @@ client_broadcast = function(struct)
 	buffer_delete(data.buffer);
 }
 
-///@func write_data([extra])
-write_data = function(extra = {})
+///@func write_data(write_defaults, [struct])
+write_data = function(write_defaults, struct = {})
 {
 	with other
 	{
-		var data = get_object_data(extra);
-		data._id = id;
-		data.object_name = object_get_name(object_index);
-		data.sprite_index = sprite_get_name(sprite_index);
-		data.layer = layer_get_type(layer) == layer_type_unknown ? "" : layer_get_name(layer);
+		var data = {};
 		
+		if write_defaults
+		{
+			data = get_object_data();
+			data.sprite_index = sprite_get_name(sprite_index);
+			data.layer = layer_get_type(layer) == layer_type_unknown ? "" : layer_get_name(layer);
+		}
+		
+		data.instance = calculate_id();
+		data.object_index = object_get_name(object_index);
+		data = struct_concat(data, struct);
 		array_push(other.object_data, data);
 	}
 }

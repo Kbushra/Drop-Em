@@ -6,8 +6,9 @@ draw_text_transformed(GAME_WIDTH - 5, 4,
 @"
 Debugging!
 ALT+A to toggle audio log
-Q to slow the game down
-F to save
+CTRL+Q to slow the game down
+CTRL+F to save
+CTRL+T to toggle controlling all players on host end
 CTRL+D to toggle debug overlay
 ",
 0.5, 0.5, 0);

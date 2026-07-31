@@ -1,4 +1,4 @@
-if !instance_exists(obj_server) { instance_destroy(); }
+calculate_id();
 
 open = false;
 sprite_xscale = 1;

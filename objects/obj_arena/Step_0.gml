@@ -10,9 +10,13 @@ for (var i = 0; i < array_length(exits); i++) { exits[i].open = arena_ended; }
 if !arena_started && !arena_ended && !disable_starting
 {
 	arena_started = true;
+	
+	var alive_players = 0;
+	with obj_player { if state != BAT_STATES.GHOST { alive_players++; } }
+	
 	with obj_player
 	{
-		if hp <= 0 { continue; }
+		if hp <= 0 && alive_players > 0 { continue; }
 		
 		for (var i = 0; i < array_length(other.triggers); i++)
 		{
@@ -29,7 +33,7 @@ if !arena_started && !arena_ended && !disable_starting
 		with obj_player
 		{
 			current_arena = other.id;
-			if hp > 0 { arena_place = 1; other.available_place++; }
+			if state != BAT_STATES.GHOST { arena_place = 1; other.available_place++; }
 			else { arena_place = 0; }
 		}
 	}
@@ -38,7 +42,7 @@ if !arena_started && !arena_ended && !disable_starting
 if arena_started && !arena_ended
 {
 	var alive_players = 0;
-	with obj_player { if hp > 0 { alive_players++; } }
+	with obj_player { if state != BAT_STATES.GHOST { alive_players++; } }
 	
 	if alive_players <= 1
 	{

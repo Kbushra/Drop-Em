@@ -58,8 +58,7 @@ cam_clamp = function()
 ///@func default_behaviour()
 default_behaviour = function()
 {
-	cam_set_target(obj_host);
-	cam_set_target(obj_marker_client);
+	cam_set_target(obj_client);
 	cam_dimensions();
 	cam_set();
 }
