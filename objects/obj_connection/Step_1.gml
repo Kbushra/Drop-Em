@@ -27,5 +27,5 @@ var data = buffer_struct
 	}
 });
 	
-network_send_packet(obj_connection.tcp, data.buffer, data.len);
+network_send_packet(tcp, data.buffer, data.len);
 buffer_delete(data.buffer);

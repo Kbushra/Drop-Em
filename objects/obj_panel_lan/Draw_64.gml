@@ -9,10 +9,11 @@ var top = bbox_top + 20 + string_height("BACK");
 for (var i = 0; i < array_length(server_text); i++) { instance_destroy(server_text[i]); }
 for (var i = 0; i < array_length(obj_connection.servers); i++)
 {
+	var name = obj_connection.servers[i].name;
 	instance_create_depth(bbox_left + 20, top, depth - 1, obj_text_container,
 	{
 		image_xscale: sprite_width - 40,
-		text: obj_connection.servers[i].name,
+		text: name,
 		func: method({ i }, function()
 		{
 			if obj_connection.server_ip != "" { return; }
@@ -21,5 +22,5 @@ for (var i = 0; i < array_length(obj_connection.servers); i++)
 			network_connect_async(obj_connection.tcp, obj_connection.server_ip, PORT);
 		})
 	});
-	top += string_height(server_names[i]);
+	top += string_height(name);
 }

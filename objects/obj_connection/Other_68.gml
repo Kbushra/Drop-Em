@@ -12,6 +12,8 @@ var data = json_parse(buffer_read(async_load[? "buffer"], buffer_string));
 
 if data.type == NETWORK_TYPES.DISCOVERY
 {
+	if connected { exit; }
+	
 	var discovered_server = get_server(async_load[? "ip"]);
 	if discovered_server != NONE { discovered_server.discovery_time = current_time; exit; }
 	
@@ -38,7 +40,7 @@ if data.type == NETWORK_TYPES.CONNECTED
 	client_count = client_id + 1;
 	connected = true;
 	
-	servers = {};
+	servers = [];
 	server_last_alive = current_time;
 	room_goto(rm_level_1);
 	exit;
@@ -64,7 +66,9 @@ if data.type == NETWORK_TYPES.FRAME_DATA
 		
 		if !instances[$ curr_instance_ids[i]]
 		{
-			instances[$ curr_instance_ids[i]] = instance_create_depth(x, y, depth, obj.object_index);
+			instances[$ curr_instance_ids[i]] = instance_create_depth(x, y, depth, obj.object_index,
+				{ instance: curr_instance_ids[i] });
+			
 			apply_struct(instances[$ curr_instance_ids[i]], obj);
 		}
 		
@@ -81,7 +85,7 @@ if data.type == NETWORK_TYPES.FRAME_DATA
 	}
 	
 	client_count = data.client_count;
-	server_last_delay = current_time - server_last_alive;
+	server_last_delay = (current_time - server_last_alive)/1000;
 	server_last_alive = current_time;
 	exit;
 }

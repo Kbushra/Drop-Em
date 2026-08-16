@@ -1,6 +1,6 @@
 event_user(0);
-tcp = create_server(network_socket_tcp);
-udp = create_server(network_socket_udp);
+tcp = network_create_server(network_socket_tcp, PORT, 7);
+udp = network_create_socket(network_socket_udp); //Used for sending broadcasts
 
 //First client is the host themself
 clients =

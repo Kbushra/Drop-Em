@@ -1,3 +1,5 @@
+default_receive_data();
+
 if !instance_exists(obj_server) { exit; }
 
 var nine_slice_height = 50;
@@ -18,4 +20,4 @@ image_alpha = 0.8;
 
 spd = lerp_delta(spd, min_dist > 120 ? 128 : 32, 0.995);
 
-obj_server.write_data(true);
+write_data(true);

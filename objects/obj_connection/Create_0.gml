@@ -1,6 +1,6 @@
 event_user(0);
 tcp = network_create_socket(network_socket_tcp);
-udp = network_create_socket(network_socket_udp);
+udp = network_create_server(network_socket_udp, PORT, 32); //Used for receiving broadcasts
 
 if tcp < 0 || udp < 0 { instance_destroy(); exit; }
 

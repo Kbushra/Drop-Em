@@ -10,7 +10,8 @@ if async_load[? "type"] == network_type_connect
 			{
 				input_pressed: inputs_default(),
 				input_held: inputs_default(),
-				input_released: inputs_default()
+				input_released: inputs_default(),
+				delta: DELTA
 			}
 		};
 		array_push(clients, client);
