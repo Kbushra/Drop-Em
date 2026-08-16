@@ -223,7 +223,7 @@ state_step = function()
 			
 			if !input_held[KEY.UP] && vsp < 0 { vsp = 0; }
 		
-			hsp = slide_dir * slide_spd * DELTA;
+			hsp = slide_dir * slide_spd * delta;
 			update_vsp();
 		
 			mask_index = spr_bat_mask_small;
@@ -238,7 +238,7 @@ state_step = function()
 			if !agile { state = BAT_STATES.FALL; break; }
 		
 			hsp = 0;
-			vsp = 120 * DELTA;
+			vsp = 120 * delta;
 		
 			image_xscale = wall_dir;
 			mask_index = spr_bat_mask;
@@ -246,7 +246,7 @@ state_step = function()
 			collide();
 			
 			if hinputs == -wall_dir
-			{ coyote_wall_stick -= DELTA; }
+			{ coyote_wall_stick -= delta; }
 		break;
 		
 		case BAT_STATES.WALL_JUMP:
@@ -257,7 +257,7 @@ state_step = function()
 			update_vsp();
 		
 			var prev_sign = sign(current_wall_force);
-			current_wall_force -= wall_force * wall_dir * DELTA * 3;
+			current_wall_force -= wall_force * wall_dir * delta * 3;
 			if sign(current_wall_force) != prev_sign && hinputs != wall_dir { current_wall_force = 0; }
 		
 			//Don't jump as far when moving in the opposite direction as the wall
@@ -266,7 +266,7 @@ state_step = function()
 				current_wall_force = clamp(current_wall_force, wall_force/2, -wall_force/2);
 			}
 		
-			hsp += current_wall_force * DELTA;
+			hsp += current_wall_force * delta;
 			
 			attack();
 			mask_index = spr_bat_mask;
@@ -278,7 +278,7 @@ state_step = function()
 			//Disabled
 			if !agile { state = BAT_STATES.FALL; break; }
 	
-			hsp = glide_dir * glide_spd * DELTA;
+			hsp = glide_dir * glide_spd * delta;
 			vsp = lerp_delta(vsp, 0, 0.995);
 		
 			mask_index = spr_bat_mask_small;
@@ -289,7 +289,7 @@ state_step = function()
 		break;
 		
 		case BAT_STATES.KNOCKBACK:
-			knockback_delay -= DELTA;
+			knockback_delay -= delta;
 			if knockback_delay > 0
 			{
 				hsp = 0;
@@ -301,7 +301,7 @@ state_step = function()
 			
 			if !done_action("knockback_jump") { vsp = current_knockback_v_force; }
 		
-			hsp = current_knockback_h_force * DELTA;
+			hsp = current_knockback_h_force * delta;
 			update_vsp();
 			
 			mask_index = spr_bat_mask;

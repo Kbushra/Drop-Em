@@ -1,7 +1,5 @@
 event_inherited();
 
-if instance_exists(obj_connection) { exit; }
-
 if input_pressed[KEY.UP] { coyote_press_up = 0.2; }
 if input_pressed[KEY.DOWN] { coyote_press_down = 0.2; }
 
@@ -14,16 +12,16 @@ if instance_exists(obj_lava) && y < lowest_y
 	lowest_y = y;
 }
 
-attack_cooldown -= DELTA;
-coyote_press_up -= DELTA;
-coyote_press_down -= DELTA;
-coyote_fall -= DELTA;
+attack_cooldown -= delta;
+coyote_press_up -= delta;
+coyote_press_down -= delta;
+coyote_fall -= delta;
 
 x += hsp;
 y += vsp;
 if hsp != 0 { image_xscale = sign(hsp); }
 
-if sprite_index != spr_bat_knockback { inv_frames -= DELTA; }
+if sprite_index != spr_bat_knockback { inv_frames -= delta; }
 
 if attacking
 {
@@ -31,6 +29,8 @@ if attacking
 	mask_index = spr_bat_mask_attack;
 	with (obj_player)
 	{
+		if !instance_exists(obj_server) { break; } //Player interactions only happen on server
+		
 		if inv_frames > 0 || !place_meeting(x, y, other) { continue; }
 		
 		hp -= 15;

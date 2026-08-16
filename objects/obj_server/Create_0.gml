@@ -6,26 +6,24 @@ udp = create_server(network_socket_udp);
 clients =
 [{
 	tcp,
-	ip: public_ip,
-	tcp_port: PORT,
-	udp_port: PORT,
 	last_alive: current_time,
 	frame_inputs:
 	{
 		input_pressed: inputs_default(),
 		input_held: inputs_default(),
-		input_released: inputs_default()
+		input_released: inputs_default(),
+		delta: DELTA
 	}
 }];
 
 discovery_data = buffer_struct
 ({
 	type: NETWORK_TYPES.DISCOVERY,
-	creation_time: EPOCH_TIME,
 	name
 });
 
-object_data = [];
+joinable = true;
+object_data = {};
 
 if tcp < 0 || udp < 0 { instance_destroy(); exit; }
 

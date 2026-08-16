@@ -1,3 +1,5 @@
+instance_destroy(obj_connection);
+
 func = function()
 {
 	instance_create_depth(x, y, depth, obj_connection);

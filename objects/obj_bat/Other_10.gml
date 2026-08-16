@@ -1,4 +1,28 @@
 ///@desc Methods
+event_inherited();
+
+server_data = function()
+{
+	return
+	{
+		client_id,
+		hp,
+		_score,
+		state,
+		
+		slide_dir,
+		glide_dir,
+		current_wall_force,
+		wall_dir,
+		knockback_delay,
+		current_knockback_h_force,
+		current_knockback_v_force,
+
+		attacking,
+		attack_cooldown,
+		inv_frames
+	};
+}
 
 ///@func move_free(axis, sign_only)
 move_free = function(axis, sign_only)
@@ -16,13 +40,13 @@ move_free = function(axis, sign_only)
 update_hsp = function()
 {
 	var _spd = agile ? spd : slow_spd;
-	hsp = (input_held[KEY.RIGHT] - input_held[KEY.LEFT]) * _spd * DELTA;
+	hsp = (input_held[KEY.RIGHT] - input_held[KEY.LEFT]) * _spd * delta;
 }
 
 ///@func update_vsp()
 update_vsp = function()
 {
-	if vsp < 0 { vsp += up_grv * DELTA; } else { vsp += down_grv * DELTA; }
+	if vsp < 0 { vsp += up_grv * delta; } else { vsp += down_grv * delta; }
 	vsp = clamp(vsp, -99, 15);
 }
 

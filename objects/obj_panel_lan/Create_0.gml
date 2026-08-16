@@ -1,8 +1,8 @@
 image_xscale = 3;
 image_yscale = 4;
-obj_connection.alarm[0] = 1;
 
-prev_server_names = [];
+prev_server_ips = [];
+server_ips = [];
 server_text = [];
 
 instance_create_depth(bbox_left + 20, bbox_top + 20, depth - 1, obj_text_container,
@@ -16,4 +16,4 @@ instance_create_depth(bbox_left + 20, bbox_top + 20, depth - 1, obj_text_contain
 		instance_destroy(obj_panel_lan);
 		instance_destroy(obj_text_container);
 	}
-})
+});

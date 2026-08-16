@@ -1,13 +1,10 @@
 if async_load[? "type"] == network_type_connect
 {
-	if !instance_exists(obj_lava)
+	if joinable
 	{
 		var client =
 		{
 			tcp: async_load[? "socket"],
-			ip: async_load[? "ip"],
-			tcp_port: async_load[? "port"],
-			udp_port: 0,
 			last_alive: current_time,
 			frame_inputs:
 			{
@@ -24,7 +21,7 @@ if async_load[? "type"] == network_type_connect
 	({
 		type: NETWORK_TYPES.CONNECTED,
 		client_id: array_length(clients) - 1,
-		success: !instance_exists(obj_lava)
+		joinable
 	});
 	network_send_packet(async_load[? "socket"], connection_data.buffer, connection_data.len);
 	buffer_delete(connection_data.buffer);
@@ -36,43 +33,12 @@ if async_load[? "type"] != network_type_data { exit; }
 buffer_seek(async_load[? "buffer"], buffer_seek_start, 0);
 var data = json_parse(buffer_read(async_load[? "buffer"], buffer_string));
 
-if data.type == NETWORK_TYPES.DISCOVERY && !instance_exists(obj_lava)
-{
-	network_send_udp(udp, async_load[? "ip"], async_load[? "port"],
-		discovery_data.buffer, discovery_data.len);
-	
-	exit;
-}
-
-if data.type == NETWORK_TYPES.GET_UDP_PORT
-{
-	clients[data.client_id].udp_port = async_load[? "port"];
-	exit;
-}
-
 if data.type == NETWORK_TYPES.INPUTS
 {
-	for (var i = 1; i < array_length(clients); i++)
-	{
-		if data.client_id != i { continue; }
-		
-		var prev_inputs_held = clients[i].frame_inputs.input_held;
-		clients[i].frame_inputs.input_held = data.input_held;
-		
-		for (var j = 0; j < KEY.COUNT; j++)
-		{
-			clients[i].frame_inputs.input_pressed[j] =
-				!prev_inputs_held[j] && data.input_held[j];
-			clients[i].frame_inputs.input_released[j] =
-				prev_inputs_held[j] && !data.input_held[j];
-		}
-		break;
-	}
-	exit;
-}
-
-if data.type == NETWORK_TYPES.FRAME_DATA
-{
-	clients[data.client_id].last_alive = current_time;
+	var client = get_client(async_load[? "id"]);
+	if client.frame_inputs.delta > current_time - client.last_alive { exit; } //Cheater
+	
+	client.last_alive = current_time;
+	client.frame_inputs = data.frame_inputs;
 	exit;
 }

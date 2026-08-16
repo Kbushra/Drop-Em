@@ -33,7 +33,8 @@ function inv_lerp(a, b, value)
 
 function lerp_delta(a, b, amt)
 {
-	return lerp(a, b, 1 - power(1 - amt, DELTA));
+	var _delta = variable_instance_exists(id, "delta") ? delta : DELTA;
+	return lerp(a, b, 1 - power(1 - amt, _delta));
 }
 
 function true_mod(dividend, divisor)

@@ -12,46 +12,48 @@ var data = json_parse(buffer_read(async_load[? "buffer"], buffer_string));
 
 if data.type == NETWORK_TYPES.DISCOVERY
 {
-	servers[$ data.name] =
+	var discovered_server = get_server(async_load[? "ip"]);
+	if discovered_server != NONE { discovered_server.discovery_time = current_time; exit; }
+	
+	array_push(servers,
 	{
-		creation_time: data.creation_time,
-		discovery_time: EPOCH_TIME,
+		name: data.name,
+		discovery_time: current_time,
 		ip: async_load[? "ip"]
-	};
+	});
 	exit;
 }
 
 if data.type == NETWORK_TYPES.CONNECTED
 {
-	if !data.success
+	if !data.joinable
 	{
 		network_destroy(tcp);
 		tcp = network_create_socket(network_socket_tcp);
+		server_ip = "";
 		exit;
 	}
 	
 	client_id = data.client_id;
 	client_count = client_id + 1;
 	connected = true;
+	
 	servers = {};
 	server_last_alive = current_time;
-	alarm[0] = -1;
 	room_goto(rm_level_1);
-	
-	var udp_data = buffer_struct({ type: NETWORK_TYPES.GET_UDP_PORT, client_id });
-	network_send_udp(udp, server_ip, PORT, udp_data.buffer, udp_data.len);
-	buffer_delete(udp_data.buffer);
 	exit;
 }
 
 if data.type == NETWORK_TYPES.FRAME_DATA
 {
-	var instance_ids = [];
-	for (var i = 0; i < array_length(data.object_data); i++)
+	object_data = data.object_data;
+	var curr_instance_ids = struct_get_names(object_data);
+	
+	for (var i = 0; i < array_length(curr_instance_ids); i++)
 	{
-		var obj = data.object_data[i];
-		obj.object_index = asset_get_index(obj.object_index);
+		var obj = object_data[$ curr_instance_ids[i]];
 		
+		obj.object_index = asset_get_index(obj.object_index);
 		if struct_exists(obj, "sprite_index") { obj.sprite_index = asset_get_index(obj.sprite_index); }
 		if struct_exists(obj, "layer")
 		{
@@ -60,27 +62,26 @@ if data.type == NETWORK_TYPES.FRAME_DATA
 				layer_create(obj.depth, obj.layer);
 		}
 		
-		instances[$ obj.instance] ??= instance_create_depth(x, y, depth, obj.object_index);
+		if !instances[$ curr_instance_ids[i]]
+		{
+			instances[$ curr_instance_ids[i]] = instance_create_depth(x, y, depth, obj.object_index);
+			apply_struct(instances[$ curr_instance_ids[i]], obj);
+		}
 		
-		struct_remove(obj, "object_index");
-		apply_struct(instances[$ obj.instance], obj);
-		array_push(instance_ids, obj.instance);
+		send_signal(instances[$ curr_instance_ids[i]], "received_data");
 	}
 	
 	var all_instance_ids = struct_get_names(instances);
 	for (var i = 0; i < array_length(all_instance_ids); i++)
 	{
-		if array_contains(instance_ids, all_instance_ids[i]) { continue; }
+		if array_contains(curr_instance_ids, all_instance_ids[i]) { continue; }
 		
 		instance_destroy(instances[$ all_instance_ids[i]]);
 		struct_remove(instances, all_instance_ids[i]);
 	}
 	
 	client_count = data.client_count;
+	server_last_delay = current_time - server_last_alive;
 	server_last_alive = current_time;
-	
-	var keep_alive = buffer_struct({ type: NETWORK_TYPES.FRAME_DATA, client_id });
-	network_send_udp(udp, server_ip, PORT, keep_alive.buffer, keep_alive.len);
-	buffer_delete(keep_alive.buffer);
 	exit;
 }

@@ -47,6 +47,7 @@ function apply_struct(target, struct)
 	var names = struct_get_names(struct);
 	for (var i = 0; i < array_length(names); i++)
 	{
-		variable_instance_set(target, names[i], struct[$ names[i]]);
+		try { variable_instance_set(target, names[i], struct[$ names[i]]); }
+		catch(readonly) {}
 	}
 }

@@ -1,13 +1,7 @@
 ///@desc Run at saveable object create event to get instance
-function calculate_id(connected = true)
+function calculate_id()
 {
-	if variable_instance_exists(id, "instance")
-	{
-		if connected && instance_exists(obj_connection)
-		{ obj_connection.instances[$ instance] = id; }
-		
-		return instance;
-	}
+	if variable_instance_exists(id, "instance") { return instance; }
 	
 	var object_id = $"{room_get_name(room)}_{object_get_name(object_index)}";
 	
@@ -15,10 +9,6 @@ function calculate_id(connected = true)
 	send_place_package(object_id, place_package_contents(object_id) + 1);
 	
 	instance = $"{object_id}_{place_package_contents(object_id)}";
-	
-	if connected && instance_exists(obj_connection)
-	{ obj_connection.instances[$ instance] = id; }
-	
 	return instance;
 }
 
