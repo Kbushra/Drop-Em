@@ -1,6 +1,6 @@
 default_receive_data();
 
-if !instance_exists(obj_server) { exit; }
+if !instance_exists(obj_host) { exit; }
 
 var nine_slice_height = 50;
 var height = sprite_get_height(sprite_index);

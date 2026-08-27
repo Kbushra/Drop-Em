@@ -1,22 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_button_join_local",
+  "%Name":"obj_player_follower",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_button_join_local",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_button","path":"objects/obj_button/obj_button.yy",},"propertyId":{"name":"name","path":"objects/obj_button/obj_button.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"LOCAL",},
-  ],
+  "name":"obj_player_follower",
+  "overriddenProperties":[],
   "parent":{
-    "name":"Buttons",
-    "path":"folders/UI/Buttons.yy",
+    "name":"Maps",
+    "path":"folders/Maps.yy",
   },
-  "parentObjectId":{
-    "name":"obj_button",
-    "path":"objects/obj_button/obj_button.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -34,10 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_button",
-    "path":"sprites/spr_button/spr_button.yy",
+  "spriteId":null,
+  "spriteMaskId":{
+    "name":"spr_bat_mask",
+    "path":"sprites/spr_bat_mask/spr_bat_mask.yy",
   },
-  "spriteMaskId":null,
   "visible":true,
 }

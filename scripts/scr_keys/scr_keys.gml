@@ -6,7 +6,6 @@ enum KEY
 	RIGHT,
 	SPECIAL,
 	ATTACK,
-	MENU,
 	PAUSE,
 	COUNT
 }
@@ -18,7 +17,7 @@ enum KEY_STATE
 	RELEASED
 }
 
-function inputs_default()
+function default_inputs()
 {
 	var arr = [];
 	for (var i = 0; i < KEY.COUNT; i++)

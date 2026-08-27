@@ -3,11 +3,13 @@
   "%Name":"obj_type_box_join",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_type_box_join",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_type_box","path":"objects/obj_type_box/obj_type_box.yy",},"propertyId":{"name":"placeholder","path":"objects/obj_type_box/obj_type_box.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"JOIN CODE",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_type_box","path":"objects/obj_type_box/obj_type_box.yy",},"propertyId":{"name":"limit","path":"objects/obj_type_box/obj_type_box.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"6",},
+  ],
   "parent":{
     "name":"Type Boxes",
     "path":"folders/UI/Type Boxes.yy",

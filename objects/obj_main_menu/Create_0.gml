@@ -1,35 +1,46 @@
+client_spawn = function() { instance_create_depth(x, y, depth, obj_connection, { create_object: obj_client }); };
+client_destroy = function() { instance_destroy(obj_connection); instance_destroy(obj_client); }
+
 full_path =
 [
 	{
-		button: obj_button_host,
-		name: "HOST"
-	},
-	{
-		button: obj_button_advance,
-		name: "JOIN",
+		obj: obj_button_advance,
+		vars: { name: "HOST" },
 		path:
 		[
 			{
-				button: obj_button_back,
-				name: "BACK"
+				obj: obj_button_back
 			},
 			{
-				button: obj_button_join_local,
-				name: "LOCAL"
-			},
-			{
-				button: obj_button_join_global,
-				name: "GLOBAL"
+				obj: obj_type_box_host
 			}
 		]
 	},
 	{
-		button: obj_button_playground,
-		name: "TEST"
+		obj: obj_button_advance,
+		vars: { name: "JOIN" },
+		func: client_spawn,
+		path:
+		[
+			{
+				obj: obj_button_back,
+				func: client_destroy
+			},
+			{
+				obj: obj_type_box_join
+			},
+			{
+				obj: obj_panel_lan
+			}
+		]
+	},
+	{
+		obj: obj_button_playground
 	}
 ];
 
 indices = [];
+active_ui = true;
 
 event_user(0);
-create_buttons();
+create_ui();

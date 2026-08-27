@@ -10,10 +10,12 @@ get_curr_path = function()
 	return curr_path;
 }
 
-///@func create_buttons()
-create_buttons = function()
+///@func create_ui()
+create_ui = function()
 {
+	instance_destroy(obj_text_container);
 	instance_destroy(obj_type_box);
+	instance_destroy(obj_panel);
 	instance_destroy(obj_button);
 	
 	var curr_path = get_curr_path();
@@ -21,7 +23,11 @@ create_buttons = function()
 	var gap = 80;
 	for (var i = 0; i < array_length(curr_path); i++)
 	{
+		curr_path[i][$ "func"] ??= empty;
+		curr_path[i][$ "vars"] ??= {};
+		curr_path[i].vars.ind = i;
+		
 		instance_create_depth(128, top + i * gap, depth,
-			curr_path[i].button, { ind: i, name: curr_path[i].name });
+			curr_path[i].obj, curr_path[i].vars);
 	}
 }

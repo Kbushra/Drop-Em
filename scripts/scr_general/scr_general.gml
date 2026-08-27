@@ -9,6 +9,14 @@ function buffer_struct(struct)
 	return { buffer: buff, len: string_length(text) };
 }
 
+function network_send_struct(wss, type, struct = {})
+{
+	struct.type = type;
+	var data = buffer_struct(struct);
+	network_send_raw(wss, data.buffer, data.len, network_send_text);
+	buffer_delete(data.buffer);
+}
+
 function get_object_data()
 {
 	return
@@ -31,7 +39,7 @@ function get_object_data()
 
 function write_data(write_defaults, struct = {})
 {
-	if !instance_exists(obj_server) { return; }
+	if !instance_exists(obj_host) { return; }
 	
 	var data = {};
 	
@@ -44,14 +52,14 @@ function write_data(write_defaults, struct = {})
 	
 	data.object_index = object_get_name(object_index);
 	data = struct_concat(data, struct);
-	obj_server.object_data[$ calculate_id()] = data;
+	obj_host.frame_data[$ calculate_id()] = data;
 }
 
 function default_receive_data()
 {
 	if !got_signal("received_data") { return; }
 	
-	apply_struct(id, obj_connection.object_data[$ instance]);
+	apply_struct(id, obj_client.frame_data[$ instance]);
 	stop_signal("received_data");
 }
 

@@ -1,2 +1,1 @@
-network_destroy(tcp);
-network_destroy(udp);
+if !carried_wss { network_destroy(wss); }

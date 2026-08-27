@@ -1,22 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"obj_panel_hosting",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":64,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_panel",
+  "eventList":[],
   "managed":true,
-  "name":"obj_panel_hosting",
+  "name":"obj_panel",
   "overriddenProperties":[],
   "parent":{
     "name":"Panels",
     "path":"folders/UI/Panels.yy",
   },
-  "parentObjectId":{
-    "name":"obj_panel",
-    "path":"objects/obj_panel/obj_panel.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

@@ -29,7 +29,7 @@ if attacking
 	mask_index = spr_bat_mask_attack;
 	with (obj_player)
 	{
-		if !instance_exists(obj_server) { break; } //Player interactions only happen on server
+		if !instance_exists(obj_host) { break; } //Player interactions only happen on server
 		
 		if inv_frames > 0 || !place_meeting(x, y, other) { continue; }
 		

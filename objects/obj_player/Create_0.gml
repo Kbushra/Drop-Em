@@ -14,7 +14,9 @@ last_checkpoint_time = current_time;
 arena_place = 0;
 current_arena = noone;
 
-input_pressed = inputs_default();
-input_held = inputs_default();
-input_released = inputs_default();
+input_pressed = default_inputs();
+input_held = default_inputs();
+input_released = default_inputs();
 delta = 0;
+
+repeat_frame = false;

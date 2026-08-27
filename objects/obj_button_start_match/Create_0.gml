@@ -1,4 +1,4 @@
-if !instance_exists(obj_server) { instance_destroy(); exit; }
+if !instance_exists(obj_host) { instance_destroy(); exit; }
 
 func = function()
 {

@@ -11,8 +11,8 @@ function calculate_id(connected = true)
 		instance = $"{object_id}_{place_package_contents(object_id)}";
 	}
 	
-	if connected && instance_exists(obj_connection)
-	{ obj_connection.instances[$ instance] = id; }
+	if connected && instance_exists(obj_client)
+	{ obj_client.instances[$ instance] = id; }
 	
 	return instance;
 }

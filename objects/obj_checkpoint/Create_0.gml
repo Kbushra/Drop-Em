@@ -24,7 +24,7 @@ glow_for_player = function(_client_id)
 		
 		if !reached_checkpoint && !in_range { return false; }
 		
-		if !instance_exists(obj_connection) && reached_checkpoint && !other.reached_client[client_id]
+		if !instance_exists(obj_client) && reached_checkpoint && !other.reached_client[client_id]
 		{
 			var bonus_time = other.expected_time_taken - (current_time - last_checkpoint_time)/1000;
 			if bonus_time > 0 { _score += 50 * bonus_time; }

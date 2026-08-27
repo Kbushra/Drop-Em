@@ -3,7 +3,7 @@ typed_string = "";
 
 func = empty;
 
-special_allowed_chars = [ord("+"), ord("/")];
+special_allowed_chars = [];
 
 ///@func add_char(c)
 add_char = function(c)

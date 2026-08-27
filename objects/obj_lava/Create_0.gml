@@ -1,6 +1,6 @@
 calculate_id();
 
-with obj_server { joinable = false; }
+with obj_host { joinable = false; }
 
 x = room_width/2;
 y = room_height + sprite_height;

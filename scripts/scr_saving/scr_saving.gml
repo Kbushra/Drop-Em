@@ -10,11 +10,9 @@ function default_keyboard_binds(struct)
 	struct.keyboard_bind[KEY.RIGHT][1] = ord("D");
 	
 	struct.keyboard_bind[KEY.SPECIAL][0] = ord("Z");
-	struct.keyboard_bind[KEY.SPECIAL][1] = ord("Q");
+	struct.keyboard_bind[KEY.SPECIAL][1] = vk_shift;
 	struct.keyboard_bind[KEY.ATTACK][0] = ord("X");
-	struct.keyboard_bind[KEY.ATTACK][1] = ord("E");
-	struct.keyboard_bind[KEY.MENU][0] = ord("C");
-	struct.keyboard_bind[KEY.MENU][1] = vk_control;
+	struct.keyboard_bind[KEY.ATTACK][1] = vk_enter;
 	
 	struct.keyboard_bind[KEY.PAUSE][0] = vk_escape;
 	struct.keyboard_bind[KEY.PAUSE][1] = NONE;
