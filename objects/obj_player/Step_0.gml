@@ -1,12 +1,10 @@
-depth = 0;
-repeat_frame = false;
+depth = -client_id;
 
-var control_all_players = instance_exists(game_debug) ? game_debug.control_all_players : false;
-var host_movement = instance_exists(obj_host) && !control_all_players;
-var client_movement = instance_exists(obj_client) && client_id == obj_client.client_id;
+var curr_player = client_id == CLIENT_ID;
 var singleplayer = !instance_exists(obj_host) && !instance_exists(obj_client);
+var control_all_players = instance_exists(game_debug) ? game_debug.control_all_players : false;
 
-if host_movement || client_movement || control_all_players || singleplayer
+if curr_player || singleplayer || control_all_players
 {
 	input_pressed = game_input.input_pressed;
 	input_held = game_input.input_held;
@@ -15,14 +13,13 @@ if host_movement || client_movement || control_all_players || singleplayer
 }
 else if instance_exists(obj_host)
 {
-	var frames = obj_host.input_data[client_id];
-	var frame = array_shift(frames);
-	input_pressed = frame == undefined ? default_inputs() : frame.input_pressed;
-	input_held = frame == undefined ? default_inputs() : frame.input_held;
-	input_released = frame == undefined ? default_inputs() : frame.input_released;
-	delta = frame.delta;
+	var frame = obj_host.input_data[client_id];
+	if frame == -1 { instance_destroy(); exit; }
 	
-	repeat_frame = array_length(frames) > 0;
+	input_pressed = frame.input_pressed;
+	input_held = frame.input_held;
+	input_released = frame.input_released;
+	delta = frame.delta;
 }
 else
 {

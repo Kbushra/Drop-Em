@@ -17,6 +17,16 @@ function calculate_id(connected = true)
 	return instance;
 }
 
+function set_id(_id, connected = true)
+{
+	instance = _id;
+	
+	if connected && instance_exists(obj_client)
+	{ obj_client.instances[$ instance] = id; }
+	
+	return instance;
+}
+
 ///@param name {string}
 ///@param value {any}
 ///@param instance_id {string}

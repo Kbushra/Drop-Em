@@ -1,4 +1,4 @@
-if !player
+if !instance_exists(player)
 {
 	with obj_player
 	{
@@ -6,7 +6,7 @@ if !player
 	}
 }
 
-if player
+if instance_exists(player)
 {
 	x = player.x;
 	y = player.y;

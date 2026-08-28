@@ -21,5 +21,5 @@ for (var i = 0; i < array_length(obj_client.hosts); i++)
 		})
 	});
 	
-	top += string_height(name);
+	top += string_height(obj_client.hosts[i].name);
 }

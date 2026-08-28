@@ -149,7 +149,7 @@ state_transition = function()
 		
 		case BAT_STATES.GHOST:
 			var checkpoint = instance_place(x, y, obj_checkpoint);
-			if checkpoint && checkpoint.glow_client[client_id + 1]
+			if checkpoint && checkpoint.glow_player[client_id + 1]
 			{
 				checkpoint.mask_index = spr_checkpoint;
 				if place_meeting(x, y, checkpoint)

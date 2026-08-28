@@ -1,0 +1,1 @@
+network_send_struct(wss, NETWORK_TYPES.LEAVE);

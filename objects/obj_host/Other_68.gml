@@ -31,7 +31,8 @@ switch data.type
 		clients_removed = 0;
 		for (var i = 0; i < array_length(data.input_data); i++)
 		{
-			if data.input_data[i] == -1
+			var client_inputs = data.input_data[i];
+			if client_inputs == -1
 			{
 				clients_removed++;
 				input_data[i] = -1;
@@ -40,16 +41,23 @@ switch data.type
 		
 			if !index_defined(input_data, i)
 			{
-				input_data[i] = [];
+				input_data[i] =
+				{
+					input_pressed: default_inputs(),
+					input_held: default_inputs(),
+					input_released: default_inputs(),
+					delta: 0
+				};
+				
 				instance_create_depth(x, y, depth, obj_bat, { client_id: i });
 			}
-		
-			var verified = verify_inputs(data.input_data[i].input_pressed);
-			verified = verified && verify_inputs(data.input_data[i].input_held);
-			verified = verified && verify_inputs(data.input_data[i].input_released);
+			
+			var verified = verify_inputs(client_inputs.input_pressed);
+			verified = verified && verify_inputs(client_inputs.input_held);
+			verified = verified && verify_inputs(client_inputs.input_released);
 			if !verified { continue; }
 		
-			input_data[i] = array_concat(input_data[i], data.input_data[i]);
+			input_data[i] = client_inputs;
 		}
 	break;
 }

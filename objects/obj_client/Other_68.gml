@@ -15,6 +15,11 @@ if !data.success
 		case NETWORK_TYPES.JOIN:
 			connecting = false;
 		break;
+		
+		case NETWORK_TYPES.SET_INPUTS_GET_FRAME:
+			if data[$ "reason"] != "Host has disconnected!" { break; }
+			with (obj_player) { if client_id == -1 { instance_destroy(); } }
+		break;
 	}
 	exit;
 }
@@ -39,7 +44,9 @@ switch data.type
 	
 	case NETWORK_TYPES.SET_INPUTS_GET_FRAME:
 		if !is_struct(data.frame_data) { break; }
-	
+		
+		frame_data_delay = current_time - last_frame_data_time;
+		last_frame_data_time = current_time;
 		frame_data = data.frame_data;
 		var curr_instance_ids = struct_get_names(frame_data);
 	
