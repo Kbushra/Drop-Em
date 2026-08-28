@@ -3,6 +3,7 @@ input_data = [];
 
 heartbeat_time = current_time;
 join_code = "";
+added = false;
 joinable = true;
 frame_data = {};
 

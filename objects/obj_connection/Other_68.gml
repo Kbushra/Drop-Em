@@ -7,5 +7,6 @@ if async_load[? "type"] == network_type_non_blocking_connect && async_load[? "id
 		
 		carried_wss = true;
 	}
-	else { instance_destroy(); }
+	
+	instance_destroy();
 }

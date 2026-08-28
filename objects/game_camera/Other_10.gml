@@ -58,7 +58,7 @@ cam_clamp = function()
 ///@func default_behaviour()
 default_behaviour = function()
 {
-	cam_set_target(obj_client);
+	cam_set_target(obj_player_follower);
 	cam_dimensions();
 	cam_set();
 }

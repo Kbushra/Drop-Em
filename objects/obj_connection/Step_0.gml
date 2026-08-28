@@ -1,0 +1,1 @@
+send_signal(obj_main_menu, "disable_ui");

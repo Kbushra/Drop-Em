@@ -6,7 +6,6 @@ func = function()
 {
 	if string_length(typed_string) == 0 { exit; }
 	
-	obj_main_menu.active_ui = false;
-	instance_create_depth(x, y, depth, obj_client,
+	instance_create_depth(x, y, depth, obj_connection,
 		{ create_object: obj_host, create_vars: { name: typed_string } });
 }

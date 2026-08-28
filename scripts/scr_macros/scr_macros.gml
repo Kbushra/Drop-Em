@@ -44,9 +44,11 @@
 #macro EPOCH_TIME (date_second_span(date_create_datetime(1970, 1, 1, 0, 0, 0), date_current_datetime()))
 #macro PORT 443
 
-#macro PLAYER (obj_client.player)
+#macro PLAYER (obj_player_follower.player)
 #macro CLIENT_ID (instance_exists(obj_client) ? obj_client.client_id : -1)
 #macro CLIENT_COUNT (instance_exists(obj_client) ? obj_client.client_count : (instance_exists(obj_host) ? array_length(obj_host.input_data) : 0))
+#macro CLIENTS_REMOVED (instance_exists(obj_client) ? obj_client.clients_removed : (instance_exists(obj_host) ? obj_host.clients_removed : 0))
+#macro CLIENTS_REMAINING (CLIENT_COUNT - CLIENTS_REMOVED)
 
 #macro DELTA (delta_time/1000000)
 

@@ -4,16 +4,16 @@ buffer_seek(async_load[? "buffer"], buffer_seek_start, 0);
 var data = json_parse(buffer_read(async_load[? "buffer"], buffer_string));
 heartbeat_time = current_time;
 
-if !assert(data[$ "type"] && data[$ "success"], "Invalid data packet received!") { exit; }
+if !assert(!is_undefined(data[$ "type"]) && !is_undefined(data[$ "success"]), "Invalid data packet received!") { exit; }
 
 if !data.success
 {
-	if data[$ "reason"] { print(data.reason); }
+	if !is_undefined(data[$ "reason"]) { print(data.reason); }
 	
 	switch data.type
 	{
 		case NETWORK_TYPES.JOIN:
-			obj_main_menu.active_ui = true;
+			connecting = false;
 		break;
 	}
 	exit;
@@ -27,6 +27,7 @@ switch data.type
 	break;
 	
 	case NETWORK_TYPES.JOIN:
+		connecting = false;
 		if connected { break; }
 		
 		client_id = data.id;
@@ -77,5 +78,6 @@ switch data.type
 		}
 	
 		client_count = data.client_count;
+		clients_removed = data.clients_removed;
 	break;
 }

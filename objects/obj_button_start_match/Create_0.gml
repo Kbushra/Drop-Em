@@ -1,3 +1,5 @@
+event_inherited();
+
 if !instance_exists(obj_host) { instance_destroy(); exit; }
 
 func = function()

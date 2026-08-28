@@ -4,16 +4,15 @@ buffer_seek(async_load[? "buffer"], buffer_seek_start, 0);
 var data = json_parse(buffer_read(async_load[? "buffer"], buffer_string));
 heartbeat_time = current_time;
 
-if !assert(data[$ "type"] && data[$ "success"], "Invalid data packet received!") { exit; }
+if !assert(!is_undefined(data[$ "type"]) && !is_undefined(data[$ "success"]), "Invalid data packet received!") { exit; }
 
 if !data.success
 {
-	if data[$ "reason"] { print(data.reason); }
+	if !is_undefined(data[$ "reason"]) { print(data.reason); }
 	
 	switch data.type
 	{
 		case NETWORK_TYPES.ADD_HOST:
-			obj_main_menu.active_ui = true;
 			instance_destroy();
 		break;
 	}
@@ -23,14 +22,21 @@ if !data.success
 switch data.type
 {
 	case NETWORK_TYPES.ADD_HOST:
+		added = true;
 		join_code = data.join_code;
 		room_goto(rm_level_1);
 	break;
 	
 	case NETWORK_TYPES.SET_FRAME_GET_INPUTS:
+		clients_removed = 0;
 		for (var i = 0; i < array_length(data.input_data); i++)
 		{
-			if data.input_data[i] == -1 { input_data[i] = -1; continue; }
+			if data.input_data[i] == -1
+			{
+				clients_removed++;
+				input_data[i] = -1;
+				continue;
+			}
 		
 			if !index_defined(input_data, i)
 			{

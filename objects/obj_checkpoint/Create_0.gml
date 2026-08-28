@@ -4,7 +4,7 @@ glow_client = [];
 reached = false;
 glow_alpha = 0;
 
-for (var i = array_length(reached_client); i < CLIENT_COUNT; i++)
+for (var i = array_length(reached_client); i < CLIENT_COUNT + 1; i++)
 {
 	reached_client[i] = false;
 	glow_client[i] = false;
@@ -24,7 +24,7 @@ glow_for_player = function(_client_id)
 		
 		if !reached_checkpoint && !in_range { return false; }
 		
-		if !instance_exists(obj_client) && reached_checkpoint && !other.reached_client[client_id]
+		if !instance_exists(obj_client) && reached_checkpoint && !other.reached_client[client_id + 1]
 		{
 			var bonus_time = other.expected_time_taken - (current_time - last_checkpoint_time)/1000;
 			if bonus_time > 0 { _score += 50 * bonus_time; }
@@ -34,7 +34,7 @@ glow_for_player = function(_client_id)
 			other.given_first_bonus = true;
 		}
 		
-		other.reached_client[client_id] = true;
+		other.reached_client[client_id + 1] = true;
 		last_checkpoint_time = current_time;
 		return true;
 	}

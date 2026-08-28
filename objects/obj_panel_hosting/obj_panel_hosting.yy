@@ -8,7 +8,9 @@
   ],
   "managed":true,
   "name":"obj_panel_hosting",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_panel","path":"objects/obj_panel/obj_panel.yy",},"propertyId":{"name":"centre","path":"objects/obj_panel/obj_panel.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
+  ],
   "parent":{
     "name":"Panels",
     "path":"folders/UI/Panels.yy",

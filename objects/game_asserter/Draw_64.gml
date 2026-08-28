@@ -7,10 +7,10 @@ draw_set_colour(c_white);
 draw_set_halign(fa_middle);
 draw_set_valign(fa_center);
 
-draw_text(160, 60, "(BUG REPORT THIS)\nError!");
+draw_text(GAME_WIDTH/2, 90, "(BUG REPORT THIS)\nError!");
 
 draw_set_colour(severe ? c_red : c_white);
-draw_text(160, 120, desc);
+draw_text(GAME_WIDTH/2, 150, desc);
 draw_set_colour(c_white);
 
 draw_set_halign(fa_left);

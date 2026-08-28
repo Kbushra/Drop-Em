@@ -19,7 +19,7 @@ create_ui = function()
 	instance_destroy(obj_button);
 	
 	var curr_path = get_curr_path();
-	var top = 64;
+	var top = 32;
 	var gap = 80;
 	for (var i = 0; i < array_length(curr_path); i++)
 	{
@@ -27,7 +27,7 @@ create_ui = function()
 		curr_path[i][$ "vars"] ??= {};
 		curr_path[i].vars.ind = i;
 		
-		instance_create_depth(128, top + i * gap, depth,
+		instance_create_depth(32, top + i * gap, depth,
 			curr_path[i].obj, curr_path[i].vars);
 	}
 }
