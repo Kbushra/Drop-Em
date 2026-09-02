@@ -1,6 +1,6 @@
 ///@desc States
+event_inherited();
 
-///@func state_transition()
 state_transition = function()
 {
 	if instance_exists(obj_lava) && obj_lava.colliding(x, y) && state != BAT_STATES.GHOST
@@ -166,7 +166,6 @@ state_transition = function()
 	}
 }
 
-///@func state_step()
 state_step = function()
 {
 	image_alpha = 1;
@@ -179,7 +178,7 @@ state_step = function()
 			update_hsp();
 			vsp = 0;
 			
-			attack();
+			check_attack();
 			mask_index = spr_bat_mask;
 			collide();
 			
@@ -190,7 +189,7 @@ state_step = function()
 			update_hsp();
 			update_vsp();
 			
-			attack();
+			check_attack();
 			mask_index = spr_bat_mask;
 			if !attacking { sprite_index = spr_bat_jump; }
 			collide();
@@ -200,7 +199,7 @@ state_step = function()
 			update_hsp();
 			update_vsp();
 		
-			attack();
+			check_attack();
 			mask_index = spr_bat_mask;
 			if !attacking { sprite_index = spr_bat_fall; }
 			collide();
@@ -268,7 +267,7 @@ state_step = function()
 		
 			hsp += current_wall_force * delta;
 			
-			attack();
+			check_attack();
 			mask_index = spr_bat_mask;
 			if !attacking { sprite_index = spr_bat_jump; }
 			collide();

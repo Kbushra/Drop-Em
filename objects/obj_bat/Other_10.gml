@@ -24,55 +24,27 @@ server_data = function()
 	};
 }
 
-///@func move_free(axis, sign_only)
-move_free = function(axis, sign_only)
+setup_coyotes = function()
 {
-	var _hsp = sign_only ? sign(hsp) : hsp;
-	var _vsp = sign_only ? sign(vsp) : vsp;
-	var change_x = axis == VERTICAL ? 0 : _hsp;
-	var change_y = axis == HORIZONTAL ? 0 : _vsp;
-	
-	if change_x == 0 && change_y == 0 { return true; } //Prevent getting stuck just incase
-	return place_free(x + change_x, y + change_y);
+	if input_pressed[KEY.UP] { coyote_press_up = 0.2; }
+	if input_pressed[KEY.DOWN] { coyote_press_down = 0.2; }
 }
 
-///@func update_hsp()
-update_hsp = function()
+control_score = function()
 {
-	var _spd = agile ? spd : slow_spd;
-	hsp = (input_held[KEY.RIGHT] - input_held[KEY.LEFT]) * _spd * delta;
-}
-
-///@func update_vsp()
-update_vsp = function()
-{
-	if vsp < 0 { vsp += up_grv * delta; } else { vsp += down_grv * delta; }
-	vsp = clamp(vsp, -99, 15);
-}
-
-///@func collide()
-collide = function()
-{
-	if !move_free(HORIZONTAL, false)
+	if instance_exists(obj_lava) && y < lowest_y
 	{
-		while move_free(HORIZONTAL, true) { x += sign(hsp); }
-		hsp = 0;
-	}
-	
-	if !move_free(VERTICAL, false)
-	{
-		while move_free(VERTICAL, true) { y += sign(vsp); }
-		vsp = 0;
+		if state != BAT_STATES.GHOST { _score += (lowest_y - y)/5; }
+		lowest_y = y;
 	}
 }
 
-///@func attack()
-attack = function()
+reduce_timers = function()
 {
-	if !agile || attack_cooldown > 0 || !input_pressed[KEY.ATTACK] { return; }
+	attack_cooldown -= delta;
+	coyote_press_up -= delta;
+	coyote_press_down -= delta;
+	coyote_fall -= delta;
 	
-	attacking = true;
-	attack_cooldown = 0.35;
-	sprite_index = spr_bat_attack;
-	image_index = 0;
+	if state != BAT_STATES.KNOCKBACK { inv_frames -= delta; }
 }

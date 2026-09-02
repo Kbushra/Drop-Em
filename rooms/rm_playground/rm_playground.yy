@@ -15,7 +15,6 @@
     {"name":"inst_26BA29BD","path":"rooms/rm_playground/rm_playground.yy",},
     {"name":"inst_2A8C646E","path":"rooms/rm_playground/rm_playground.yy",},
     {"name":"inst_36CAC51A","path":"rooms/rm_playground/rm_playground.yy",},
-    {"name":"inst_766EE580","path":"rooms/rm_playground/rm_playground.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -24,7 +23,6 @@
         {"$GMRInstance":"v4","%Name":"inst_32418862","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_32418862","objectId":{"name":"obj_bat","path":"objects/obj_bat/obj_bat.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"propertyId":{"name":"agile","path":"objects/obj_player/obj_player.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"True",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":288.0,"y":288.0,},
-        {"$GMRInstance":"v4","%Name":"inst_766EE580","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_766EE580","objectId":{"name":"obj_client","path":"objects/obj_client/obj_client.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":160.0,"y":128.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Triggers","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_7DBE813","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_7DBE813","objectId":{"name":"trig_solid","path":"objects/trig_solid/trig_solid.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":16.0,"scaleY":3.0,"x":96.0,"y":288.0,},

@@ -2,3 +2,61 @@
 
 ///@func server_data()
 server_data = function() { return { client_id, hp, _score, state }; }
+
+///@func move_free(axis, sign_only)
+move_free = function(axis, sign_only)
+{
+	var _hsp = sign_only ? sign(hsp) : hsp;
+	var _vsp = sign_only ? sign(vsp) : vsp;
+	var change_x = axis == VERTICAL ? 0 : _hsp;
+	var change_y = axis == HORIZONTAL ? 0 : _vsp;
+	
+	if change_x == 0 && change_y == 0 { return true; } //Prevent getting stuck just incase
+	return place_free(x + change_x, y + change_y);
+}
+
+///@func update_hsp()
+update_hsp = function()
+{
+	var _spd = agile ? spd : slow_spd;
+	hsp = (input_held[KEY.RIGHT] - input_held[KEY.LEFT]) * _spd * delta;
+}
+
+///@func update_vsp()
+update_vsp = function()
+{
+	if vsp < 0 { vsp += up_grv * delta; } else { vsp += down_grv * delta; }
+	vsp = clamp(vsp, -99, 15);
+}
+
+///@func collide()
+collide = function()
+{
+	if !move_free(HORIZONTAL, false)
+	{
+		while move_free(HORIZONTAL, true) { x += sign(hsp); }
+		hsp = 0;
+	}
+	
+	if !move_free(VERTICAL, false)
+	{
+		while move_free(VERTICAL, true) { y += sign(vsp); }
+		vsp = 0;
+	}
+}
+
+///@func setup_coyotes()
+setup_coyotes = function() {}
+
+///@func control_score()
+control_score = function() {}
+
+///@func reduce_timers()
+reduce_timers = function() {}
+
+///@func inv_blend()
+inv_blend = function()
+{
+	if inv_frames <= 0 || state == knockback_state { image_blend = c_white; }
+	else { image_blend = true_mod(inv_frames, 0.2) > 0.1 ? c_red : c_white; }
+}
