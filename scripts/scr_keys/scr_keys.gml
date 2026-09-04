@@ -27,6 +27,17 @@ function default_inputs()
 	return arr;
 }
 
+function default_input_data()
+{
+	return
+	{
+		input_pressed: default_inputs(),
+		input_held: default_inputs(),
+		input_released: default_inputs(),
+		delta: 0
+	};
+}
+
 function key_check_direct(key, state)
 {
 	switch (state)

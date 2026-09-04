@@ -38,23 +38,37 @@ switch data.type
 				input_data[i] = -1;
 				continue;
 			}
-		
+			
 			if !index_defined(input_data, i)
 			{
 				input_data[i] = [];
 				instance_create_depth(x, y, depth, obj_bat, { client_id: i });
 			}
 			
+			if !index_defined(last_input_data, i) { last_input_data[i] = undefined; }
+			
 			for (var j = 0; j < array_length(client_frames); j++)
 			{
 				var client_frame = client_frames[j];
 				
-				var verified = verify_inputs(client_frame.input_pressed);
-				verified = verified && verify_inputs(client_frame.input_held);
-				verified = verified && verify_inputs(client_frame.input_released);
-				if !verified { continue; }
-		
-				input_data[i][j] = client_frame;
+				var verified = verify_inputs(client_frame.input_held);
+				if !verified { print("that aint good"); continue; }
+				
+				last_input_data[i] ??= client_frame;
+				var prev_client_frame = last_input_data[i];
+				
+				client_frame.input_pressed = [];
+				client_frame.input_released = [];
+				for (var k = 0; k < KEY.COUNT; k++)
+				{
+					client_frame.input_pressed[k] =
+						!prev_client_frame.input_held[k] && client_frame.input_held[k];
+					client_frame.input_released[k] =
+						prev_client_frame.input_held[k] && !client_frame.input_held[k];
+				}
+				
+				last_input_data[i] = client_frame;
+				array_push(input_data[i], client_frame);
 			}
 		}
 	break;

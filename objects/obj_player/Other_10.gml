@@ -45,6 +45,14 @@ collide = function()
 	}
 }
 
+///@func apply_spd()
+apply_spd = function()
+{
+	x += hsp;
+	y += vsp;
+	if hsp != 0 { image_xscale = sign(hsp); }
+}
+
 ///@func setup_coyotes()
 setup_coyotes = function() {}
 
@@ -59,4 +67,20 @@ inv_blend = function()
 {
 	if inv_frames <= 0 || state == knockback_state { image_blend = c_white; }
 	else { image_blend = true_mod(inv_frames, 0.2) > 0.1 ? c_red : c_white; }
+}
+
+///@func step()
+step = function()
+{
+	setup_coyotes();
+
+	state_transition();
+	state_step();
+
+	control_score();
+	reduce_timers();
+
+	if attacking { attack_logic(); }
+
+	inv_blend();
 }

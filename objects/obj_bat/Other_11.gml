@@ -148,6 +148,8 @@ state_transition = function()
 		break;
 		
 		case BAT_STATES.GHOST:
+			if !instance_exists(obj_host) { break; } //Only revive on server-side
+		
 			var checkpoint = instance_place(x, y, obj_checkpoint);
 			if checkpoint && checkpoint.glow_player[client_id + 1]
 			{
@@ -183,6 +185,7 @@ state_step = function()
 			collide();
 			
 			if !attacking { sprite_index = hsp == 0 ? spr_bat_idle : spr_bat_walk; }
+			apply_spd();
 		break;
 		
 		case BAT_STATES.JUMP:
@@ -191,8 +194,10 @@ state_step = function()
 			
 			check_attack();
 			mask_index = spr_bat_mask;
-			if !attacking { sprite_index = spr_bat_jump; }
 			collide();
+			
+			if !attacking { sprite_index = spr_bat_jump; }
+			apply_spd();
 		break;
 		
 		case BAT_STATES.FALL:
@@ -201,8 +206,10 @@ state_step = function()
 		
 			check_attack();
 			mask_index = spr_bat_mask;
-			if !attacking { sprite_index = spr_bat_fall; }
 			collide();
+			
+			if !attacking { sprite_index = spr_bat_fall; }
+			apply_spd();
 		break;
 		
 		case BAT_STATES.SLIDE:
@@ -230,6 +237,7 @@ state_step = function()
 			collide();
 		
 			if hsp == 0 { slide_dir *= -1; } //Change direction
+			apply_spd();
 		break;
 		
 		case BAT_STATES.WALL:
@@ -244,8 +252,8 @@ state_step = function()
 			sprite_index = spr_bat_wall;
 			collide();
 			
-			if hinputs == -wall_dir
-			{ coyote_wall_stick -= delta; }
+			if hinputs == -wall_dir { coyote_wall_stick -= delta; }
+			apply_spd();
 		break;
 		
 		case BAT_STATES.WALL_JUMP:
@@ -269,8 +277,10 @@ state_step = function()
 			
 			check_attack();
 			mask_index = spr_bat_mask;
-			if !attacking { sprite_index = spr_bat_jump; }
 			collide();
+			
+			if !attacking { sprite_index = spr_bat_jump; }
+			apply_spd();
 		break;
 		
 		case BAT_STATES.GLIDE:
@@ -285,6 +295,7 @@ state_step = function()
 			collide();
 		
 			if hsp == 0 { glide_dir *= -1; } //Change direction
+			apply_spd();
 		break;
 		
 		case BAT_STATES.KNOCKBACK:
@@ -308,11 +319,15 @@ state_step = function()
 			collide();
 			
 			if hsp == 0 { current_knockback_h_force *= -1; }
-			if place_free(x, y + 1) || vsp < 0 { break; }
 			
-			current_knockback_h_force /= 2;
-			current_knockback_v_force /= 2;
-			vsp = current_knockback_v_force;
+			if !place_free(x, y + 1) && vsp >= 0
+			{
+				current_knockback_h_force /= 2;
+				current_knockback_v_force /= 2;
+				vsp = current_knockback_v_force;
+			}
+			
+			apply_spd();
 		break;
 		
 		case BAT_STATES.GHOST:
@@ -323,7 +338,9 @@ state_step = function()
 			image_alpha = 0.5;
 			mask_index = spr_bat_mask;
 			sprite_index = spr_bat_ghost;
-			x = clamp(x, sprite_xoffset, room_width - sprite_xoffset);
+			
+			apply_spd();
+			x = clamp(x, abs(sprite_xoffset), room_width - abs(sprite_xoffset));
 		break;
 	}
 }
