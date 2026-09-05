@@ -68,10 +68,12 @@ switch data.type
 			{
 				instances[$ curr_instance_ids[i]] = instance_create_depth(x, y, depth, obj.object_index,
 					{ instance: curr_instance_ids[i] });
-			
+				
 				apply_struct(instances[$ curr_instance_ids[i]], obj);
 			}
-		
+			
+			//Don't care about changing the object layer after its created
+			obj.layer = instances[$ curr_instance_ids[i]].layer;
 			send_signal(instances[$ curr_instance_ids[i]], "received_data");
 		}
 	
