@@ -45,8 +45,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"Type Boxes",
-    "path":"folders/UI/Type Boxes.yy",
+    "name":"Elements",
+    "path":"folders/UI/Elements.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

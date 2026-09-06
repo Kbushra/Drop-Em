@@ -1,1 +1,1 @@
-send_signal(obj_main_menu, "disable_ui");
+with obj_element { send_signal(id, "disable"); }

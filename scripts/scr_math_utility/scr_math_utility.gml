@@ -33,7 +33,9 @@ function inv_lerp(a, b, value)
 
 function lerp_delta(a, b, amt)
 {
-	var _delta = variable_instance_exists(id, "delta") ? delta : DELTA;
+	var _delta = DELTA;
+	try { _delta = delta; } catch (e) {}
+	
 	return lerp(a, b, 1 - power(1 - amt, _delta));
 }
 
@@ -46,6 +48,12 @@ enum EDGE
 {
 	RISE,
 	FALL
+}
+
+function transformed_sin_point(_x, _min, _start, _max, _point, _edge = EDGE.RISE, _point_edge = EDGE.FALL)
+{
+	var _period = transformed_sin_get_period(_min, _start, _max, _point, _edge, _point_edge);
+	return transformed_sin(_x, _min, _start, _max, _period, _edge);
 }
 
 ///@param x In degrees

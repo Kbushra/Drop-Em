@@ -1,4 +1,6 @@
 depth = -200;
-if !keyboard_check_pressed(vk_enter) { exit; }
-if instance_exists(obj_main_menu) && !obj_main_menu.active_ui { exit; }
-func();
+var enabled = !got_signal("disable");
+stop_signal("disable");
+
+if !keyboard_check_pressed(vk_enter) || !enabled { exit; }
+func(id);

@@ -1,8 +1,20 @@
 depth = -100;
-if !got_signal("pressed") { exit; }
+array_push(obj_mouse.clickables, id);
 
-stop_signal("pressed");
-if instance_exists(obj_main_menu) && !obj_main_menu.active_ui { exit; }
+var enabled = !got_signal("disable");
+stop_signal("disable");
 
-if instance_exists(obj_main_menu) { obj_main_menu.get_curr_path()[ind].func(); }
-func();
+if enabled && got_signal("pressed")
+{
+	stop_signal("pressed");
+	func();
+}
+else if enabled && got_signal("hovered")
+{
+	stop_signal("hovered");
+	x = lerp_delta(x, xstart + 20, 0.995);
+}
+else
+{
+	x = lerp_delta(x, xstart, 0.995);
+}

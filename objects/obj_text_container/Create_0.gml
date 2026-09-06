@@ -2,24 +2,31 @@ image_alpha = 0;
 if image_xscale == 0 { image_xscale = string_width(text); }
 if image_yscale == 0 { image_yscale = string_height(text); }
 
-switch xalign
+///@func get_coord()
+get_coord = function()
 {
-	case fa_center: case fa_middle:
-		x -= sprite_width/2;
-	break;
+	var coord = new coordinate(x, y);
+	switch xalign
+	{
+		case fa_center: case fa_middle:
+			coord.x -= sprite_width/2;
+		break;
 	
-	case fa_right:
-		x -= sprite_width;
-	break;
-}
+		case fa_right:
+			coord.x -= sprite_width;
+		break;
+	}
 
-switch yalign
-{
-	case fa_center: case fa_middle:
-		y -= sprite_height/2;
-	break;
+	switch yalign
+	{
+		case fa_center: case fa_middle:
+			coord.y -= sprite_height/2;
+		break;
 	
-	case fa_bottom:
-		y -= sprite_height;
-	break;
+		case fa_bottom:
+			coord.y -= sprite_height;
+		break;
+	}
+	
+	return coord;
 }

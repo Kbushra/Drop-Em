@@ -12,10 +12,13 @@
   "name":"obj_type_box",
   "overriddenProperties":[],
   "parent":{
-    "name":"Type Boxes",
-    "path":"folders/UI/Type Boxes.yy",
+    "name":"Elements",
+    "path":"folders/UI/Elements.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_element",
+    "path":"objects/obj_element/obj_element.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -32,6 +35,8 @@
   "properties":[
     {"$GMObjectProperty":"v2","%Name":"limit","filters":[],"listItems":[],"multiselect":false,"name":"limit","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":1,},
     {"$GMObjectProperty":"v2","%Name":"placeholder","filters":[],"listItems":[],"multiselect":false,"name":"placeholder","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":2,},
+    {"$GMObjectProperty":"v2","%Name":"special_chars","filters":[],"listItems":[],"multiselect":false,"name":"special_chars","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[]","varType":4,},
+    {"$GMObjectProperty":"v2","%Name":"func","filters":[],"listItems":[],"multiselect":false,"name":"func","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"empty","varType":4,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

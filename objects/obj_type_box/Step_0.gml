@@ -12,7 +12,7 @@ for (var i = string_length(initial_keyboard_string) + 1; i <= string_length(keyb
 	
 	var ascii = ord(string_char_at(keyboard_string, i));
 	if ascii == clamp(ascii, ord("A"), ord("Z")) || ascii == clamp(ascii, ord("a"), ord("z")) ||
-	ascii == clamp(ascii, ord("0"), ord("9")) || array_contains(special_allowed_chars, ascii)
+	ascii == clamp(ascii, ord("0"), ord("9")) || array_contains(special_chars, ascii)
 	{
 		typed_string += chr(ascii);
 	}
