@@ -18,7 +18,7 @@ base_attack_logic = function(damage = 15, score_penalty = 15, delay = 0.15, inv 
 	mask_index = attack_mask;
 	with (obj_player)
 	{
-		if !instance_exists(obj_host) { break; } //Player interactions only happen on server
+		if instance_exists(obj_client) { break; } //Player interactions don't happen locally
 		
 		if inv_frames > 0 || !place_meeting(x, y, other) { continue; }
 		

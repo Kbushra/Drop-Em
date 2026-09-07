@@ -3,14 +3,22 @@ event_inherited();
 
 state_transition = function()
 {
-	if instance_exists(obj_lava) && obj_lava.colliding(x, y) && state != BAT_STATES.GHOST
-	{
-		hp = 0;
-		_score -= 100;
-		if _score < 0 { _score = 0; }
-	}
+	var local = instance_exists(obj_client);
 	
-	if hp <= 0
+	var hitting_lava = !local && instance_exists(obj_lava) && obj_lava.colliding(x, y) && state != BAT_STATES.GHOST;
+	if hitting_lava
+	{
+		if client_id != -1 && lava_grace < GRACE_TIME { lava_grace += delta; }
+		else
+		{
+			hp = 0;
+			_score -= 100;
+			if _score < 0 { _score = 0; }
+		}
+	}
+	else { lava_grace = 0; }
+	
+	if !local && hp <= 0
 	{
 		hp = 0;
 		state = BAT_STATES.GHOST;
@@ -141,14 +149,13 @@ state_transition = function()
 		case BAT_STATES.KNOCKBACK:
 			if knockback_delay > 0 { break; }
 			
-			if hp <= 0 { state = BAT_STATES.GHOST; }
-			else if near_equals(current_knockback_h_force, 0, 4) &&
+			if near_equals(current_knockback_h_force, 0, 4) &&
 			near_equals(current_knockback_v_force, 0, 0.1)
 			{ state = BAT_STATES.WALK; }
 		break;
 		
 		case BAT_STATES.GHOST:
-			if !instance_exists(obj_host) { break; } //Only revive on server-side
+			if local { break; } //Only revive on server-side
 		
 			var checkpoint = instance_place(x, y, obj_checkpoint);
 			if checkpoint && checkpoint.glow_player[client_id + 1]

@@ -4,6 +4,7 @@ var top = bbox_top + 20;
 for (var i = 0; i < array_length(text); i++)
 {
 	text[i].y = top;
+	text[i].update_coord();
 	top += string_height(text[i].text);
 }
 

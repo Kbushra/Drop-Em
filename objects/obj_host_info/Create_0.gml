@@ -19,7 +19,7 @@ instance_create_depth(room_width - 5, 5 + string_height(code_text), depth - 1, o
 	text: "START MATCH",
 	func: function()
 	{
-		instance_create_depth(x, y, depth, obj_lava);
+		instance_create_layer(x, y, "Global", obj_lava);
 		instance_destroy(obj_text_container);
 	}
 });

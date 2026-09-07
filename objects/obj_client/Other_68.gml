@@ -59,21 +59,31 @@ switch data.type
 			if struct_exists(obj, "sprite_index") { obj.sprite_index = asset_get_index(obj.sprite_index); }
 			if struct_exists(obj, "layer")
 			{
-				obj.layer = layer_exists(obj.layer) ?
-					layer_get_id(obj.layer) :
-					layer_create(obj.depth, obj.layer);
+				if !layer_exists(obj.layer) { struct_remove(obj, "layer"); }
+				else
+				{
+					if struct_exists(obj, "depth") { struct_remove(obj, "depth"); }
+					obj.layer = layer_get_id(obj.layer);
+				}
 			}
 		
 			if !instances[$ curr_instance_ids[i]]
 			{
-				instances[$ curr_instance_ids[i]] = instance_create_depth(x, y, depth, obj.object_index,
-					{ instance: curr_instance_ids[i] });
+				if struct_exists(obj, "layer")
+				{
+					instances[$ curr_instance_ids[i]] = instance_create_layer(x, y,
+						obj.layer, obj.object_index, { instance: curr_instance_ids[i] });
+				}
+				else
+				{
+					instances[$ curr_instance_ids[i]] = instance_create_depth(x, y,
+						struct_exists(obj, "depth") ? obj.depth : 0, obj.object_index,
+						{ instance: curr_instance_ids[i] });
+				}
 				
 				apply_struct(instances[$ curr_instance_ids[i]], obj);
 			}
 			
-			//Don't care about changing the object layer after its created
-			obj.layer = instances[$ curr_instance_ids[i]].layer;
 			send_signal(instances[$ curr_instance_ids[i]], "received_data");
 		}
 	

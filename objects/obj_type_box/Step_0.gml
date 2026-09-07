@@ -1,5 +1,5 @@
 if keyboard_check_pressed(ord("V")) && keyboard_check(vk_control)
-{ keyboard_string += clipboard_get_text(); }
+{ keyboard_string = initial_keyboard_string + typed_string + clipboard_get_text(); }
 
 if string_length(keyboard_string) < string_length(initial_keyboard_string)
 { initial_keyboard_string = keyboard_string; }

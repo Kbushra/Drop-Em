@@ -32,6 +32,7 @@ coyote_press_down = 0;
 coyote_fall = 0;
 coyote_wall_stick = 0;
 
+lava_grace = 0;
 lowest_y = ystart;
 
 attack_sprite = spr_bat_attack;

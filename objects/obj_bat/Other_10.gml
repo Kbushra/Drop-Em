@@ -1,29 +1,6 @@
 ///@desc Methods
 event_inherited();
 
-server_data = function()
-{
-	return
-	{
-		client_id,
-		hp,
-		_score,
-		state,
-		
-		slide_dir,
-		glide_dir,
-		current_wall_force,
-		wall_dir,
-		knockback_delay,
-		current_knockback_h_force,
-		current_knockback_v_force,
-
-		attacking,
-		attack_cooldown,
-		inv_frames
-	};
-}
-
 setup_coyotes = function()
 {
 	if input_pressed[KEY.UP] { coyote_press_up = 0.2; }

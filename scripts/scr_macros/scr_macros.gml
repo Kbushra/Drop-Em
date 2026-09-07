@@ -42,7 +42,7 @@
 #macro GUI_ASPECT (GUI_W / GUI_H)
 
 #macro EPOCH_TIME (date_second_span(date_create_datetime(1970, 1, 1, 0, 0, 0), date_current_datetime()))
-#macro PORT 443
+#macro GRACE_TIME 0.2
 
 #macro PLAYER (obj_player_follower.player)
 #macro CLIENT_ID (instance_exists(obj_client) ? obj_client.client_id : -1)

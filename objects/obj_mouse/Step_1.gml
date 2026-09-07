@@ -13,5 +13,6 @@ for (var i = 0; i < array_length(clickables); i++)
 	}
 }
 
-send_signal(obj, mouse_check_button_pressed(mb_left) ? "pressed" : "hovered");
+send_signal(obj, "hovered");
+if mouse_check_button_pressed(mb_left) { send_signal(obj, "pressed"); }
 clickables = [];

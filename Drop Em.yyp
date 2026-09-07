@@ -10,6 +10,7 @@
   },
   "defaultScriptType":1,
   "Folders":[
+    {"$GMFolder":"","%Name":"Extensions","folderPath":"folders/Extensions.yy","name":"Extensions","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Managers","folderPath":"folders/Managers.yy","name":"Managers","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Maps","folderPath":"folders/Maps.yy","name":"Maps","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Cave","folderPath":"folders/Maps/Cave.yy","name":"Cave","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -23,8 +24,8 @@
     {"$GMFolder":"","%Name":"Triggers","folderPath":"folders/Triggers.yy","name":"Triggers","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"UI","folderPath":"folders/UI.yy","name":"UI","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Elements","folderPath":"folders/UI/Elements.yy","name":"Elements","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Lists","folderPath":"folders/UI/Lists.yy","name":"Lists","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Misc","folderPath":"folders/UI/Elements/Misc.yy","name":"Misc","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Lists","folderPath":"folders/UI/Lists.yy","name":"Lists","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[],
@@ -35,6 +36,8 @@
   },
   "name":"Drop Em",
   "resources":[
+    {"id":{"name":"GX_Cut","path":"extensions/GX_Cut/GX_Cut.yy",},},
+    {"id":{"name":"GX_Recommence","path":"extensions/GX_Recommence/GX_Recommence.yy",},},
     {"id":{"name":"fnt_default","path":"fonts/fnt_default/fnt_default.yy",},},
     {"id":{"name":"fnt_large","path":"fonts/fnt_large/fnt_large.yy",},},
     {"id":{"name":"game_asserter","path":"objects/game_asserter/game_asserter.yy",},},
