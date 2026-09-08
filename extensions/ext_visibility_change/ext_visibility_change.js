@@ -1,0 +1,1 @@
+//document.onvisibilitychange = () => { window.gml_Script_gmcallback_visibility_change(null, null, document.hidden); };

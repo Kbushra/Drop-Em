@@ -18,7 +18,7 @@ if !data.success
 		
 		case NETWORK_TYPES.SET_INPUTS_GET_FRAME:
 			if data[$ "reason"] != "Host has disconnected!" { break; }
-			with (obj_player) { if client_id == -1 { instance_destroy(); } }
+			leave();
 		break;
 	}
 	exit;

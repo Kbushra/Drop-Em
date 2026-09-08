@@ -17,6 +17,13 @@ function network_send_struct(wss, type, struct = {})
 	buffer_delete(data.buffer);
 }
 
+function leave()
+{
+	network_send_struct(CONNECTOR.wss, NETWORK_TYPES.LEAVE);
+	instance_destroy(CONNECTOR);
+	room_goto(rm_main);
+}
+
 function get_object_data()
 {
 	return

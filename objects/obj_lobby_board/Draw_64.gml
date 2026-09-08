@@ -3,6 +3,8 @@ draw_self();
 var top = bbox_top + 20;
 for (var i = 0; i < array_length(text); i++)
 {
+	if !instance_exists(text[i]) { continue; }
+	
 	text[i].y = top;
 	text[i].update_coord();
 	top += string_height(text[i].text);

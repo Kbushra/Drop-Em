@@ -45,6 +45,7 @@
 #macro GRACE_TIME 0.2
 
 #macro PLAYER (obj_player_follower.player)
+#macro CONNECTOR (instance_exists(obj_connection) ? obj_connection : (instance_exists(obj_host) ? obj_host : (instance_exists(obj_client) ? obj_client : noone)))
 #macro CLIENT_ID (instance_exists(obj_client) ? obj_client.client_id : -1)
 #macro CLIENT_COUNT (instance_exists(obj_client) ? obj_client.client_count : (instance_exists(obj_host) ? array_length(obj_host.input_data) : 0))
 #macro CLIENTS_REMOVED (instance_exists(obj_client) ? obj_client.clients_removed : (instance_exists(obj_host) ? obj_host.clients_removed : 0))
