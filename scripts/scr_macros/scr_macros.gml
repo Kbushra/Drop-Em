@@ -42,7 +42,6 @@
 #macro GUI_ASPECT (GUI_W / GUI_H)
 
 #macro EPOCH_TIME (date_second_span(date_create_datetime(1970, 1, 1, 0, 0, 0), date_current_datetime()))
-#macro GRACE_TIME 0.2
 
 #macro PLAYER (obj_player_follower.player)
 #macro CONNECTOR (instance_exists(obj_connection) ? obj_connection : (instance_exists(obj_host) ? obj_host : (instance_exists(obj_client) ? obj_client : noone)))
@@ -50,6 +49,7 @@
 #macro CLIENT_COUNT (instance_exists(obj_client) ? obj_client.client_count : (instance_exists(obj_host) ? array_length(obj_host.input_data) : 0))
 #macro CLIENTS_REMOVED (instance_exists(obj_client) ? obj_client.clients_removed : (instance_exists(obj_host) ? obj_host.clients_removed : 0))
 #macro CLIENTS_REMAINING (CLIENT_COUNT - CLIENTS_REMOVED)
+#macro LATENCY (instance_exists(obj_client) ? obj_client.latency : (instance_exists(obj_host) && client_id != -1 ? obj_host.latencies[client_id] : 0))
 
 #macro DELTA (delta_time/1000000)
 

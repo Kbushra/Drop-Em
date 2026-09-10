@@ -1,7 +1,24 @@
 ///@desc Methods
 
 ///@func server_data()
-server_data = function() { return { client_id, hp, _score, state }; }
+server_data = function()
+{
+	return
+	{
+		client_id,
+		hp,
+		_score,
+		state,
+		
+		knockback_delay,
+		current_knockback_h_force,
+		current_knockback_v_force,
+		
+		attacking,
+		attack_cooldown,
+		inv_frames
+	};
+}
 
 ///@func move_free(axis, sign_only)
 move_free = function(axis, sign_only)
@@ -69,6 +86,26 @@ inv_blend = function()
 	else { image_blend = true_mod(inv_frames, 0.2) > 0.1 ? c_red : c_white; }
 }
 
+///@func record_pos()
+record_pos = function()
+{
+	positions[$ current_time/1000] = new coordinate(x, y);
+	
+	var times = struct_get_names(positions);
+	for (var i = 0; i < array_length(times); i++)
+	{
+		//Remove all from a second ago to avoid too much memory use
+		if real(times[i]) < current_time/1000 - 1 { struct_remove(positions, times[i]); }
+	}
+}
+
+///@func fetch_late_pos(time_ago)
+fetch_late_pos = function(time_ago)
+{
+	var times = struct_get_names(positions);
+	return positions[$ closest_num(times, current_time/1000 - time_ago)];
+}
+
 ///@func step()
 step = function()
 {
@@ -83,4 +120,5 @@ step = function()
 	if attacking { attack_logic(); }
 
 	inv_blend();
+	record_pos();
 }

@@ -11,3 +11,6 @@ instances = {};
 frame_data = {};
 frame_data_delay = 0;
 last_frame_data_time = current_time;
+
+latency = 0;
+network_send_struct(wss, NETWORK_TYPES.PING);

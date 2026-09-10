@@ -19,6 +19,9 @@ enum NETWORK_TYPES
     KICK,
     SET_INPUTS_GET_FRAME,
     SET_FRAME_GET_INPUTS,
+	PING,
+	
+	//unused for now
 	PAUSE_HOST,
 	RESUME_HOST
 }

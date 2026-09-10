@@ -1,6 +1,7 @@
 //Each client gives an array of structs containing their inputs that frame
 last_input_data = [];
 input_data = [];
+latencies = [];
 
 heartbeat_time = current_time;
 join_code = "";

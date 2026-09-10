@@ -99,4 +99,9 @@ switch data.type
 		client_count = data.client_count;
 		clients_removed = data.clients_removed;
 	break;
+	
+	case NETWORK_TYPES.PING:
+		latency = data.latency;
+		network_send_struct(wss, NETWORK_TYPES.PING);
+	break;
 }

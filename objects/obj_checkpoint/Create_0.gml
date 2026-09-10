@@ -12,7 +12,7 @@ for (var i = array_length(reached_player); i < CLIENT_COUNT + 1; i++)
 ///@func glow_for_player(client_id)
 glow_for_player = function(_client_id)
 {
-	if instance_exists(obj_lava) && obj_lava.colliding(x, y) { return false; }
+	if instance_exists(obj_lava) && obj_lava.colliding() { return false; }
 
 	with (obj_player)
 	{

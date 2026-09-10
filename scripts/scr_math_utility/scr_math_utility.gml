@@ -44,6 +44,22 @@ function true_mod(dividend, divisor)
 	return ((dividend % divisor) + divisor) % divisor;
 }
 
+function closest_num(arr, target)
+{
+	var diff = infinity;
+	var res = 0;
+	for (var i = 0; i < array_length(arr); i++)
+	{
+		if abs(arr[i] - target) < diff
+		{
+			res = arr[i];
+			diff = arr[i] - target;
+		}
+	}
+	
+	return res;
+}
+
 enum EDGE
 {
 	RISE,

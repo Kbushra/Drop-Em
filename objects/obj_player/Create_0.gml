@@ -11,6 +11,7 @@ xstart = x;
 ystart = y;
 hsp = 0;
 vsp = 0;
+positions = {};
 
 state = 0;
 knockback_state = 0;

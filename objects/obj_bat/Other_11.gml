@@ -4,19 +4,18 @@ event_inherited();
 state_transition = function()
 {
 	var local = instance_exists(obj_client);
-	
-	var hitting_lava = !local && instance_exists(obj_lava) && obj_lava.colliding(x, y) && state != BAT_STATES.GHOST;
-	if hitting_lava
+	if !local && instance_exists(obj_lava)
 	{
-		if client_id != -1 && lava_grace < GRACE_TIME { lava_grace += delta; }
-		else
+		var yoffset = client_id == -1 ? 0 : LATENCY * obj_lava.spd;
+		var hitting_lava = !local && obj_lava.colliding(yoffset) && state != BAT_STATES.GHOST;
+	
+		if hitting_lava
 		{
 			hp = 0;
 			_score -= 100;
 			if _score < 0 { _score = 0; }
 		}
 	}
-	else { lava_grace = 0; }
 	
 	if !local && hp <= 0
 	{

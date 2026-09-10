@@ -13,5 +13,5 @@ with (obj_player)
 	last_checkpoint_time = current_time;
 }
 
-///@func colliding(x, y)
-colliding = function(_x, _y) { return place_meeting(x, y + 30, other); }
+///@func colliding([yoffset])
+colliding = function(yoffset = 0) { return place_meeting(x, y + yoffset + 30, other); }

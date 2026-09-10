@@ -14,13 +14,21 @@ check_attack = function()
 ///@func base_attack_logic([damage], [score_penalty], [delay], [inv])
 base_attack_logic = function(damage = 15, score_penalty = 15, delay = 0.15, inv = 0.8)
 {
+	var latency = LATENCY;
 	var prev_mask = mask_index;
 	mask_index = attack_mask;
 	with (obj_player)
 	{
 		if instance_exists(obj_client) { break; } //Player interactions don't happen locally
 		
+		var late_pos = fetch_late_pos(latency);
+		var curr_pos = new coordinate(x, y);
+		x = late_pos.x;
+		y = late_pos.y;
 		if inv_frames > 0 || !place_meeting(x, y, other) { continue; }
+		
+		x = curr_pos.x;
+		y = curr_pos.y;
 		
 		hp -= damage;
 		_score -= score_penalty;

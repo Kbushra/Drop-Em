@@ -29,6 +29,7 @@ switch data.type
 	
 	case NETWORK_TYPES.SET_FRAME_GET_INPUTS:
 		clients_removed = 0;
+		latencies = data.latencies;
 		for (var i = 0; i < array_length(data.input_data); i++)
 		{
 			var client_frames = data.input_data[i];
@@ -41,18 +42,17 @@ switch data.type
 			
 			if !index_defined(input_data, i)
 			{
+				last_input_data[i] = undefined;
 				input_data[i] = [];
 				instance_create_depth(x, y, depth, obj_bat, { client_id: i });
 			}
-			
-			if !index_defined(last_input_data, i) { last_input_data[i] = undefined; }
 			
 			for (var j = 0; j < array_length(client_frames); j++)
 			{
 				var client_frame = client_frames[j];
 				
 				var verified = verify_inputs(client_frame.input_held);
-				if !verified { print("that aint good"); continue; }
+				if !verified { continue; }
 				
 				last_input_data[i] ??= client_frame;
 				var prev_client_frame = last_input_data[i];
