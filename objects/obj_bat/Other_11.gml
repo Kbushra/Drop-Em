@@ -81,7 +81,8 @@ state_transition = function()
 				coyote_wall_stick = 0.1;
 				state = BAT_STATES.WALL;
 			}
-			else if place_free(x, y + 32) && place_free(x + hinputs * 32, y) && coyote_press_up > 0 && agile
+			else if place_free(x, y + 32) && place_free(x + 32, y) &&
+			place_free(x - 32, y) && coyote_press_up > 0 && agile
 			{
 				coyote_press_up = 0;
 				state = BAT_STATES.GLIDE;

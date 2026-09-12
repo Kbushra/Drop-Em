@@ -1,6 +1,10 @@
 draw_self();
 
-var top = bbox_top + 20;
+code_element.inst.x = bbox_left + 1;
+code_element.inst.y = bbox_top + 1;
+
+var start_top = bbox_top + 2 + code_element.inst.sprite_height;
+var top = start_top;
 for (var i = 0; i < array_length(text); i++)
 {
 	if !instance_exists(text[i]) { continue; }
@@ -17,13 +21,13 @@ if array_equals(prev_join_codes, join_codes) { exit; }
 
 prev_join_codes = join_codes;
 
-top = bbox_top + 20;
+top = start_top;
 for (var i = 0; i < array_length(text); i++) { instance_destroy(text[i]); }
 for (var i = 0; i < array_length(obj_client.hosts); i++)
 {
-	text[i] = instance_create_depth(bbox_left + 20, top, depth - 1, obj_text_container,
+	text[i] = instance_create_depth(bbox_left + 1, top, depth - 1, obj_text_container,
 	{
-		image_xscale: sprite_width - 40,
+		image_xscale: bbox_right - bbox_left - 2,
 		text: obj_client.hosts[i].name,
 		func: method({ join_code: obj_client.hosts[i].join_code }, function()
 		{

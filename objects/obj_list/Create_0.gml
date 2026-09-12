@@ -1,17 +1,16 @@
 close_timer = 0;
 
-y_positions = [start_y];
+yoffsets = [0];
 prev_el = noone;
-max_height = 0;
 
 array_foreach(elements, function(el, ind)
 {
-	if ind > 0 { y_positions[ind] = prev_el.targ_y + prev_el.inst.sprite_height + max(prev_el.gap, el.gap); }
-	el.targ_y = y_positions[ind];
+	if ind > 0 { yoffsets[ind] += max(prev_el.gap, el.gap); }
 	
-	if instant_spawn { el.create(el.targ_y); }
-	else { el.create(irandom_range(-96, -64)); }
+	el.targ_y = y + yoffsets[ind];
+	if instant_spawn { el.create(x, el.targ_y); }
+	else { el.create(x, 0); el.inst.y = -el.inst.sprite_height - 16; }
 	
-	max_height = max(max_height, el.inst.sprite_height);
+	yoffsets[ind + 1] = yoffsets[ind] + el.inst.sprite_height;
 	prev_el = el;
 });

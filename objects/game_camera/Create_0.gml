@@ -23,3 +23,5 @@ cam_set();
 
 window_set_size(GAME_WIDTH * RENDER_SCALE, GAME_HEIGHT * RENDER_SCALE);
 window_center();
+
+regular_scissor = gpu_get_scissor();

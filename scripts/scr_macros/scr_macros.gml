@@ -1,6 +1,6 @@
 #macro GAME_WIDTH 640
 #macro GAME_HEIGHT 360
-#macro RENDER_SCALE 2
+#macro RENDER_SCALE 1
 
 #macro HORIZONTAL 0
 #macro VERTICAL 1
@@ -16,8 +16,8 @@
 
 #macro WIN_X window_get_x()
 #macro WIN_Y window_get_y()
-#macro WIN_W window_get_width()
-#macro WIN_H window_get_height()
+#macro WIN_W (os_type == os_gxgames ? DISP_W : window_get_width())
+#macro WIN_H (os_type == os_gxgames ? DISP_H : window_get_height())
 #macro WIN_GET_FULL window_get_fullscreen()
 
 #macro APP_SURF application_surface

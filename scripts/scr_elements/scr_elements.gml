@@ -7,9 +7,9 @@ function element(_obj, _gap = 0) constructor
 	obj = _obj;
 	vars = {};
 	
-	static create = function(y)
+	static create = function(x, y)
 	{
-		inst = instance_create_depth(0, y, 0, obj, vars);
+		inst = instance_create_depth(x, y, 0, obj, vars);
 		return self;
 	}
 	
@@ -28,7 +28,7 @@ function element(_obj, _gap = 0) constructor
 	}
 }
 
-function button(name, func): element(obj_button) constructor
+function tab(name, func): element(obj_tab) constructor
 {
 	vars = { name, func };
 }
