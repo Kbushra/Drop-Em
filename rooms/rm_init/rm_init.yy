@@ -19,8 +19,8 @@
   ],
   "name":"rm_init",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"Drop Em",
+    "path":"Drop Em.yyp",
   },
   "parentRoom":null,
   "physicsSettings":{

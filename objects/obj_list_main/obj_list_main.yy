@@ -12,8 +12,8 @@
     "path":"folders/UI/Lists.yy",
   },
   "parentObjectId":{
-    "name":"obj_list",
-    "path":"objects/obj_list/obj_list.yy",
+    "name":"parent_list",
+    "path":"objects/parent_list/parent_list.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

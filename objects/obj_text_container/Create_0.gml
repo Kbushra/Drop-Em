@@ -5,8 +5,8 @@ if image_yscale == 0 { image_yscale = string_height(text); }
 ///@func update_coord()
 update_coord = function()
 {
-	xstart = x;
-	ystart = y;
+	x = xstart;
+	y = ystart;
 	
 	switch xalign
 	{

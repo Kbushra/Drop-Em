@@ -1,6 +1,9 @@
 if !assert(instance_exists(obj_player_spawn), "No player spawn!") { exit; }
 default_id($"player{client_id}");
 
+if !instance_exists(obj_player_follower)
+	instance_create_depth(x, y, depth, obj_player_follower);
+
 event_user(0);
 event_user(1);
 event_user(2);

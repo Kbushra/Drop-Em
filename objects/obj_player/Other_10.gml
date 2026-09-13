@@ -37,6 +37,7 @@ update_hsp = function()
 {
 	var _spd = agile ? spd : slow_spd;
 	hsp = (input_held[KEY.RIGHT] - input_held[KEY.LEFT]) * _spd * delta;
+	if hsp != 0 { image_xscale = sign(hsp); }
 }
 
 ///@func update_vsp()

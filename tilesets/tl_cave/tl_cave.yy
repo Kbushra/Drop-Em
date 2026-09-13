@@ -1,7 +1,12 @@
 {
   "$GMTileSet":"v1",
   "%Name":"tl_cave",
-  "autoTileSets":[],
+  "autoTileSets":[
+    {"$GMAutoTileSet":"","%Name":"autotile_1","closed_edge":false,"name":"autotile_1","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[
+        8,11,10,0,4,0,0,0,5,0,0,0,0,0,0,0,7,0,0,0,2,0,0,0,9,0,0,0,14,0,0,0,0,0,1,0,3,0,15,0,13,0,0,0,0,0,0,
+      ],},
+    {"$GMAutoTileSet":"","%Name":"autotile_2","closed_edge":false,"name":"autotile_2","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[8,15,13,14,3,9,0,4,1,0,7,5,2,10,11,8,],},
+  ],
   "macroPageTiles":{
     "SerialiseHeight":0,
     "SerialiseWidth":0,

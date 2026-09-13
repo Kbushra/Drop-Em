@@ -1,3 +1,6 @@
+update_coord();
+if !clickable { exit; }
+
 array_push(obj_mouse.clickables, id);
 
 image_alpha = lerp(image_alpha, got_signal("hovered") ? 0.5 : 0, 0.2);

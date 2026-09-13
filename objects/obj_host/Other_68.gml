@@ -24,7 +24,7 @@ switch data.type
 	case NETWORK_TYPES.ADD_HOST:
 		added = true;
 		join_code = data.join_code;
-		room_goto(rm_level_1);
+		room_goto(rm_cave_core);
 	break;
 	
 	case NETWORK_TYPES.SET_FRAME_GET_INPUTS:
