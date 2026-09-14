@@ -9,7 +9,9 @@ function element(_obj, _gap = 0) constructor
 	
 	static create = function(x, y)
 	{
+		if !object_exists(obj) { return self; }
 		inst = instance_create_depth(x, y, 0, obj, vars);
+		target(y);
 		return self;
 	}
 	
@@ -20,13 +22,18 @@ function element(_obj, _gap = 0) constructor
 		return self;
 	}
 	
-	static approach = function()
+	static target = function(y)
 	{
-		if !instance_exists(inst) { return self; }
-		inst.y = lerp_delta(inst.y, targ_y, 0.995);
+		targ_y = y;
+		if instance_exists(inst) { inst.targ_y = y; }
 		return self;
 	}
+	
+	static width = function() { return instance_exists(inst) ? inst.sprite_width : 0; }
+	static height = function() { return instance_exists(inst) ? inst.sprite_height : 0; }
 }
+
+function empty_space(_gap): element(noone, _gap) constructor {}
 
 function tab(name, func): element(obj_tab) constructor
 {
@@ -43,24 +50,18 @@ element(obj_text_container, 0) constructor
 {
 	vars = { text, func, clickable, image_xscale: width, image_yscale: height };
 	vars = struct_concat(vars, settings);
-	
-	static approach = function()
-	{
-		if !instance_exists(inst) { return self; }
-		inst.ystart = lerp_delta(inst.ystart, targ_y, 0.995);
-		return self;
-	}
 }
 
-function photo(sprite, caption, room): element(obj_photo, -48) constructor
+function photo(sprite, caption, room): element(obj_photo, 12) constructor
 {
 	vars = { sprite, caption, _room: room };
 }
 
 //Not an element but needs photo
-function map(_name, _tutorial_photo, _level_photos) constructor
+function map(_name, _bg, _tutorial_room, _level_photos) constructor
 {
 	name = _name;
-	tutorial_photo = _tutorial_photo;
+	bg = _bg;
+	tutorial_room = _tutorial_room;
 	level_photos = _level_photos;
 }

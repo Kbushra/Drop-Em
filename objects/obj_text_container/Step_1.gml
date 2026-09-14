@@ -1,0 +1,1 @@
+ystart = lerp_delta(ystart, targ_y, 0.995);

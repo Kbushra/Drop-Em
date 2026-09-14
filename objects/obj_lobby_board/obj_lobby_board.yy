@@ -14,7 +14,10 @@
     "name":"Misc",
     "path":"folders/UI/Elements/Misc.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_element",
+    "path":"objects/obj_element/obj_element.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

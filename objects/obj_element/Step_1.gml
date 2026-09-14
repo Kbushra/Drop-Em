@@ -1,0 +1,1 @@
+y = lerp_delta(y, targ_y, 0.995);

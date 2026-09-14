@@ -18,10 +18,18 @@ var special_chars =
 	vk_space
 ];
 
+photo_list = instance_create_depth(x, y + 64, depth,
+	obj_list_horizontal, { elements: global.curr_map.level_photos });
+
 elements =
 [
-	new tab("BACK", function() { close = true; instance_create_depth(x, y, depth, obj_list_main); }),
-	new tab("MAPS", function() { close = true; instance_create_depth(x, y, depth, obj_list_maps); }),
+	new tab("BACK", function()
+	{
+		close = true;
+		photo_list.close = true;
+		instance_create_depth(x, y, depth, obj_list_main);
+	}),
+	new empty_space(48),
 	new type_box(NONE, "LOBBY NAME", special_chars, function(inst)
 	{
 		if string_length(inst.typed_string) == 0 { exit; }

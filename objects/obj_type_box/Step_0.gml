@@ -1,3 +1,5 @@
+///@desc Typing
+
 if !focused { exit; }
 
 if keyboard_check_pressed(ord("V")) && keyboard_check(vk_control)
