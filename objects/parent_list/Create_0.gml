@@ -2,6 +2,7 @@ if array_length(elements) == 0 { instance_destroy(); exit; }
 
 event_user(0);
 
+started_close = false;
 close_timer = 0;
 width = 0;
 height = 0;

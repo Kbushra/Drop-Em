@@ -29,7 +29,7 @@ elements =
 		photo_list.close = true;
 		instance_create_depth(x, y, depth, obj_list_main);
 	}),
-	new empty_space(48),
+	new empty_space(96),
 	new type_box(NONE, "LOBBY NAME", special_chars, function(inst)
 	{
 		if string_length(inst.typed_string) == 0 { exit; }

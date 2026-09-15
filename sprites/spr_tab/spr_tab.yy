@@ -4,7 +4,7 @@
   "bboxMode":0,
   "bbox_bottom":47,
   "bbox_left":0,
-  "bbox_right":319,
+  "bbox_right":359,
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -32,7 +32,7 @@
     "left":0,
     "resourceType":"GMNineSliceData",
     "resourceVersion":"2.0",
-    "right":91,
+    "right":67,
     "tileMode":[
       0,
       0,
@@ -105,5 +105,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":320,
+  "width":360,
 }

@@ -9,8 +9,7 @@ function element(_obj, _gap = 0) constructor
 	
 	static create = function(x, y)
 	{
-		if !object_exists(obj) { return self; }
-		inst = instance_create_depth(x, y, 0, obj, vars);
+		if object_exists(obj) { inst = instance_create_depth(x, y, 0, obj, vars); }
 		target(y);
 		return self;
 	}
@@ -33,7 +32,8 @@ function element(_obj, _gap = 0) constructor
 	static height = function() { return instance_exists(inst) ? inst.sprite_height : 0; }
 }
 
-function empty_space(_gap): element(noone, _gap) constructor {}
+//Divide by 2 because gap does padding on both sides
+function empty_space(_gap): element(noone, _gap/2) constructor {}
 
 function tab(name, func): element(obj_tab) constructor
 {

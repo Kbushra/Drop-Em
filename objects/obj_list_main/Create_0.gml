@@ -7,7 +7,8 @@ elements =
 		instance_create_depth(x, y, depth, obj_list_join);
 		instance_create_depth(x, y, depth, obj_connection, { create_object: obj_client });
 	}),
-	new tab("TEST", function() { room_goto(rm_cave_tutorial); })
+	new empty_space(48),
+	new tab("TUTORIAL", function() { room_goto(global.curr_map.tutorial_room); })
 ];
 
 event_inherited();

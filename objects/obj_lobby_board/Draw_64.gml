@@ -1,7 +1,7 @@
 draw_self();
 
 code_element.inst.x = bbox_left + 1;
-code_element.inst.y = bbox_top + 1;
+code_element.target(bbox_top + 1);
 
 var start_top = bbox_top + 2 + code_element.height();
 var top = start_top;

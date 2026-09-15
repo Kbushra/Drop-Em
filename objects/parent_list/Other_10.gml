@@ -45,5 +45,6 @@ spawn_element = function(prev_el, el, ind)
 		if instance_exists(el.inst) { el.inst.y = -el.height() - 16; }
 	}
 	
+	if instance_exists(el.inst) { el.inst.list = id; }
 	return el;
 }

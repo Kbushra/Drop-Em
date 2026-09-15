@@ -12,8 +12,9 @@ if mouse_check_button_pressed(mb_left)
 		focused = true;
 		keyboard_string = initial_keyboard_string + typed_string;
 		type_bar = instance_create_depth(x + 2, y + sprite_height/2, depth - 1, obj_type_bar);
-		stop_signal("pressed");
 	}
+	
+	stop_signal("pressed");
 }
 
 array_push(obj_mouse.clickables, id);
