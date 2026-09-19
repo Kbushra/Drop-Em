@@ -25,7 +25,9 @@ function default_save()
 	var struct =
 	{
 		compatibility_version: 0,
-		cache: {}
+		cache: {},
+		
+		map_index: MAPS.CAVES
 	};
 	
 	return struct;

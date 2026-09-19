@@ -19,7 +19,7 @@ var special_chars =
 ];
 
 photo_list = instance_create_depth(x, y + 64, depth,
-	obj_list_horizontal, { elements: global.curr_map.level_photos });
+	obj_list_horizontal, { elements: variable_clone(CURR_MAP.level_photos) });
 
 elements =
 [
@@ -32,10 +32,18 @@ elements =
 	new empty_space(96),
 	new type_box(NONE, "LOBBY NAME", special_chars, function(inst)
 	{
-		if string_length(inst.typed_string) == 0 { exit; }
+		if string_length(inst.typed_string) == 0 ||
+		!instance_exists(get_focused_photo(photo_list)) { exit; }
 	
 		instance_create_depth(x, y, depth, obj_connection,
-			{ create_object: obj_host, create_vars: { name: inst.typed_string } });
+		{
+			create_object: obj_host,
+			create_vars:
+			{
+				name: inst.typed_string,
+				targ_room: get_focused_photo(photo_list)._room
+			}
+		});
 	})
 ];
 

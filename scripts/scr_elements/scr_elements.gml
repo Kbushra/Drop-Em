@@ -65,3 +65,13 @@ function map(_name, _bg, _tutorial_room, _level_photos) constructor
 	tutorial_room = _tutorial_room;
 	level_photos = _level_photos;
 }
+
+function get_focused_photo(list)
+{
+	for (var i = 0; i < array_length(list.elements); i++)
+	{
+		if list.elements[i].inst.focused { return list.elements[i].inst; }
+	}
+	
+	return noone;
+}

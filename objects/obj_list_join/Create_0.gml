@@ -1,3 +1,5 @@
+instance_create_depth(x, y, depth, obj_connection, { create_object: obj_client });
+
 elements =
 [
 	new tab("BACK", function()

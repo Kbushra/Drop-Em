@@ -41,6 +41,8 @@
 #macro GUI_H display_get_gui_height()
 #macro GUI_ASPECT (GUI_W / GUI_H)
 
+#macro CURR_MAP global.maps[global.save.map_index]
+
 #macro EPOCH_TIME (date_second_span(date_create_datetime(1970, 1, 1, 0, 0, 0), date_current_datetime()))
 
 #macro PLAYER (obj_player_follower.player)

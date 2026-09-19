@@ -1,1 +1,1 @@
-y = lerp_delta(y, targ_y, 0.995);
+if instance_exists(list) { y = lerp_delta(y, targ_y, 0.995); }

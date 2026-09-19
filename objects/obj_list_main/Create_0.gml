@@ -5,10 +5,14 @@ elements =
 	{
 		close = true;
 		instance_create_depth(x, y, depth, obj_list_join);
-		instance_create_depth(x, y, depth, obj_connection, { create_object: obj_client });
 	}),
 	new empty_space(48),
-	new tab("TUTORIAL", function() { room_goto(global.curr_map.tutorial_room); })
+	new tab("TUTORIAL", function() { room_goto(CURR_MAP.tutorial_room); }),
+	new tab("MAPS", function()
+	{
+		close = true;
+		instance_create_depth(x, y, depth, obj_list_maps);
+	})
 ];
 
 event_inherited();

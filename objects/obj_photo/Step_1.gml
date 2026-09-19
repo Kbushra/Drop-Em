@@ -1,6 +1,8 @@
 array_push(obj_mouse.clickables, id);
 
-if got_signal("pressed") && instance_exists(list)
+if !instance_exists(list) { exit; }
+
+if got_signal("pressed")
 {
 	for (var i = 0; i < array_length(list.elements); i++)
 	{
@@ -16,5 +18,4 @@ if got_signal("pressed") && instance_exists(list)
 	stop_signal("pressed");
 }
 
-if got_signal("disable") { focused = false; }
 y = lerp_delta(y, focused ? targ_y - 10 : targ_y, 0.995);

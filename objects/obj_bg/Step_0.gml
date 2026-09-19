@@ -1,0 +1,1 @@
+sprite_index = CURR_MAP.bg;
