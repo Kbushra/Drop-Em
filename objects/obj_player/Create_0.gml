@@ -16,10 +16,6 @@ hsp = 0;
 vsp = 0;
 positions = {};
 
-state = 0;
-knockback_state = 0;
-ghost_state = 0;
-
 slow_spd = 120;
 spd = 180;
 up_grv = 15;

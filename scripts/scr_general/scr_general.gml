@@ -17,7 +17,7 @@ function network_send_struct(wss, type, struct = {})
 	buffer_delete(data.buffer);
 }
 
-function leave()
+function leave_game()
 {
 	network_send_struct(CONNECTOR.wss, NETWORK_TYPES.LEAVE);
 	instance_destroy(CONNECTOR);

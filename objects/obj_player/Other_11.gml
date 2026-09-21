@@ -1,7 +1,8 @@
 ///@desc States
 
-///@func state_transition()
-state_transition = function() {}
-
-///@func state_step()
-state_step = function() {}
+state = new SnowState("walk");
+state.event_set_default_function("step", empty);
+state.event_set_default_function("draw", draw_self);
+state.add("walk", {});
+state.add("knockback", {});
+state.add("ghost", {});

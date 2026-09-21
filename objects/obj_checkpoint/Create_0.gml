@@ -18,8 +18,8 @@ glow_for_player = function(_client_id)
 	{
 		if client_id != _client_id { continue; }
 		
-		var reached_checkpoint = state != BAT_STATES.GHOST && place_meeting(x, y, other);
-		var in_range = state == BAT_STATES.GHOST && y == clamp(y, other.bbox_top - 32, other.bbox_bottom + 32);
+		var reached_checkpoint = state.get_current_state() != "ghost" && place_meeting(x, y, other);
+		var in_range = state.get_current_state() == "ghost" && y == clamp(y, other.bbox_top - 32, other.bbox_bottom + 32);
 		
 		if !reached_checkpoint && !in_range { return false; }
 		

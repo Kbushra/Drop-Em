@@ -40,8 +40,8 @@
   "optionsFile":"options.json",
   "packageId":"",
   "parent":{
-    "name":"Extensions",
-    "path":"folders/Extensions.yy",
+    "name":"Packages",
+    "path":"folders/Packages.yy",
   },
   "productId":"",
   "resourceType":"GMExtension",

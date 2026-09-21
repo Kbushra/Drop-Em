@@ -12,10 +12,10 @@ if is_undefined(data) { exit; }
 _score = data._score;
 if got_signal("received_data")
 {
-	var change_to_knockback = state != knockback_state && data.state == knockback_state;
-	var change_from_knockback = state == knockback_state && data.state != knockback_state;
-	var change_to_ghost = state != ghost_state && data.state == ghost_state;
-	var change_from_ghost = state == ghost_state && data.state != ghost_state;
+	var change_to_knockback = !state.state_is("knockback") && data.state_name == "knockback";
+	var change_from_knockback = state.state_is("knockback") && !data.state_name == "knockback";
+	var change_to_ghost = !state.state_is("ghost") && data.state_name == "ghost";
+	var change_from_ghost = state.state_is("ghost") && !data.state_name == "ghost";
 	
 	var force_rubberband = obj_client.frame_data_delay >= 2000 ||
 		change_to_knockback || change_from_knockback || change_to_ghost || change_from_ghost;

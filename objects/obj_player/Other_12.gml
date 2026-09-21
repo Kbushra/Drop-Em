@@ -37,7 +37,7 @@ base_attack_logic = function(damage = 15, score_penalty = 15, delay = 0.15, inv 
 		_score -= score_penalty;
 		if _score < 0 { _score = 0; }
 		
-		state = knockback_state;
+		state.change("knockback");
 		knockback_delay = delay;
 		current_knockback_h_force = other.image_xscale * knockback_h_force;
 		current_knockback_v_force = knockback_v_force;

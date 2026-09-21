@@ -18,7 +18,7 @@ if !data.success
 		
 		case NETWORK_TYPES.SET_INPUTS_GET_FRAME:
 			if data[$ "reason"] != "Host has disconnected!" { break; }
-			leave();
+			leave_game();
 		break;
 	}
 	exit;

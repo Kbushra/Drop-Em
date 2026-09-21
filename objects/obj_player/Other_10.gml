@@ -8,7 +8,7 @@ server_data = function()
 		client_id,
 		hp,
 		_score,
-		state,
+		state_name: state.get_current_state(),
 		
 		knockback_delay,
 		current_knockback_h_force,
@@ -107,13 +107,12 @@ fetch_late_pos = function(time_ago)
 	return positions[$ closest_num(times, current_time/1000 - time_ago)];
 }
 
-///@func step()
-step = function()
+///@func do_step()
+do_step = function()
 {
 	setup_coyotes();
 
-	state_transition();
-	state_step();
+	state.step();
 
 	control_score();
 	reduce_timers();

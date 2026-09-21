@@ -11,7 +11,7 @@ if curr_player || singleplayer || control_all_players
 	input_released = game_input.input_released;
 	delta = DELTA;
 	
-	step();
+	do_step();
 }
 else if instance_exists(obj_host)
 {
@@ -27,6 +27,6 @@ else if instance_exists(obj_host)
 		delta = frame.delta;
 		frame = array_shift(frames);
 		
-		step();
+		do_step();
 	}
 }
