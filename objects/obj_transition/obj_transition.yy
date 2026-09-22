@@ -29,6 +29,7 @@
   "physicsStartAwake":true,
   "properties":[
     {"$GMObjectProperty":"v2","%Name":"targ_room","filters":[],"listItems":[],"multiselect":false,"name":"targ_room","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
+    {"$GMObjectProperty":"v2","%Name":"callback","filters":[],"listItems":[],"multiselect":false,"name":"callback","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"empty","varType":4,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

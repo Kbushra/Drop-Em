@@ -29,14 +29,14 @@ function leave_game()
 	transition(rm_main);
 }
 
-function transition(rm)
+function transition(_targ_room, callback = empty)
 {
 	with obj_transition
 	{
-		if targ_room == rm && !transitioned { return; }
+		if targ_room == _targ_room && !transitioned { return; }
 	}
 	
-	instance_create_depth(0, 0, 0, obj_transition, { targ_room: rm });
+	instance_create_depth(0, 0, 0, obj_transition, { targ_room: _targ_room, callback });
 }
 
 function get_object_data()

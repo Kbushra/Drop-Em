@@ -20,7 +20,8 @@ if first_pass.maximum < 1 || second_pass.maximum < 1
 
 if !transitioned
 {
-	room_goto(targ_room);
+	if room_exists(targ_room) { room_goto(targ_room); }
+	callback();
 	transitioned = true;
 }
 

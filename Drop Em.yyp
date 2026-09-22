@@ -91,7 +91,6 @@
     {"id":{"name":"rm_cave_tutorial","path":"rooms/rm_cave_tutorial/rm_cave_tutorial.yy",},},
     {"id":{"name":"rm_init","path":"rooms/rm_init/rm_init.yy",},},
     {"id":{"name":"rm_main","path":"rooms/rm_main/rm_main.yy",},},
-    {"id":{"name":"rm_quit","path":"rooms/rm_quit/rm_quit.yy",},},
     {"id":{"name":"__MultiClientExtensionTest","path":"scripts/__MultiClientExtensionTest/__MultiClientExtensionTest.yy",},},
     {"id":{"name":"__snowstate_config","path":"scripts/__snowstate_config/__snowstate_config.yy",},},
     {"id":{"name":"MultiClientGetAdditionalParameters","path":"scripts/MultiClientGetAdditionalParameters/MultiClientGetAdditionalParameters.yy",},},
@@ -176,7 +175,6 @@
     {"roomId":{"name":"rm_main","path":"rooms/rm_main/rm_main.yy",},},
     {"roomId":{"name":"rm_cave_core","path":"rooms/rm_cave_core/rm_cave_core.yy",},},
     {"roomId":{"name":"rm_cave_tutorial","path":"rooms/rm_cave_tutorial/rm_cave_tutorial.yy",},},
-    {"roomId":{"name":"rm_quit","path":"rooms/rm_quit/rm_quit.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

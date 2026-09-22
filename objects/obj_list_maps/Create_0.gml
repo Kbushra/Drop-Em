@@ -8,11 +8,13 @@ elements[0] = new tab("BACK", back);
 
 for (var i = 0; i < array_length(global.maps); i++)
 {
-	array_push(elements, new tab(global.maps[i].name, method({ id, i }, function()
+	array_push(elements, new tab(global.maps[i].name, method({ i }, function()
 	{
-		global.save.map_index = i;
-		json_save();
-		id.back();
+		transition(noone, method({ i }, function()
+		{
+			global.save.map_index = i;
+			json_save();
+		}));
 	})));
 }
 

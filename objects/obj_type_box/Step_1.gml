@@ -1,5 +1,16 @@
 event_inherited();
 
+array_push(obj_mouse.clickables, id);
+
+var enabled = !got_signal("disable");
+stop_signal("disable");
+
+if !enabled
+{
+	stop_signal("pressed");
+	stop_signal("hovered");
+}
+
 if mouse_check_button_pressed(mb_left)
 {
 	if !got_signal("pressed")
@@ -16,11 +27,6 @@ if mouse_check_button_pressed(mb_left)
 	
 	stop_signal("pressed");
 }
-
-array_push(obj_mouse.clickables, id);
-
-var enabled = !got_signal("disable");
-stop_signal("disable");
 
 if !keyboard_check_pressed(vk_enter) || !enabled { exit; }
 func(id);

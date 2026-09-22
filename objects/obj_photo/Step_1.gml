@@ -5,7 +5,13 @@ if !instance_exists(list) { exit; }
 var enabled = !got_signal("disable");
 stop_signal("disable");
 
-if enabled && got_signal("pressed")
+if !enabled
+{
+	stop_signal("pressed");
+	stop_signal("hovered");
+}
+
+if got_signal("pressed")
 {
 	for (var i = 0; i < array_length(list.elements); i++)
 	{

@@ -14,7 +14,7 @@ elements =
 		instance_create_depth(x, y, depth, obj_list_maps);
 	}),
 	new empty_space(32),
-	new tab("QUIT", function() { transition(rm_quit); }),
+	new tab("QUIT", function() { transition(noone, game_end()); }),
 ];
 
 event_inherited();
