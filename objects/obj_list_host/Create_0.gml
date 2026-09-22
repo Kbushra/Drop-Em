@@ -47,4 +47,5 @@ elements =
 	})
 ];
 
+add_element()
 event_inherited();

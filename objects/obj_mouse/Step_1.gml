@@ -15,4 +15,6 @@ for (var i = 0; i < array_length(clickables); i++)
 
 send_signal(obj, "hovered");
 if mouse_check_button_pressed(mb_left) { send_signal(obj, "pressed"); }
+if mouse_check_button(mb_left) { send_signal(obj, "held"); }
+if mouse_check_button_released(mb_left) { send_signal(obj, "released"); }
 clickables = [];
