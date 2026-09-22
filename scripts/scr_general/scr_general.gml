@@ -19,9 +19,24 @@ function network_send_struct(wss, type, struct = {})
 
 function leave_game()
 {
-	network_send_struct(CONNECTOR.wss, NETWORK_TYPES.LEAVE);
-	instance_destroy(CONNECTOR);
-	room_goto(rm_main);
+	var connector = CONNECTOR;
+	if instance_exists(connector)
+	{
+		network_send_struct(connector.wss, NETWORK_TYPES.LEAVE);
+		instance_destroy(connector);
+	}
+	
+	transition(rm_main);
+}
+
+function transition(rm)
+{
+	with obj_transition
+	{
+		if targ_room == rm && !transitioned { return; }
+	}
+	
+	instance_create_depth(0, 0, 0, obj_transition, { targ_room: rm });
 }
 
 function get_object_data()

@@ -1,11 +1,11 @@
 {
   "$GMSprite":"v2",
-  "%Name":"spr_cave_tutorial_glide",
+  "%Name":"spr_cave_tutorial_slide_jump",
   "bboxMode":0,
-  "bbox_bottom":23,
+  "bbox_bottom":31,
   "bbox_left":2,
-  "bbox_right":28,
-  "bbox_top":1,
+  "bbox_right":30,
+  "bbox_top":6,
   "collisionKind":1,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
@@ -22,7 +22,7 @@
     {"$GMImageLayer":"","%Name":"dfa849dd-c26e-4c9a-b19b-bffadeb27253","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"dfa849dd-c26e-4c9a-b19b-bffadeb27253","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
     {"$GMImageLayer":"","%Name":"9e11f978-ce3a-421f-81b9-f620ecb0adb3","blendMode":0,"displayName":"default","isLocked":false,"name":"9e11f978-ce3a-421f-81b9-f620ecb0adb3","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"spr_cave_tutorial_glide",
+  "name":"spr_cave_tutorial_slide_jump",
   "nineSlice":null,
   "origin":0,
   "parent":{
@@ -34,7 +34,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"spr_cave_tutorial_glide",
+    "%Name":"spr_cave_tutorial_slide_jump",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -58,7 +58,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"spr_cave_tutorial_glide",
+    "name":"spr_cave_tutorial_slide_jump",
     "playback":1,
     "playbackSpeed":0.0,
     "playbackSpeedType":0,
@@ -70,7 +70,7 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f82f24a1-01bb-4c2c-85f7-48c2b0c95ac4","path":"sprites/spr_cave_tutorial_glide/spr_cave_tutorial_glide.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f82f24a1-01bb-4c2c-85f7-48c2b0c95ac4","path":"sprites/spr_cave_tutorial_slide_jump/spr_cave_tutorial_slide_jump.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"910df4b2-0a3d-4e3d-849d-c07de22b1aca","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

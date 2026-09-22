@@ -312,38 +312,42 @@ state.add("ghost",
 			
 			apply_spd();
 			x = clamp(x, abs(sprite_xoffset), room_width - abs(sprite_xoffset));
+			
+			if !instance_exists(obj_client)
+			{
+				var checkpoint = instance_place(x, y, obj_checkpoint);
+				if checkpoint && checkpoint.glow_player[client_id + 1]
+				{
+					checkpoint.mask_index = spr_checkpoint;
+					if place_meeting(x, y, checkpoint)
+					{
+						x = checkpoint.x;
+						y = checkpoint.y;
+						state.change("walk");
+					}
+					checkpoint.mask_index = spr_checkpoint_glow;
+					
+					if state.get_current_state() != "ghost" { return; }
+				}
+			}
 		}
 		else
 		{
-			x = exponential_out(revive_xstart, instance_exists(last_checkpoint) ?
-				last_checkpoint.x : xstart, revive_time, 3);
-			y = exponential_out(revive_ystart, instance_exists(last_checkpoint) ?
-				last_checkpoint.y : ystart, revive_time, 3);
 			revive_time += DELTA;
-			if revive_time >= 1 { state.change("walk"); }
+			x = exponential_in(revive_xstart, instance_exists(last_checkpoint) ?
+				last_checkpoint.x : xstart, revive_time, 3);
+			y = exponential_in(revive_ystart, instance_exists(last_checkpoint) ?
+				last_checkpoint.y : ystart, revive_time, 3);
+			if !instance_exists(obj_client) && revive_time >= 1 { state.change("walk"); return; }
 		}
 			
 		image_alpha = 0.5;
 		mask_index = spr_bat_mask;
 		sprite_index = spr_bat_ghost;
-		
-		if instance_exists(obj_client) { return; } //Only revive on server-side
-		
-		var checkpoint = instance_place(x, y, obj_checkpoint);
-		if checkpoint && checkpoint.glow_player[client_id + 1]
-		{
-			checkpoint.mask_index = spr_checkpoint;
-			if place_meeting(x, y, checkpoint)
-			{
-				x = checkpoint.x;
-				y = checkpoint.y;
-				state.change("walk");
-			}
-			checkpoint.mask_index = spr_checkpoint_glow;
-		}
 	},
 	leave: function()
 	{
+		image_alpha = 1;
 		lowest_y = min(lowest_y, y);
 		hp = 100;
 	}

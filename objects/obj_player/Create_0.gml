@@ -4,6 +4,9 @@ default_id($"player{client_id}");
 if !instance_exists(obj_player_follower)
 	instance_create_depth(x, y, depth, obj_player_follower);
 
+if instance_exists(obj_host) { instance_create_depth(x, y, depth, obj_host_info); }
+instance_create_depth(x, y, depth, obj_stats);
+
 event_user(0);
 event_user(1);
 event_user(2);

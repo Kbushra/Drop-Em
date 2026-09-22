@@ -75,7 +75,7 @@ apply_spd = function()
 setup_coyotes = function() {}
 
 ///@func control_score()
-control_score = function() {}
+control_score = function() { if _score < 0 { _score = 0; } }
 
 ///@func reduce_timers()
 reduce_timers = function() {}

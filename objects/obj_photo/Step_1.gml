@@ -2,7 +2,10 @@ array_push(obj_mouse.clickables, id);
 
 if !instance_exists(list) { exit; }
 
-if got_signal("pressed")
+var enabled = !got_signal("disable");
+stop_signal("disable");
+
+if enabled && got_signal("pressed")
 {
 	for (var i = 0; i < array_length(list.elements); i++)
 	{

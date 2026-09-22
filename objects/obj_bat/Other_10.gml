@@ -11,9 +11,11 @@ control_score = function()
 {
 	if instance_exists(obj_lava) && y < lowest_y
 	{
-		if state.get_current_state() != "ghost" { _score += (lowest_y - y)/5; }
+		if hp > 0 { _score += (lowest_y - y)/5; }
 		lowest_y = y;
 	}
+	
+	if _score < 0 { _score = 0; }
 }
 
 reduce_timers = function()
@@ -39,7 +41,7 @@ do_step = function()
 	if instance_exists(obj_lava)
 	{
 		var yoffset = client_id == -1 ? 0 : LATENCY * obj_lava.spd;
-		var hitting_lava = obj_lava.colliding(yoffset) && state.get_current_state() != "ghost";
+		var hitting_lava = obj_lava.colliding(yoffset) && hp > 0;
 	
 		if hitting_lava
 		{

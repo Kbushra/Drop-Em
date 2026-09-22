@@ -39,7 +39,7 @@ switch data.type
 		client_count = client_id + 1;
 		connected = true;
 	
-		room_goto(rm_cave_core);
+		transition(rm_cave_core);
 	break;
 	
 	case NETWORK_TYPES.SET_INPUTS_GET_FRAME:

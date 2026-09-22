@@ -35,7 +35,6 @@ base_attack_logic = function(damage = 15, score_penalty = 15, delay = 0.15, inv 
 		
 		hp -= damage;
 		_score -= score_penalty;
-		if _score < 0 { _score = 0; }
 		
 		state.change("knockback");
 		knockback_delay = delay;
