@@ -1,4 +1,4 @@
-array_push(obj_mouse.clickables, id);
+array_push(obj_mouse.mouseables, id);
 
 if !instance_exists(list) { exit; }
 
@@ -23,6 +23,7 @@ if got_signal("pressed")
 		}
 	}
 	
+	with obj_logs { array_push(logs, $"{other.caption} map selected."); }
 	focused = true;
 	stop_signal("pressed");
 }

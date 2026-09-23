@@ -8,7 +8,11 @@ if !assert(!is_undefined(data[$ "type"]) && !is_undefined(data[$ "success"]), "I
 
 if !data.success
 {
-	if !is_undefined(data[$ "reason"]) { print(data.reason); }
+	if !is_undefined(data[$ "reason"])
+	{
+		with obj_logs { array_push(logs, $"ERROR: {data.reason}"); }
+		print(data.reason);
+	}
 	
 	switch data.type
 	{

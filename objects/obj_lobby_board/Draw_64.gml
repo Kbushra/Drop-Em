@@ -30,6 +30,7 @@ for (var i = 0; i < array_length(obj_client.hosts); i++)
 		text: obj_client.hosts[i].name,
 		func: method({ join_code: obj_client.hosts[i].join_code }, function()
 		{
+			with obj_logs { array_push(logs, "Using a public lobby..."); }
 			network_send_struct(obj_client.wss, NETWORK_TYPES.JOIN, { join_code });
 		})
 	});

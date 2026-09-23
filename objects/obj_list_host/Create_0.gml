@@ -34,7 +34,8 @@ elements =
 	{
 		if string_length(inst.typed_string) == 0 ||
 		!instance_exists(get_focused_photo(photo_list)) { exit; }
-	
+		
+		with obj_logs { array_push(logs, "Joining as a host..."); }
 		instance_create_depth(x, y, depth, obj_connection,
 		{
 			create_object: obj_host,
@@ -47,5 +48,7 @@ elements =
 	})
 ];
 
-add_element()
 event_inherited();
+
+var ind = add_element(new element(obj_logs), 320, 0);
+spawn_element(noone, elements[ind], ind);

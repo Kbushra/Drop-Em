@@ -1,6 +1,6 @@
 event_inherited();
 
-array_push(obj_mouse.clickables, id);
+array_push(obj_mouse.mouseables, id);
 
 var enabled = !got_signal("disable");
 stop_signal("disable");

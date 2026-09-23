@@ -39,6 +39,14 @@ function transition(_targ_room, callback = empty)
 	instance_create_depth(0, 0, 0, obj_transition, { targ_room: _targ_room, callback });
 }
 
+function gui_to_window(_x, _y, _w = 0, _h = 0)
+{
+	var ratio = min(WIN_W/GUI_W, WIN_H/GUI_H);
+	var xoff = (WIN_W - GUI_W * ratio)/2;
+	var yoff = (WIN_H - GUI_H * ratio)/2;
+	return { x: _x * ratio + xoff, y: _y * ratio + yoff, w: _w * ratio, h: _h * ratio };
+}
+
 function get_object_data()
 {
 	return

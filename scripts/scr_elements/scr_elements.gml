@@ -24,7 +24,11 @@ function element(_obj, _gap = 0) constructor
 	static target = function(y)
 	{
 		targ_y = y;
-		if instance_exists(inst) { inst.targ_y = y; }
+		if instance_exists(inst)
+		{
+			inst.target = true;
+			inst.targ_y = y;
+		}
 		return self;
 	}
 	

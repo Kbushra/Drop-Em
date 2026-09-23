@@ -13,3 +13,6 @@ elements =
 ];
 
 event_inherited();
+
+var ind = add_element(new element(obj_logs), 320, 0);
+spawn_element(noone, elements[ind], ind);
