@@ -1,7 +1,11 @@
 var player = PLAYER;
-if !instance_exists(player) { exit; }
+if instance_exists(player)
+{
+	hp = player.hp;
+	_score = round(player._score);
+}
 
-draw_text(16, 16 + string_height("A"), $"HP: {player.hp}\nSCORE: {round(player._score)}");
+draw_text(16, 16 + string_height("A"), $"HP: {hp}\nSCORE: {_score}");
 if instance_exists(obj_client) && !instance_exists(obj_lava)
 {
 	draw_set_halign(fa_center);
