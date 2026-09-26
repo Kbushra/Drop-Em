@@ -1,20 +1,17 @@
-if !assert(instance_exists(obj_player_spawn), "No player spawn!") { exit; }
 default_id($"player{client_id}");
 
-if !instance_exists(obj_player_follower)
-	instance_create_depth(x, y, depth, obj_player_follower);
-
-if instance_exists(obj_host) { instance_create_depth(x, y, depth, obj_host_info); }
-instance_create_depth(x, y, depth, obj_stats);
+if client_id == CLIENT_ID
+{
+	global.score = 0;
+	instance_create_unique(x, y, depth, obj_player_follower, { player: id });
+	instance_create_unique(x, y, depth, obj_stats);
+	if instance_exists(obj_host) { instance_create_unique(x, y, depth, obj_host_info); }
+}
 
 event_user(0);
 event_user(1);
 event_user(2);
 
-x = obj_player_spawn.x;
-y = obj_player_spawn.y;
-xstart = x;
-ystart = y;
 hsp = 0;
 vsp = 0;
 positions = {};
@@ -44,3 +41,5 @@ attack_sprite = noone;
 attack_mask = noone;
 attack_cooldown = 0;
 inv_frames = 0;
+
+spawn_end_screen = false;

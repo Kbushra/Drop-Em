@@ -22,6 +22,7 @@ if !data.success
 		
 		case NETWORK_TYPES.SET_INPUTS_GET_FRAME:
 			if data[$ "reason"] != "Host has disconnected!" { break; }
+			print("leaving");
 			leave_game();
 		break;
 	}
@@ -39,15 +40,26 @@ switch data.type
 		connecting = false;
 		if connected { break; }
 		
+		var host_photo = get_data_level(data);
+		if host_photo == noone
+		{
+			with obj_logs { array_push(logs, "ERROR: Bugged server."); }
+			break;
+		}
+		
 		client_id = data.id;
 		client_count = client_id + 1;
 		connected = true;
-	
-		transition(rm_cave_core);
+		
+		transition(host_photo.vars._room);
 	break;
 	
 	case NETWORK_TYPES.SET_INPUTS_GET_FRAME:
-		if !is_struct(data.frame_data) { break; }
+		client_count = data.client_count;
+		clients_removed = data.clients_removed;
+		
+		var transition_out = instance_exists(obj_transition) && !obj_transition.transitioned;
+		if transition_out || room != get_data_level(data).vars._room || !is_struct(data.frame_data) { break; }
 		
 		frame_data_delay = current_time - last_frame_data_time;
 		last_frame_data_time = current_time;
@@ -73,19 +85,23 @@ switch data.type
 		
 			if !instances[$ curr_instance_ids[i]]
 			{
+				var vars = { instance: curr_instance_ids[i] };
+				vars = struct_concat(vars, obj);
+				struct_remove(vars, "object_index");
+				
 				if struct_exists(obj, "layer")
 				{
+					struct_remove(vars, "depth");
 					instances[$ curr_instance_ids[i]] = instance_create_layer(x, y,
-						obj.layer, obj.object_index, { instance: curr_instance_ids[i] });
+						obj.layer, obj.object_index, vars);
 				}
 				else
 				{
 					instances[$ curr_instance_ids[i]] = instance_create_depth(x, y,
-						struct_exists(obj, "depth") ? obj.depth : 0, obj.object_index,
-						{ instance: curr_instance_ids[i] });
+						struct_exists(obj, "depth") ? obj.depth : 0, obj.object_index, vars);
 				}
 				
-				apply_struct(instances[$ curr_instance_ids[i]], obj);
+				apply_struct(instances[$ curr_instance_ids[i]], vars);
 			}
 			
 			send_signal(instances[$ curr_instance_ids[i]], "received_data");
@@ -99,9 +115,6 @@ switch data.type
 			instance_destroy(instances[$ all_instance_ids[i]]);
 			struct_remove(instances, all_instance_ids[i]);
 		}
-	
-		client_count = data.client_count;
-		clients_removed = data.clients_removed;
 	break;
 	
 	case NETWORK_TYPES.PING:

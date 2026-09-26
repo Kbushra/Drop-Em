@@ -18,3 +18,8 @@ elements =
 ];
 
 event_inherited();
+
+var name_box_ind = add_element(new type_box(-1, "PLAYER NAME", all_special_chars(), empty), 320, 0);
+name_box = elements[name_box_ind];
+spawn_element(noone, name_box, name_box_ind);
+name_box.inst.typed_string = global.save.player_name;

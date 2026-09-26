@@ -313,6 +313,8 @@ state.add("ghost",
 			apply_spd();
 			x = clamp(x, abs(sprite_xoffset), room_width - abs(sprite_xoffset));
 			
+			if y < 0 { spawn_end_screen = true; }
+			
 			if !instance_exists(obj_client)
 			{
 				var checkpoint = instance_place(x, y, obj_checkpoint);
@@ -327,7 +329,7 @@ state.add("ghost",
 					}
 					checkpoint.mask_index = spr_checkpoint_glow;
 					
-					if state.get_current_state() != "ghost" { return; }
+					if !state.state_is("ghost") { return; }
 				}
 			}
 		}

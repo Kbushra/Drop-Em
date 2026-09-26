@@ -27,6 +27,7 @@ function default_save()
 		compatibility_version: 0,
 		cache: {},
 		
+		player_name: "",
 		map_index: MAPS.CAVES
 	};
 	

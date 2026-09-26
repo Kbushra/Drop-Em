@@ -28,12 +28,13 @@ switch data.type
 	case NETWORK_TYPES.ADD_HOST:
 		added = true;
 		join_code = data.join_code;
-		transition(targ_room);
+		transition(CURR_MAP.level_photos[level_index].vars._room);
 	break;
 	
 	case NETWORK_TYPES.SET_FRAME_GET_INPUTS:
 		clients_removed = 0;
 		latencies = data.latencies;
+		player_names = data.player_names;
 		for (var i = 0; i < array_length(data.input_data); i++)
 		{
 			var client_frames = data.input_data[i];
@@ -48,7 +49,7 @@ switch data.type
 			{
 				last_input_data[i] = undefined;
 				input_data[i] = [];
-				instance_create_depth(x, y, depth, obj_bat, { client_id: i });
+				with obj_player_spawn { instance_create_depth(x, y, depth, obj_bat, { client_id: i }); }
 			}
 			
 			for (var j = 0; j < array_length(client_frames); j++)

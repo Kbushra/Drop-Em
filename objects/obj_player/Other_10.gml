@@ -16,7 +16,9 @@ server_data = function()
 		
 		attacking,
 		attack_cooldown,
-		inv_frames
+		inv_frames,
+		
+		spawn_end_screen
 	};
 }
 
@@ -83,7 +85,7 @@ reduce_timers = function() {}
 ///@func inv_blend()
 inv_blend = function()
 {
-	if inv_frames <= 0 || state == knockback_state { image_blend = c_white; }
+	if inv_frames <= 0 || state.state_is("ghost") { image_blend = c_white; }
 	else { image_blend = true_mod(inv_frames, 0.2) > 0.1 ? c_red : c_white; }
 }
 

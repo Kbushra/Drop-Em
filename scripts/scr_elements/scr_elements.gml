@@ -70,12 +70,22 @@ function map(_name, _bg, _tutorial_room, _level_photos) constructor
 	level_photos = _level_photos;
 }
 
-function get_focused_photo(list)
+function get_focused_photo_index(list)
 {
 	for (var i = 0; i < array_length(list.elements); i++)
 	{
-		if list.elements[i].inst.focused { return list.elements[i].inst; }
+		if list.elements[i].inst.focused { return i; }
 	}
 	
-	return noone;
+	return NONE;
+}
+
+function get_data_level(data)
+{
+	if frac(data.map_index) != 0 || frac(data.level_index) != 0 { return noone; }
+	
+	if data.map_index != clamp(data.map_index, 0, MAPS.LEN - 1) ||
+	data.level_index != clamp(data.level_index, 0, array_length(global.maps[data.map_index].level_photos) - 1) { return noone; }
+	
+	return global.maps[data.map_index].level_photos[data.level_index];
 }

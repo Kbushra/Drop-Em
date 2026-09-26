@@ -1,5 +1,14 @@
 depth = -client_id;
 
+if client_id == CLIENT_ID
+{
+	global.score = _score;
+	if spawn_end_screen { instance_create_unique(0, 0, 0, obj_end_screen); }
+}
+
+visible = !spawn_end_screen;
+if !visible { exit; }
+
 var curr_player = client_id == CLIENT_ID;
 var singleplayer = !instance_exists(obj_host) && !instance_exists(obj_client);
 var control_all_players = instance_exists(game_debug) ? game_debug.control_all_players : false;

@@ -30,8 +30,8 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v2","%Name":"name","filters":[],"listItems":[],"multiselect":false,"name":"name","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"Name","varType":2,},
-    {"$GMObjectProperty":"v2","%Name":"targ_room","filters":[],"listItems":[],"multiselect":false,"name":"targ_room","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
+    {"$GMObjectProperty":"v2","%Name":"server_name","filters":[],"listItems":[],"multiselect":false,"name":"server_name","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"Name","varType":2,},
+    {"$GMObjectProperty":"v2","%Name":"level_index","filters":[],"listItems":[],"multiselect":false,"name":"level_index","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"-1","varType":1,},
     {"$GMObjectProperty":"v2","%Name":"wss","filters":[],"listItems":[],"multiselect":false,"name":"wss","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"NONE","varType":4,},
   ],
   "resourceType":"GMObject",

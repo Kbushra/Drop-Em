@@ -3,7 +3,6 @@
 function get_scrollbar_height(content_height, container_height, scrollbar_container_height)
 {
 	if content_height == 0 || content_height < container_height { return 0; }
-	print($"{content_height}, {container_height}");
 	return scrollbar_container_height * container_height/content_height;
 }
 

@@ -21,7 +21,7 @@ if mouse_check_button_pressed(mb_left)
 	else if !focused
 	{
 		focused = true;
-		keyboard_string = initial_keyboard_string + typed_string;
+		keyboard_len = string_length(keyboard_string);
 		type_bar = instance_create_depth(x + 2, y + sprite_height/2, depth - 1, obj_type_bar);
 	}
 	

@@ -2,6 +2,8 @@
 last_input_data = [];
 input_data = [];
 latencies = [];
+player_names = [];
+clients_removed = 0;
 
 heartbeat_time = current_time;
 join_code = "";
@@ -9,7 +11,13 @@ added = false;
 joinable = true;
 frame_data = {};
 
-network_send_struct(wss, NETWORK_TYPES.ADD_HOST, { name });
+network_send_struct(wss, NETWORK_TYPES.ADD_HOST,
+{
+	player_name: global.save.player_name,
+	server_name,
+	map_index: global.save.map_index,
+	level_index
+});
 
 ///@func verify_inputs(arr)
 verify_inputs = function(arr)

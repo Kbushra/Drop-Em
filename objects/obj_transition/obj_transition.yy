@@ -30,6 +30,7 @@
   "properties":[
     {"$GMObjectProperty":"v2","%Name":"targ_room","filters":[],"listItems":[],"multiselect":false,"name":"targ_room","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":5,},
     {"$GMObjectProperty":"v2","%Name":"callback","filters":[],"listItems":[],"multiselect":false,"name":"callback","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"empty","varType":4,},
+    {"$GMObjectProperty":"v2","%Name":"server_side","filters":[],"listItems":[],"multiselect":false,"name":"server_side","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

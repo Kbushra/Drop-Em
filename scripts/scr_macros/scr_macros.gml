@@ -45,7 +45,7 @@
 
 #macro EPOCH_TIME (date_second_span(date_create_datetime(1970, 1, 1, 0, 0, 0), date_current_datetime()))
 
-#macro PLAYER (obj_player_follower.player)
+#macro PLAYER (instance_exists(obj_player_follower) ? obj_player_follower.player : noone)
 #macro CONNECTOR (instance_exists(obj_connection) ? obj_connection : (instance_exists(obj_host) ? obj_host : (instance_exists(obj_client) ? obj_client : noone)))
 #macro CLIENT_ID (instance_exists(obj_client) ? obj_client.client_id : -1)
 #macro CLIENT_COUNT (instance_exists(obj_client) ? obj_client.client_count : (instance_exists(obj_host) ? array_length(obj_host.input_data) : 0))

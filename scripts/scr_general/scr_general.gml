@@ -29,14 +29,15 @@ function leave_game()
 	transition(rm_main);
 }
 
-function transition(_targ_room, callback = empty)
+function transition(_targ_room, _callback = empty, _server_side = false)
 {
 	with obj_transition
 	{
-		if targ_room == _targ_room && !transitioned { return; }
+		if !transitioned { return; }
 	}
 	
-	instance_create_depth(0, 0, 0, obj_transition, { targ_room: _targ_room, callback });
+	instance_create_depth(0, 0, 0, obj_transition,
+		{ targ_room: _targ_room, callback: _callback, server_side: _server_side });
 }
 
 function gui_to_window(_x, _y, _w = 0, _h = 0)
@@ -114,4 +115,28 @@ function apply_struct(target, struct)
 		try { variable_instance_set(target, names[i], struct[$ names[i]]); }
 		catch(readonly) {}
 	}
+}
+
+function all_special_chars()
+{
+	//Commented chars don't work with font
+	return
+	[
+		ord(","), ord("<"),
+		ord("."), ord(">"),
+		ord("/"), ord("?"),
+		ord(";"), ord(":"),
+		ord("'"), ord("@"),
+		ord("#"), ord("~"),
+		ord("["), ord("{"),
+		ord("]"), ord("}"),
+		ord("\\"), ord("|"),
+		ord("-"), ord("_"),
+		ord("="), ord("+"),
+		ord("`"), /*ord("¬"), ord("¦"),*/
+		ord("!"), ord("\\"), /*ord("£"),*/ ord("$"), ord("%"),
+		ord("^"), ord("&"), ord("*"), ord("("), ord(")"),
+	
+		vk_space
+	];
 }

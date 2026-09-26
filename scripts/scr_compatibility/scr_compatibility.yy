@@ -6,7 +6,7 @@
   "name":"scr_compatibility",
   "parent":{
     "name":"Saving",
-    "path":"folders/Scripts/Saving.yy",
+    "path":"folders/Managers/Saving.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

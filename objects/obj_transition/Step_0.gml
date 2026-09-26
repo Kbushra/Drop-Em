@@ -1,5 +1,17 @@
 depth = -10000;
 
+if server_side
+{
+	calculate_id();
+	write_data(false, { server_side, targ_room_name: room_get_name(targ_room) });
+	
+	if got_signal("received_data")
+	{
+		var data = obj_client.frame_data[$ instance];
+		targ_room = asset_get_index(data.targ_room_name);
+	}
+}
+
 var spd = DELTA * 2;
 
 if first_pass.maximum < 1

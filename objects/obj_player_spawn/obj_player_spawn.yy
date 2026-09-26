@@ -1,7 +1,9 @@
 {
   "$GMObject":"",
   "%Name":"obj_player_spawn",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"obj_player_spawn",
   "overriddenProperties":[],
@@ -23,7 +25,10 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[],
+  "properties":[
+    {"$GMObjectProperty":"v2","%Name":"agile","filters":[],"listItems":[],"multiselect":false,"name":"agile","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
+    {"$GMObjectProperty":"v2","%Name":"obj","filters":[],"listItems":[],"multiselect":false,"name":"obj","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"obj_player","varType":5,},
+  ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,

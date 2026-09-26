@@ -11,6 +11,7 @@
   "defaultScriptType":1,
   "Folders":[
     {"$GMFolder":"","%Name":"Managers","folderPath":"folders/Managers.yy","name":"Managers","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Saving","folderPath":"folders/Managers/Saving.yy","name":"Saving","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Maps","folderPath":"folders/Maps.yy","name":"Maps","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Cave","folderPath":"folders/Maps/Cave.yy","name":"Cave","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Bat","folderPath":"folders/Maps/Cave/Bat.yy","name":"Bat","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -21,7 +22,6 @@
     {"$GMFolder":"","%Name":"Scripts","folderPath":"folders/Scripts.yy","name":"Scripts","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Drawing","folderPath":"folders/Scripts/Drawing.yy","name":"Drawing","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Maths","folderPath":"folders/Scripts/Maths.yy","name":"Maths","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Saving","folderPath":"folders/Scripts/Saving.yy","name":"Saving","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Variables","folderPath":"folders/Scripts/Variables.yy","name":"Variables","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Triggers","folderPath":"folders/Triggers.yy","name":"Triggers","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"UI","folderPath":"folders/UI.yy","name":"UI","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -63,6 +63,7 @@
     {"id":{"name":"obj_client","path":"objects/obj_client/obj_client.yy",},},
     {"id":{"name":"obj_connection","path":"objects/obj_connection/obj_connection.yy",},},
     {"id":{"name":"obj_element","path":"objects/obj_element/obj_element.yy",},},
+    {"id":{"name":"obj_end_screen","path":"objects/obj_end_screen/obj_end_screen.yy",},},
     {"id":{"name":"obj_host_info","path":"objects/obj_host_info/obj_host_info.yy",},},
     {"id":{"name":"obj_host","path":"objects/obj_host/obj_host.yy",},},
     {"id":{"name":"obj_lava","path":"objects/obj_lava/obj_lava.yy",},},

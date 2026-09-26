@@ -1,23 +1,3 @@
-var special_chars =
-[
-	ord(","), ord("<"),
-	ord("."), ord(">"),
-	ord("/"), ord("?"),
-	ord(";"), ord(":"),
-	ord("'"), ord("@"),
-	ord("#"), ord("~"),
-	ord("["), ord("{"),
-	ord("]"), ord("}"),
-	ord("\\"), ord("|"),
-	ord("-"), ord("_"),
-	ord("="), ord("+"),
-	ord("`"), /*ord("¬"), ord("¦"),*/
-	ord("!"), ord("\\"), /*ord("£"),*/ ord("$"), ord("%"),
-	ord("^"), ord("&"), ord("*"), ord("("), ord(")"),
-	
-	vk_space
-];
-
 photo_list = instance_create_depth(x, y + 64, depth,
 	obj_list_horizontal, { elements: variable_clone(CURR_MAP.level_photos) });
 
@@ -30,10 +10,10 @@ elements =
 		instance_create_depth(x, y, depth, obj_list_main);
 	}),
 	new empty_space(96),
-	new type_box(NONE, "LOBBY NAME", special_chars, function(inst)
+	new type_box(NONE, "LOBBY NAME", all_special_chars(), function(inst)
 	{
 		if string_length(inst.typed_string) == 0 ||
-		!instance_exists(get_focused_photo(photo_list)) { exit; }
+		get_focused_photo_index(photo_list) < 0 { exit; }
 		
 		with obj_logs { array_push(logs, "Joining as a host..."); }
 		instance_create_depth(x, y, depth, obj_connection,
@@ -41,8 +21,8 @@ elements =
 			create_object: obj_host,
 			create_vars:
 			{
-				name: inst.typed_string,
-				targ_room: get_focused_photo(photo_list)._room
+				server_name: inst.typed_string,
+				level_index: get_focused_photo_index(photo_list)
 			}
 		});
 	})

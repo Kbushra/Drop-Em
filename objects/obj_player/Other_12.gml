@@ -21,6 +21,7 @@ base_attack_logic = function(damage = 15, score_penalty = 15, delay = 0.15, inv 
 	{
 		if instance_exists(obj_client) { break; } //Player interactions don't happen locally
 		if other.id == id { continue; }
+		if state.state_is("ghost") { continue; }
 		
 		var late_pos = fetch_late_pos(latency);
 		var curr_pos = new coordinate(x, y);
@@ -35,6 +36,7 @@ base_attack_logic = function(damage = 15, score_penalty = 15, delay = 0.15, inv 
 		
 		hp -= damage;
 		_score -= score_penalty;
+		if _score < 0 { _score = 0; }
 		
 		state.change("knockback");
 		knockback_delay = delay;

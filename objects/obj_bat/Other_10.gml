@@ -25,7 +25,7 @@ reduce_timers = function()
 	coyote_press_down -= delta;
 	coyote_fall -= delta;
 	
-	if state.get_current_state() != "knockback" { inv_frames -= delta; }
+	if !state.state_is("knockback") { inv_frames -= delta; }
 }
 
 inherited_step = do_step;
@@ -51,5 +51,14 @@ do_step = function()
 		}
 	}
 	
-	if hp <= 0 && state.get_current_state() != "ghost" { state.change("ghost"); }
+	if !state.state_is("ghost")
+	{
+		if hp <= 0 { state.change("ghost"); }
+		
+		with obj_cave_exit
+		{
+			if place_meeting(x, y, other.id) && other.input_pressed[KEY.DOWN]
+				{ other.spawn_end_screen = true; }
+		}
+	}
 }

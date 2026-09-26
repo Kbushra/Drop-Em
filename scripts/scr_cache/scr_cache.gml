@@ -12,7 +12,7 @@ function calculate_id(connected = true)
 	}
 	
 	if connected && instance_exists(obj_client)
-	{ obj_client.instances[$ instance] = id; }
+		{ obj_client.instances[$ instance] = id; }
 	
 	return instance;
 }
@@ -22,7 +22,7 @@ function default_id(_id, connected = true)
 	if !variable_instance_exists(id, "instance") { instance = _id; }
 	
 	if connected && instance_exists(obj_client)
-	{ obj_client.instances[$ instance] = id; }
+		{ obj_client.instances[$ instance] = id; }
 	
 	return instance;
 }
