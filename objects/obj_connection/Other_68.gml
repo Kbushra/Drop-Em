@@ -7,6 +7,10 @@ if async_load[? "type"] == network_type_non_blocking_connect && async_load[? "id
 		
 		carried_wss = true;
 	}
+	else
+	{
+		with (obj_logs) { array_push(logs, "ERROR: Couldn't connect to server, please try again."); }
+	}
 	
 	instance_destroy();
 }
